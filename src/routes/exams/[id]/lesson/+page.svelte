@@ -11,7 +11,6 @@
 	import SkipButton from '$lib/components/SkipButton/SkipButton.svelte';
 	import ScoreCard from '$lib/components/ScoreCard/ScoreCard.svelte';
 	import ExamQuestionCard from '$lib/components/ExamQuestionCard/ExamQuestionCard.svelte';
-	import Card from '$lib/components/Card/Card.svelte';
 	import Crumbs from '$lib/components/Crumbs/Crumbs.svelte';
 
 	let props: PageProps = $props();

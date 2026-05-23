@@ -1,6 +1,9 @@
 <script lang="ts">
-	import type { LessonResult } from '$lib/types';
+	import { browser } from '$app/environment';
+	import type { LessonResult, Phrase } from '$lib/types';
 	import type { PageProps } from './$types';
+	import { orderItemsByIndices, pickRandomItems } from '$lib/lesson';
+	import { loadLessonIndices } from '$lib/lessonSession';
 	import Stack from '$lib/components/Stack/Stack.svelte';
 	import Typography from '$lib/components/Typography/Typography.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
@@ -17,7 +20,19 @@
 
 	let props: PageProps = $props();
 	const situation = $derived(props.data.situation);
-	const phrases = $derived(situation.phrases ?? []);
+	const allPhrases = $derived(situation.phrases ?? []);
+
+	let phrases: Phrase[] = $state([]);
+
+	$effect(() => {
+		if (!browser) return;
+		const indices = loadLessonIndices(situation.id);
+		phrases =
+			indices && indices.length > 0
+				? orderItemsByIndices(allPhrases, indices)
+				: pickRandomItems(allPhrases);
+	});
+
 	const total = $derived(phrases.length);
 
 	let currentIndex = $state(0);
@@ -57,7 +72,7 @@
 			{ text: 'レッスン', href: paths.lesson(situation.id) }
 		]}
 	/>
-	{#if !isFinished}
+	{#if browser && phrases.length > 0 && !isFinished}
 		<Stack size={3} variant="section">
 			<Stack size={1} variant="div">
 				<Typography size={2} variant="p" color="dark" weight="bold" align="center">
@@ -65,11 +80,7 @@
 				</Typography>
 				<Progress value={currentIndex} max={total} />
 			</Stack>
-			<QuestionCard
-				meaning={currentPhrase.meaning}
-				phrase={currentPhrase.phrase}
-				bind:showAnswer
-			/>
+			<QuestionCard meaning={currentPhrase.meaning} phrase={currentPhrase.phrase} bind:showAnswer />
 			<Input {isCorrect} bind:userInput handleInput={checkInput} />
 			{#if isCorrect}
 				<Button variant="button" color="success" onclick={advance}>次へ進む</Button>
@@ -78,7 +89,7 @@
 				<SkipButton onclick={skipPhrase} />
 			{/if}
 		</Stack>
-	{:else}
+	{:else if browser && phrases.length > 0}
 		<Stack size={3} variant="section">
 			<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 				結果
