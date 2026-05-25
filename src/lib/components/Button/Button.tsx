@@ -18,12 +18,7 @@ export function Button(props: Props) {
 	if (variant === 'a') {
 		const { href, ...anchorRest } = rest as AnchorHTMLAttributes<HTMLAnchorElement>;
 		return (
-			<Link
-				className={styles.button}
-				data-color={color}
-				href={href ?? '#'}
-				{...anchorRest}
-			>
+			<Link className={styles.button} data-color={color} href={href ?? '#'} {...anchorRest}>
 				{children}
 			</Link>
 		);

@@ -14,14 +14,12 @@ const siteUrl = `https://${siteData.domain}`;
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
 	title: siteData.siteName,
-	description:
-		'マイペンサッパロットは、タイ語とタイ文字タイピングを学習するためのサイトです。',
+	description: 'マイペンサッパロットは、タイ語とタイ文字タイピングを学習するためのサイトです。',
 	robots: { index: false, follow: false },
 	alternates: { canonical: siteUrl },
 	openGraph: {
 		title: siteData.siteName,
-		description:
-			'マイペンサッパロットは、タイ語とタイ文字タイピングを学習するためのサイトです。',
+		description: 'マイペンサッパロットは、タイ語とタイ文字タイピングを学習するためのサイトです。',
 		locale: 'ja_JP',
 		type: 'website',
 		url: siteUrl,

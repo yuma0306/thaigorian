@@ -27,23 +27,6 @@ export default async function HomePage() {
 						))}
 					</CardImageList>
 				</Stack>
-				<Stack size={2} variant="section">
-					<Typography size={4} variant="h2" color="secondary" weight="bold" align="center">
-						4択問題
-					</Typography>
-					<CardImageList>
-						{exams.map((exam) =>
-							exam.title ? (
-								<CardImage
-									key={exam.id}
-									id={exam.id}
-									href={paths.exam(exam.id)}
-									title={exam.title}
-								/>
-							) : null
-						)}
-					</CardImageList>
-				</Stack>
 			</Stack>
 		</Inner>
 	);

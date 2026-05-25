@@ -1,31 +1,31 @@
 .skip {
-		display: block;
-		width: fit-content;
-		background-color: var(--color-primary);
-		color: var(--color-white);
-		font-weight: 700;
-		cursor: pointer;
-		transition: opacity var(--transition);
-		@media (hover: hover) {
-			&:hover {
-				opacity: var(--opacity);
-			}
-		}
-		&:active {
+	display: block;
+	width: fit-content;
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	font-weight: 700;
+	cursor: pointer;
+	transition: opacity var(--transition);
+	@media (hover: hover) {
+		&:hover {
 			opacity: var(--opacity);
 		}
 	}
-	@media (min-width: 640px) {
-		.skip {
-			padding: calc(var(--spacing-2) * 1px);
-			font-size: calc(var(--font-size-1) * 1px);
-			border-radius: calc(var(--border-radius) * 1px);
-		}
+	&:active {
+		opacity: var(--opacity);
 	}
-	@media (max-width: 639px) {
-		.skip {
-			padding: calc(var(--spacing-2) * var(--calc-sp));
-			font-size: calc(var(--calc-sp) * var(--font-size-1));
-			border-radius: calc(var(--calc-sp) * var(--border-radius));
-		}
+}
+@media (min-width: 640px) {
+	.skip {
+		padding: calc(var(--spacing-2) * 1px);
+		font-size: calc(var(--font-size-1) * 1px);
+		border-radius: calc(var(--border-radius) * 1px);
 	}
+}
+@media (max-width: 639px) {
+	.skip {
+		padding: calc(var(--spacing-2) * var(--calc-sp));
+		font-size: calc(var(--calc-sp) * var(--font-size-1));
+		border-radius: calc(var(--calc-sp) * var(--border-radius));
+	}
+}

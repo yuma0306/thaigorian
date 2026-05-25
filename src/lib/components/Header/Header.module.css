@@ -1,13 +1,13 @@
 .header {
-		background-color: var(--color-primary);
+	background-color: var(--color-primary);
+}
+@media (min-width: 640px) {
+	.header {
+		padding: calc(var(--spacing-2) * 1px);
 	}
-	@media (min-width: 640px) {
-		.header {
-			padding: calc(var(--spacing-2) * 1px);
-		}
+}
+@media (max-width: 639px) {
+	.header {
+		padding: calc(var(--calc-sp) * var(--spacing-2));
 	}
-	@media (max-width: 639px) {
-		.header {
-			padding: calc(var(--calc-sp) * var(--spacing-2));
-		}
-	}
+}

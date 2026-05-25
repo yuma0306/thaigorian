@@ -40,13 +40,7 @@ export function PhraseCard({ phrase }: Props) {
 					<Stack size={2} variant="ul">
 						{phrase.words!.map((word) => (
 							<ListItem key={word.fieldId} symbol="none">
-								<FlexColumn
-									gap={1}
-									variant="div"
-									alignItems="center"
-									justifyContent="start"
-									isWrap
-								>
+								<FlexColumn gap={1} variant="div" alignItems="center" justifyContent="start" isWrap>
 									<Typography size={2} variant="span" color="primary" weight="bold" align="left">
 										{word.word}
 									</Typography>
