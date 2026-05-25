@@ -26,9 +26,19 @@
 - カード一覧に正解・不正解の印をつけて一覧表示
 - 戻るボタンでシチュエーション詳細ページに戻る
 
+## 開発
+
+```sh
+cp .env.example .env
+# MICROCMS_SERVICE_DOMAIN / MICROCMS_API_KEY を設定
+
+npm install
+npm run dev
+```
+
 ---
 
-# sv
+# sv (旧 SvelteKit テンプレート・参考)
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 

@@ -1,13 +1,17 @@
 import { createClient } from 'microcms-js-sdk';
-import { MICROCMS_SERVICE_DOMAIN, MICROCMS_API_KEY } from '$env/static/private';
 import type { Situation, Exam } from './types';
 
-const client = createClient({
-	serviceDomain: MICROCMS_SERVICE_DOMAIN,
-	apiKey: MICROCMS_API_KEY
-});
+function getClient() {
+	const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
+	const apiKey = process.env.MICROCMS_API_KEY;
+	if (!serviceDomain || !apiKey) {
+		throw new Error('MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY must be set');
+	}
+	return createClient({ serviceDomain, apiKey });
+}
 
 export async function getSituations(): Promise<Situation[]> {
+	const client = getClient();
 	const response = await client.getList<Situation>({
 		endpoint: 'situations',
 		queries: {
@@ -20,6 +24,7 @@ export async function getSituations(): Promise<Situation[]> {
 
 export async function getSituationById(id: string): Promise<Situation | undefined> {
 	try {
+		const client = getClient();
 		return await client.getListDetail<Situation>({
 			endpoint: 'situations',
 			contentId: id
@@ -31,6 +36,7 @@ export async function getSituationById(id: string): Promise<Situation | undefine
 
 export async function getExams(): Promise<Exam[]> {
 	try {
+		const client = getClient();
 		const response = await client.getList<Exam>({
 			endpoint: 'exams',
 			queries: {
@@ -40,13 +46,13 @@ export async function getExams(): Promise<Exam[]> {
 		});
 		return response.contents;
 	} catch {
-		// エンドポイントが存在しない場合（404等）は空配列を返す
 		return [];
 	}
 }
 
 export async function getExamById(id: string): Promise<Exam | undefined> {
 	try {
+		const client = getClient();
 		return await client.getListDetail<Exam>({
 			endpoint: 'exams',
 			contentId: id

@@ -1,4 +1,4 @@
-import type { Situation, Exam } from '$lib/types';
+import type { Situation, Exam } from '@/lib/types';
 
 export const paths = {
 	home: '/',

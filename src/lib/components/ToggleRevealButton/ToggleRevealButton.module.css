@@ -1,0 +1,27 @@
+.toggleReveal {
+		background: var(--color-primary-10);
+		border: 1px solid var(--color-primary);
+		color: var(--color-primary);
+		transition: opacity var(--transition);
+		cursor: pointer;
+	}
+	.toggleReveal:hover {
+		opacity: var(--opacity);
+	}
+	.toggleReveal:active {
+		opacity: var(--opacity);
+	}
+	@media (min-width: 640px) {
+		.toggleReveal {
+			border-radius: calc(var(--border-radius) * 1px);
+			padding: calc(var(--spacing-1) * 1px);
+			font-size: calc(var(--font-size-2) * 1px);
+		}
+	}
+	@media (max-width: 639px) {
+		.toggleReveal {
+			border-radius: calc(var(--calc-sp) * var(--border-radius));
+			padding: calc(var(--calc-sp) * var(--spacing-1));
+			font-size: calc(var(--calc-sp) * var(--font-size-2));
+		}
+	}
