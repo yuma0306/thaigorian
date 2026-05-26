@@ -1,17 +1,17 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import type { Situation } from '@/lib/types';
-import { Stack } from '@/lib/components/Stack/Stack';
-import { Typography } from '@/lib/components/Typography/Typography';
-import { paths } from '@/lib/constants/paths';
-import { pickRandomIndices, maxLessonItems } from '@/lib/lesson';
-import { saveLessonIndices } from '@/lib/lessonSession';
-import { Button } from '@/lib/components/Button/Button';
-import { PhraseCard } from '@/lib/components/PhraseCard/PhraseCard';
-import { Card } from '@/lib/components/Card/Card';
-import { Inner } from '@/lib/components/Inner/Inner';
-import { Crumbs } from '@/lib/components/Crumbs/Crumbs';
+import type { Situation } from '@/types';
+import { Stack } from '@/components/Stack/Stack';
+import { Typography } from '@/components/Typography/Typography';
+import { paths } from '@/constants/paths';
+import { pickRandomIndices, maxLessonItems } from '@/functions/lesson';
+import { saveLessonIndices } from '@/functions/lessonSession';
+import { Button } from '@/components/Button/Button';
+import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
+import { Card } from '@/components/Card/Card';
+import { Inner } from '@/components/Inner/Inner';
+import { Crumbs } from '@/components/Crumbs/Crumbs';
 
 type Props = {
 	situation: Situation;
@@ -40,8 +40,13 @@ export function SituationDetail({ situation }: Props) {
 				</Button>
 				{situation.phrases && situation.phrases.length > 0 && (
 					<Stack size={2} variant="ul">
-						{situation.phrases.map((phrase) => (
-							<Card key={phrase.fieldId} variant="li" borderColor="gray" hasBorderLeft>
+						{situation.phrases.map((phrase, index) => (
+							<Card
+								key={`${phrase.fieldId}-${index}`}
+								variant="li"
+								borderColor="gray"
+								hasBorderLeft
+							>
 								<PhraseCard phrase={phrase} />
 							</Card>
 						))}

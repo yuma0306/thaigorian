@@ -1,22 +1,22 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import type { LessonResult, Phrase, Situation } from '@/lib/types';
-import { orderItemsByIndices, pickRandomItems } from '@/lib/lesson';
-import { loadLessonIndices } from '@/lib/lessonSession';
-import { Stack } from '@/lib/components/Stack/Stack';
-import { Typography } from '@/lib/components/Typography/Typography';
-import { Button } from '@/lib/components/Button/Button';
-import { paths } from '@/lib/constants/paths';
-import { QuestionCard } from '@/lib/components/QuestionCard/QuestionCard';
-import { Progress } from '@/lib/components/Progress/Progress';
-import { Inner } from '@/lib/components/Inner/Inner';
-import { SkipButton } from '@/lib/components/SkipButton/SkipButton';
-import { ScoreCard } from '@/lib/components/ScoreCard/ScoreCard';
-import { Input } from '@/lib/components/Input/Input';
-import { PhraseCard } from '@/lib/components/PhraseCard/PhraseCard';
-import { Card } from '@/lib/components/Card/Card';
-import { Crumbs } from '@/lib/components/Crumbs/Crumbs';
+import type { LessonResult, Phrase, Situation } from '@/types';
+import { orderItemsByIndices, pickRandomItems } from '@/functions/lesson';
+import { loadLessonIndices } from '@/functions/lessonSession';
+import { Stack } from '@/components/Stack/Stack';
+import { Typography } from '@/components/Typography/Typography';
+import { Button } from '@/components/Button/Button';
+import { paths } from '@/constants/paths';
+import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
+import { Progress } from '@/components/Progress/Progress';
+import { Inner } from '@/components/Inner/Inner';
+import { SkipButton } from '@/components/SkipButton/SkipButton';
+import { ScoreCard } from '@/components/ScoreCard/ScoreCard';
+import { Input } from '@/components/Input/Input';
+import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
+import { Card } from '@/components/Card/Card';
+import { Crumbs } from '@/components/Crumbs/Crumbs';
 
 type Props = {
 	situation: Situation;
@@ -48,8 +48,9 @@ export function SituationLesson({ situation }: Props) {
 	const isFinished = currentIndex >= total;
 	const correctCount = useMemo(() => results.filter((r) => r.correct).length, [results]);
 
-	function checkInput() {
-		if (currentPhrase?.phrase !== undefined && userInput === currentPhrase.phrase) {
+	function handleUserInputChange(value: string) {
+		setUserInput(value);
+		if (currentPhrase?.phrase !== undefined && value === currentPhrase.phrase) {
 			setResults((prev) => [...prev, { phrase: currentPhrase, correct: true }]);
 			setIsCorrect(true);
 		}
@@ -95,8 +96,7 @@ export function SituationLesson({ situation }: Props) {
 					<Input
 						isCorrect={isCorrect}
 						userInput={userInput}
-						onUserInputChange={setUserInput}
-						onInput={checkInput}
+						onUserInputChange={handleUserInputChange}
 					/>
 					{isCorrect && (
 						<Button variant="button" color="success" onClick={advance}>

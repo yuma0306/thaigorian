@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
-import '@/lib/styles/reset.css';
-import '@/lib/styles/app.css';
-import { Wrapper } from '@/lib/components/Wrapper/Wrapper';
-import { Header } from '@/lib/components/Header/Header';
-import { Main } from '@/lib/components/Main/Main';
-import { Footer } from '@/lib/components/Footer/Footer';
-import { siteData } from '@/lib/constants/siteData';
+import '@/styles/reset.css';
+import '@/styles/app.css';
+import { Wrapper } from '@/components/Wrapper/Wrapper';
+import { Header } from '@/components/Header/Header';
+import { Main } from '@/components/Main/Main';
+import { Footer } from '@/components/Footer/Footer';
+import { siteData } from '@/constants/siteData';
 
 const siteUrl = `https://${siteData.domain}`;
 

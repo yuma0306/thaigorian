@@ -1,13 +1,13 @@
-import { getSituations, getExams } from '@/lib/microcms';
-import { CardImageList } from '@/lib/components/CardImageList/CardImageList';
-import { Stack } from '@/lib/components/Stack/Stack';
-import { CardImage } from '@/lib/components/CardImage/CardImage';
-import { Typography } from '@/lib/components/Typography/Typography';
-import { paths } from '@/lib/constants/paths';
-import { Inner } from '@/lib/components/Inner/Inner';
+import { getSituations } from '@/functions/microcms';
+import { CardImageList } from '@/components/CardImageList/CardImageList';
+import { Stack } from '@/components/Stack/Stack';
+import { CardImage } from '@/components/CardImage/CardImage';
+import { Typography } from '@/components/Typography/Typography';
+import { paths } from '@/constants/paths';
+import { Inner } from '@/components/Inner/Inner';
 
 export default async function HomePage() {
-	const [situations, exams] = await Promise.all([getSituations(), getExams()]);
+	const situations = await getSituations();
 
 	return (
 		<Inner>

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getSituationById } from '@/lib/microcms';
+import { getSituationById } from '@/functions/microcms';
 import { SituationDetail } from './SituationDetail';
 
 type Props = {
