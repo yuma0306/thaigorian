@@ -1,12 +1,12 @@
 .authForm {
-	width: min(100%, 480px);
 	margin-inline: auto;
+	width: min(100%, 480px);
 }
 
 .link {
-	text-align: center;
 	color: var(--color-secondary);
 	font-weight: 700;
+	text-align: center;
 	text-decoration: none;
 	transition: opacity var(--transition);
 }

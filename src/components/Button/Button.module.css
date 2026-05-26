@@ -1,13 +1,13 @@
 .button {
-	display: block;
-	text-align: center;
 	background-color: var(--color-secondary);
 	color: var(--color-white);
+	cursor: pointer;
+	display: block;
 	font-weight: 700;
+	margin-inline: auto;
+	text-align: center;
 	text-decoration: none;
 	transition: opacity var(--transition);
-	margin-inline: auto;
-	cursor: pointer;
 	@media (hover: hover) {
 		&:hover {
 			opacity: var(--opacity);
@@ -25,10 +25,10 @@
 }
 @media (min-width: 640px) {
 	.button {
-		width: min(100%, 400px);
 		border-radius: calc(var(--border-radius) * 1px);
-		padding: calc(var(--spacing-2) * 1px);
 		font-size: calc(var(--font-size-2) * 1px);
+		padding: calc(var(--spacing-2) * 1px);
+		width: min(100%, 400px);
 		&[data-color='secondary'] {
 			box-shadow: 0 4px 0 var(--color-secondary-black);
 		}
@@ -39,10 +39,10 @@
 }
 @media (max-width: 639px) {
 	.button {
-		width: 100%;
 		border-radius: calc(var(--calc-sp) * var(--border-radius));
-		padding: calc(var(--calc-sp) * var(--spacing-2));
 		font-size: calc(var(--calc-sp) * var(--font-size-2));
+		padding: calc(var(--calc-sp) * var(--spacing-2));
+		width: 100%;
 		&[data-color='secondary'] {
 			box-shadow: 0 calc(var(--calc-sp) * 4) 0 var(--color-secondary-black);
 		}

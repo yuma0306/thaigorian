@@ -1,9 +1,9 @@
 .avatar {
-	display: block;
 	aspect-ratio: 1;
-	object-fit: cover;
-	margin-inline: auto;
 	border-radius: 50%;
+	display: block;
+	margin-inline: auto;
+	object-fit: cover;
 }
 
 @media (min-width: 640px) {

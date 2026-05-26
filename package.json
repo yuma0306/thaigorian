@@ -6,9 +6,12 @@
 		"dev": "next dev --hostname 0.0.0.0",
 		"build": "next build",
 		"start": "next start",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"check": "tsc --noEmit"
+		"lint": "prettier --check . && eslint . && stylelint \"**/*.css\"",
+		"lint:css": "stylelint \"**/*.css\"",
+		"format": "prettier --write . && npm run format:css",
+		"format:css": "stylelint \"**/*.css\" --fix",
+		"check": "tsc --noEmit",
+		"knip": "knip"
 	},
 	"dependencies": {
 		"@supabase/ssr": "^0.10.3",
@@ -29,7 +32,11 @@
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^5.2.0",
 		"globals": "^17.3.0",
+		"knip": "^6.14.2",
 		"prettier": "^3.8.1",
+		"stylelint": "^17.12.0",
+		"stylelint-config-standard": "^40.0.0",
+		"stylelint-order": "^8.1.1",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0"
 	}

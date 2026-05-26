@@ -1,3 +1,10 @@
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[css]": {
+		"editor.defaultFormatter": "stylelint.vscode-stylelint"
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.stylelint": "explicit"
+	},
+	"stylelint.validate": ["css"]
 }

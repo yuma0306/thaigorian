@@ -13,9 +13,9 @@
 }
 @media (min-width: 640px) {
 	.card {
-		padding: calc(var(--spacing-2) * 1px);
 		border-radius: calc(var(--border-radius) * 1px);
 		box-shadow: 0 0 calc(var(--spacing-1) * 1px) var(--color-gray);
+		padding: calc(var(--spacing-2) * 1px);
 		&[data-has-border-left='true'] {
 			border-left-width: calc(var(--spacing-1) * 1px);
 		}
@@ -23,9 +23,9 @@
 }
 @media (max-width: 639px) {
 	.card {
-		padding: calc(var(--spacing-2) * var(--calc-sp));
 		border-radius: calc(var(--calc-sp) * var(--border-radius));
 		box-shadow: 0 0 calc(var(--calc-sp) * var(--spacing-1)) var(--color-gray);
+		padding: calc(var(--spacing-2) * var(--calc-sp));
 		&[data-has-border-left='true'] {
 			border-left-width: calc(var(--calc-sp) * var(--spacing-1));
 		}

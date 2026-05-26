@@ -1,13 +1,13 @@
 .wrapper {
-	gap: calc(var(--spacing-1) * 1px);
-	border-radius: calc(var(--border-radius) * 1px);
 	border: 1px solid var(--color-gray);
+	border-radius: calc(var(--border-radius) * 1px);
+	gap: calc(var(--spacing-1) * 1px);
 	&:focus-within {
 		border-color: var(--color-input);
 	}
 	&[data-correct-input='true'] {
-		border-color: var(--color-success);
 		background-color: var(--color-success-10);
+		border-color: var(--color-success);
 	}
 }
 @media (min-width: 640px) {
@@ -39,13 +39,13 @@
 }
 @media (min-width: 640px) {
 	.input {
-		padding: calc(var(--spacing-2) * 1px);
 		border-radius: calc(var(--border-radius) * 1px);
+		padding: calc(var(--spacing-2) * 1px);
 	}
 }
 @media (max-width: 639px) {
 	.input {
-		padding: calc(var(--calc-sp) * var(--spacing-2));
 		border-radius: calc(var(--border-radius) * var(--calc-sp));
+		padding: calc(var(--calc-sp) * var(--spacing-2));
 	}
 }

@@ -1,24 +1,23 @@
 .card {
-	position: relative;
-	display: grid;
 	align-items: start;
 	background-color: var(--color-white);
+	display: grid;
+	position: relative;
 }
 @media (min-width: 640px) {
 	.card {
-		row-gap: calc(var(--spacing-4) * 1px);
-		column-gap: calc(var(--spacing-4) * 1px);
+		gap: calc(var(--spacing-4) * 1px);
 		&[data-has-words='true'] {
 			grid-template-columns: 1fr 1fr;
 			&::before {
+				background-color: var(--color-gray);
 				content: '';
+				height: 100%;
+				left: 50%;
 				position: absolute;
 				top: 50%;
-				left: 50%;
-				width: 1px;
-				height: 100%;
-				background-color: var(--color-gray);
 				translate: 0 -50%;
+				width: 1px;
 			}
 		}
 	}
@@ -37,13 +36,13 @@
 @media (max-width: 639px) {
 	.footer {
 		&::before {
+			background-color: var(--color-gray);
 			content: '';
+			height: 1px;
+			left: 0;
 			position: absolute;
 			top: calc(-1 * var(--spacing-2) * var(--calc-sp));
-			left: 0;
 			width: 100%;
-			height: 1px;
-			background-color: var(--color-gray);
 		}
 	}
 }
