@@ -38,8 +38,8 @@ export function PhraseCard({ phrase }: Props) {
 			{hasWords && (
 				<div className={styles.footer}>
 					<Stack size={2} variant="ul">
-						{phrase.words!.map((word) => (
-							<ListItem key={word.fieldId} symbol="none">
+						{phrase.words!.map((word, index) => (
+							<ListItem key={index} symbol="none">
 								<FlexColumn gap={1} variant="div" alignItems="center" justifyContent="start" isWrap>
 									<Typography size={2} variant="span" color="primary" weight="bold" align="left">
 										{word.word}
