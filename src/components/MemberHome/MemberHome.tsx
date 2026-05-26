@@ -10,7 +10,6 @@ import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
 import { createSupabaseBrowserClient } from '@/functions/supabase';
-import styles from './MemberHome.module.css';
 
 type Profile = {
 	id: string;

@@ -4,7 +4,12 @@
 		"editor.defaultFormatter": "stylelint.vscode-stylelint"
 	},
 	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
 		"source.fixAll.stylelint": "explicit"
 	},
-	"stylelint.validate": ["css"]
+	"stylelint.validate": ["css"],
+	"eslint.useFlatConfig": true,
+	"eslint.enable": true,
+	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"eslint.workingDirectories": [{ "mode": "auto" }]
 }

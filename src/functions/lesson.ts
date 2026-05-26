@@ -14,10 +14,8 @@ export const orderItemsByIndices = <T>(items: T[], indices: number[]) => {
 };
 
 function shuffle<T>(array: readonly T[]) {
-	const result = [...array];
-	for (let i = result.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[result[i], result[j]] = [result[j], result[i]];
-	}
-	return result;
+	return [...array]
+		.map((value) => ({ value, key: Math.random() }))
+		.toSorted((a, b) => a.key - b.key)
+		.map(({ value }) => value);
 }
