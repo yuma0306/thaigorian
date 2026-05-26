@@ -16,6 +16,7 @@ type Props = {
 	submitLabel: string;
 	alternateHref: string;
 	alternateLabel: string;
+	initialErrorMessage?: string;
 };
 
 export function AuthForm({
@@ -23,9 +24,10 @@ export function AuthForm({
 	description,
 	submitLabel,
 	alternateHref,
-	alternateLabel
+	alternateLabel,
+	initialErrorMessage = ''
 }: Props) {
-	const [errorMessage, setErrorMessage] = useState('');
+	const [errorMessage, setErrorMessage] = useState(initialErrorMessage);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -42,7 +44,7 @@ export function AuthForm({
 		const { error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
-				redirectTo: `${window.location.origin}/member`
+				redirectTo: `${window.location.origin}/auth/callback`
 			}
 		});
 

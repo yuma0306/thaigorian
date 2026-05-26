@@ -1,13 +1,53 @@
 .header {
 	background-color: var(--color-primary);
 }
+.inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: calc(var(--spacing-2) * 1px);
+}
+.signupLink {
+	flex-shrink: 0;
+	color: var(--color-white);
+	font-weight: 700;
+	line-height: 1;
+	text-decoration: none;
+	border: 1px solid var(--color-white);
+	transition:
+		background-color var(--transition),
+		color var(--transition),
+		opacity var(--transition);
+}
+@media (hover: hover) {
+	.signupLink:hover {
+		background-color: var(--color-white);
+		color: var(--color-primary);
+	}
+}
+.signupLink:active {
+	opacity: var(--opacity);
+}
 @media (min-width: 640px) {
 	.header {
 		padding: calc(var(--spacing-2) * 1px);
+	}
+	.signupLink {
+		border-radius: calc(var(--border-radius) * 1px);
+		padding: calc(var(--spacing-1) * 1px) calc(var(--spacing-2) * 1px);
+		font-size: calc(var(--font-size-2) * 1px);
 	}
 }
 @media (max-width: 639px) {
 	.header {
 		padding: calc(var(--calc-sp) * var(--spacing-2));
+	}
+	.inner {
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+	}
+	.signupLink {
+		border-radius: calc(var(--calc-sp) * var(--border-radius));
+		padding: calc(var(--calc-sp) * var(--spacing-1)) calc(var(--calc-sp) * var(--spacing-2));
+		font-size: calc(var(--calc-sp) * var(--font-size-1));
 	}
 }

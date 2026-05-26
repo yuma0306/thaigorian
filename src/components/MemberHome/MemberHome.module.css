@@ -1,0 +1,19 @@
+.avatar {
+	display: block;
+	aspect-ratio: 1;
+	object-fit: cover;
+	margin-inline: auto;
+	border-radius: 50%;
+}
+
+@media (min-width: 640px) {
+	.avatar {
+		width: 96px;
+	}
+}
+
+@media (max-width: 639px) {
+	.avatar {
+		width: calc(var(--calc-sp) * 96);
+	}
+}

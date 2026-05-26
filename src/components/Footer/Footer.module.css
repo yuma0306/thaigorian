@@ -1,14 +1,35 @@
 .footer {
 	background-color: var(--color-primary);
 }
+.link {
+	display: block;
+	width: fit-content;
+	margin-inline: auto;
+	color: var(--color-white);
+	font-weight: 700;
+	text-decoration: none;
+	transition: opacity var(--transition);
+}
 .text {
 	display: block;
 	text-align: center;
 	color: var(--color-white);
 }
+@media (hover: hover) {
+	.link:hover {
+		opacity: var(--opacity);
+	}
+}
+.link:active {
+	opacity: var(--opacity);
+}
 @media (min-width: 640px) {
 	.footer {
 		padding: calc(var(--spacing-2) * 1px);
+	}
+	.link {
+		margin-bottom: calc(var(--spacing-1) * 1px);
+		font-size: calc(var(--font-size-2) * 1px);
 	}
 	.text {
 		font-size: calc(var(--font-size-1) * 1px);
@@ -17,6 +38,10 @@
 @media (max-width: 639px) {
 	.footer {
 		padding: calc(var(--calc-sp) * var(--spacing-2));
+	}
+	.link {
+		margin-bottom: calc(var(--calc-sp) * var(--spacing-1));
+		font-size: calc(var(--calc-sp) * var(--font-size-2));
 	}
 	.text {
 		font-size: calc(var(--calc-sp) * var(--font-size-1));
