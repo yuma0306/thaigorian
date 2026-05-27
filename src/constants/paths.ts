@@ -6,6 +6,8 @@ export const paths = {
 	login: '/login',
 	signup: '/signup',
 	member: '/member',
+	logout: '/logout',
+	authCallback: '/auth/callback',
 	situation: (id: Situation['id']) => `/situations/${id}`,
 	lesson: (id: Situation['id']) => `/situations/${id}/lesson`
 } as const;

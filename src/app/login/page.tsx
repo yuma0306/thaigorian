@@ -1,5 +1,6 @@
 import { AuthForm } from '@/components/AuthForm/AuthForm';
 import { Inner } from '@/components/Inner/Inner';
+import { paths } from '@/constants/paths';
 
 type Props = {
 	searchParams: Promise<{
@@ -16,9 +17,9 @@ export default async function LoginPage({ searchParams }: Props) {
 				title="ログイン"
 				description="Googleアカウントでログインしてください。"
 				submitLabel="Googleでログイン"
-				alternateHref="/signup"
+				alternateHref={paths.signup}
 				alternateLabel="アカウント登録はこちら"
-				initialErrorMessage={error ? `ログインに失敗しました。${error}` : undefined}
+				initialErrorMessage={error ? `ログインに失敗しました。${error}` : ''}
 			/>
 		</Inner>
 	);

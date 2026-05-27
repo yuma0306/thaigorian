@@ -1,5 +1,6 @@
 import { AuthForm } from '@/components/AuthForm/AuthForm';
 import { Inner } from '@/components/Inner/Inner';
+import { paths } from '@/constants/paths';
 
 export default function SignupPage() {
 	return (
@@ -8,7 +9,7 @@ export default function SignupPage() {
 				title="サインアップ"
 				description="Googleアカウントで会員登録してください。"
 				submitLabel="Googleで会員登録"
-				alternateHref="/login"
+				alternateHref={paths.login}
 				alternateLabel="ログインはこちら"
 			/>
 		</Inner>

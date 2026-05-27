@@ -7,6 +7,8 @@ import { Button } from '@/components/Button/Button';
 import { Card } from '@/components/Card/Card';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
+import { paths } from '@/constants/paths';
+import { getSiteUrl } from '@/functions/siteUrl';
 import { createSupabaseBrowserClient } from '@/functions/supabase';
 import styles from './AuthForm.module.css';
 
@@ -44,7 +46,7 @@ export function AuthForm({
 		const { error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
-				redirectTo: `${window.location.origin}/auth/callback`
+				redirectTo: `${getSiteUrl()}${paths.authCallback}`
 			}
 		});
 

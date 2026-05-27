@@ -34,6 +34,7 @@ export function SituationLesson({ situation }: Props) {
 
 	useEffect(() => {
 		const indices = loadLessonIndices(situation.id);
+		// eslint-disable-next-line react-hooks/set-state-in-effect -- sessionStorage is available only after hydration
 		setPhrases(
 			indices && indices.length > 0
 				? orderItemsByIndices(allPhrases, indices)
@@ -79,7 +80,7 @@ export function SituationLesson({ situation }: Props) {
 					{ text: 'レッスン', href: paths.lesson(situation.id) }
 				]}
 			/>
-			{phrases.length > 0 && !isFinished ? (
+			{currentPhrase && !isFinished ? (
 				<Stack size={3} variant="section">
 					<Stack size={1} variant="div">
 						<Typography size={2} variant="p" color="dark" weight="bold" align="center">

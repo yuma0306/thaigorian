@@ -9,8 +9,8 @@ export function Header() {
 			<Inner>
 				<div className={styles.inner}>
 					<Logo />
-					<a className={styles.signupLink} href={paths.signup}>
-						会員登録
+					<a className={styles.signupLink} href={paths.login}>
+						ログイン
 					</a>
 				</div>
 			</Inner>

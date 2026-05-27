@@ -1,6 +1,6 @@
 import stylelintOrder from 'stylelint-order';
 
-export default {
+const config = {
 	extends: ['stylelint-config-standard'],
 	plugins: [stylelintOrder],
 	ignoreFiles: ['src/styles/reset.css'],
@@ -14,3 +14,5 @@ export default {
 		'value-keyword-case': null
 	}
 };
+
+export default config;

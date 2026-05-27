@@ -10,7 +10,10 @@ export const pickRandomIndices = (length: number, max = maxLessonItems) => {
 };
 
 export const orderItemsByIndices = <T>(items: T[], indices: number[]) => {
-	return indices.filter((i) => i >= 0 && i < items.length).map((i) => items[i]);
+	return indices.reduce<T[]>((orderedItems, index) => {
+		const item = items[index];
+		return item === undefined ? orderedItems : [...orderedItems, item];
+	}, []);
 };
 
 function shuffle<T>(array: readonly T[]) {
