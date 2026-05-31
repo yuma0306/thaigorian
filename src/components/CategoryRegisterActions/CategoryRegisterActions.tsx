@@ -1,4 +1,3 @@
-import { paths } from '@/constants/paths';
 import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
 	isSaving: boolean;
 	isDeleting: boolean;
 	message: string;
-	onDelete?: () => void | Promise<void>;
+	onDeleteClick?: () => void;
 };
 
 export function CategoryRegisterActions({
@@ -16,20 +15,17 @@ export function CategoryRegisterActions({
 	isSaving,
 	isDeleting,
 	message,
-	onDelete
+	onDeleteClick
 }: Props) {
 	return (
 		<>
 			<div className={styles.actions}>
-				<a className={styles.secondaryLink} href={paths.memberPhrases}>
-					戻る
-				</a>
-				{categoryId && onDelete && (
+				{categoryId && onDeleteClick && (
 					<button
 						className={styles.deleteButton}
 						type="button"
 						disabled={isDeleting || isSaving}
-						onClick={onDelete}
+						onClick={onDeleteClick}
 					>
 						{isDeleting ? '削除中...' : '削除する'}
 					</button>

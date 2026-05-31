@@ -1,5 +1,5 @@
 import { Button } from '@/components/Button/Button';
-import { Input } from '@/components/Input/Input';
+import { InputText } from '@/components/InputText/InputText';
 import { Progress } from '@/components/Progress/Progress';
 import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
 import { SkipButton } from '@/components/SkipButton/SkipButton';
@@ -46,7 +46,14 @@ export function LessonQuizSection({
 				showAnswer={showAnswer}
 				onShowAnswerChange={onShowAnswerChange}
 			/>
-			<Input isCorrect={isCorrect} userInput={userInput} onUserInputChange={onUserInputChange} />
+			<InputText
+				isCorrect={isCorrect}
+				value={userInput}
+				onChange={(e) => onUserInputChange(e.target.value)}
+				placeholder="タイ文字を入力！"
+				lang="th"
+				disabled={isCorrect}
+			/>
 			{isCorrect && (
 				<Button variant="button" color="success" onClick={onAdvance}>
 					次へ進む

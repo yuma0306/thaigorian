@@ -1,13 +1,3 @@
-.page {
-	background-color: var(--color-white);
-	color: var(--color-primary);
-	min-height: 70vh;
-}
-.form {
-	margin-inline: auto;
-	max-width: 1120px;
-	padding: calc(var(--spacing-5) * 1px) calc(var(--spacing-2) * 1px);
-}
 .field {
 	margin-bottom: calc(var(--spacing-5) * 1px);
 }
@@ -18,23 +8,11 @@
 	font-weight: 700;
 	margin-bottom: calc(var(--spacing-2) * 1px);
 }
-.input {
-	border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-white));
-	border-radius: calc(var(--border-radius) * 1px);
-	box-shadow: 0 2px 8px color-mix(in srgb, var(--color-gray) 45%, transparent);
-	color: var(--color-primary);
-	font-size: 16px;
-	min-height: 48px;
-	padding: calc(var(--spacing-1) * 1px) calc(var(--spacing-2) * 1px);
-	width: 100%;
-}
-.input:focus {
-	border-color: var(--color-input);
-	outline: none;
-}
+
 .repeaterSection {
 	margin-top: calc(var(--spacing-4) * 1px);
 }
+
 .sectionTitle {
 	align-items: center;
 	display: flex;
@@ -105,7 +83,7 @@
 .phraseCard,
 .wordCard {
 	display: grid;
-	gap: calc(var(--spacing-2) * 1px);
+	gap: calc(var(--spacing-1) * 1px);
 	grid-template-columns: 48px minmax(0, 1fr);
 	position: relative;
 }
@@ -113,7 +91,6 @@
 	display: grid;
 	gap: calc(var(--spacing-1) * 1px);
 	grid-template-columns: 1fr;
-	padding-top: calc(var(--spacing-3) * 1px);
 	place-items: flex-start center;
 	position: relative;
 }
@@ -213,9 +190,7 @@
 .optionalField[open] .optionalSummary::before {
 	content: '▾';
 }
-.optionalField .input {
-	margin-top: calc(var(--spacing-2) * 1px);
-}
+
 .menuWrapper {
 	position: relative;
 }
@@ -374,9 +349,6 @@
 	.contentIdButton span,
 	.contentIdButton code {
 		font-size: calc(var(--calc-sp) * var(--font-size-2));
-	}
-	.form {
-		padding: calc(var(--calc-sp) * var(--spacing-4)) calc(var(--calc-sp) * var(--spacing-2));
 	}
 	.label,
 	.sectionTitle h1,

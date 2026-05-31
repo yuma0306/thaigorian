@@ -1,3 +1,4 @@
+import { InputText } from '@/components/InputText/InputText';
 import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
 
 type Props = {
@@ -11,12 +12,11 @@ export function CategoryTitleField({ value, onChange }: Props) {
 			<label className={styles.label} htmlFor="category-title">
 				タイトル
 			</label>
-			<input
-				className={styles.input}
+			<InputText
 				id="category-title"
-				type="text"
 				value={value}
-				onChange={(event) => onChange(event.target.value)}
+				onChange={(e) => onChange(e.target.value)}
+				isCorrect={false}
 			/>
 		</div>
 	);
