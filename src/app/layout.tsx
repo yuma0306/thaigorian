@@ -7,8 +7,6 @@ import { Main } from '@/components/Main/Main';
 import { Footer } from '@/components/Footer/Footer';
 import { siteData } from '@/constants/siteData';
 
-export const dynamic = 'force-dynamic';
-
 const siteUrl = `https://${siteData.domain}`;
 
 export const metadata: Metadata = {
