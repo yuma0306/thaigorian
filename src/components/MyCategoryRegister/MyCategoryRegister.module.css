@@ -1,8 +1,3 @@
-.page {
-	background-color: var(--color-white);
-	color: var(--color-primary);
-	min-height: 70vh;
-}
 .field {
 	margin-bottom: calc(var(--spacing-5) * 1px);
 }
@@ -17,6 +12,7 @@
 .repeaterSection {
 	margin-top: calc(var(--spacing-4) * 1px);
 }
+
 .sectionTitle {
 	align-items: center;
 	display: flex;
@@ -87,7 +83,7 @@
 .phraseCard,
 .wordCard {
 	display: grid;
-	gap: calc(var(--spacing-2) * 1px);
+	gap: calc(var(--spacing-1) * 1px);
 	grid-template-columns: 48px minmax(0, 1fr);
 	position: relative;
 }
@@ -95,7 +91,6 @@
 	display: grid;
 	gap: calc(var(--spacing-1) * 1px);
 	grid-template-columns: 1fr;
-	padding-top: calc(var(--spacing-3) * 1px);
 	place-items: flex-start center;
 	position: relative;
 }

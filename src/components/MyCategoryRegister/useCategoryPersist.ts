@@ -1,6 +1,8 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { deleteCategoryConfirmModal } from '@/components/Modal/deleteCategoryConfirmModal';
+import { useModal } from '@/components/Modal/useModal';
 import { paths } from '@/constants/paths';
 import type { SaveMyCategoryPayload, SaveMyCategoryResult } from '@/types/myCategory';
 import { toSavePayload } from './toSavePayload';
@@ -24,6 +26,7 @@ export function useCategoryPersist({
 	onDelete
 }: Params) {
 	const router = useRouter();
+	const { openModal } = useModal();
 	const [isSaving, setIsSaving] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [message, setMessage] = useState('');
@@ -49,6 +52,15 @@ export function useCategoryPersist({
 			setMessage('保存に失敗しました。');
 			setIsSaving(false);
 		}
+	}
+
+	function handleDeleteClick() {
+		if (!categoryId || !onDelete || isDeleting) return;
+		openModal(
+			deleteCategoryConfirmModal(() => {
+				void handleDelete();
+			})
+		);
 	}
 
 	async function handleDelete() {
@@ -80,6 +92,6 @@ export function useCategoryPersist({
 		isDeleting,
 		message,
 		handleSubmit,
-		handleDelete
+		handleDeleteClick
 	};
 }

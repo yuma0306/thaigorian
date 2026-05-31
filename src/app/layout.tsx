@@ -5,6 +5,7 @@ import { Wrapper } from '@/components/Wrapper/Wrapper';
 import { Header } from '@/components/Header/Header';
 import { Main } from '@/components/Main/Main';
 import { Footer } from '@/components/Footer/Footer';
+import { ModalProvider } from '@/context/ModalContext';
 import { siteData } from '@/constants/siteData';
 
 const siteUrl = `https://${siteData.domain}`;
@@ -47,11 +48,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="ja">
 			<body>
-				<Wrapper>
-					<Header />
-					<Main>{children}</Main>
-					<Footer />
-				</Wrapper>
+				<ModalProvider>
+					<Wrapper>
+						<Header />
+						<Main>{children}</Main>
+						<Footer />
+					</Wrapper>
+				</ModalProvider>
 			</body>
 		</html>
 	);
