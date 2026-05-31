@@ -1,10 +1,10 @@
 /** Server Action などの成功・失敗を表す判別可能ユニオン */
-export type ActionFailure = {
+type ActionFailure = {
 	ok: false;
 	message: string;
 };
 
-export type ActionSuccess<T extends Record<string, unknown> = Record<string, never>> = {
+type ActionSuccess<T extends Record<string, unknown> = Record<string, never>> = {
 	ok: true;
 } & T;
 

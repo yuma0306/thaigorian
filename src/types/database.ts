@@ -50,7 +50,7 @@ export type MyPhraseSavedRow = {
 };
 
 /** アプリ共通: 用語（MyWordRow の word / meaning に対応、fieldId は JSON・UI 用の ID） */
-export type Word = {
+type Word = {
 	fieldId: string;
 } & Partial<Pick<MyWordRow, 'word' | 'meaning'>>;
 

@@ -32,11 +32,6 @@ export async function getPhraseCollectionSummaries() {
 	return readIndex();
 }
 
-export async function getPhraseCollections(): Promise<PhraseCollection[]> {
-	const index = await readIndex();
-	return Promise.all(index.map(loadCollection));
-}
-
 export async function getPhraseCollectionById(id: string): Promise<PhraseCollection | undefined> {
 	const index = await readIndex();
 	const entry = index.find((item) => item.id === id);
