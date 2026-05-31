@@ -46,6 +46,13 @@ export default defineConfig(
 					eventHandlerPropPrefix: 'on'
 				}
 			],
+			'react/function-component-definition': [
+				'error',
+				{
+					namedComponents: 'function-declaration',
+					unnamedComponents: 'arrow-function'
+				}
+			],
 			'@typescript-eslint/no-unused-vars': 'error',
 			'max-lines': [
 				'warn',
