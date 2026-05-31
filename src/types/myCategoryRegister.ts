@@ -8,7 +8,6 @@ export type PhraseField = {
 	id: string;
 	phrase: string;
 	meaning: string;
-	ipa: string;
 	words: WordField[];
 };
 

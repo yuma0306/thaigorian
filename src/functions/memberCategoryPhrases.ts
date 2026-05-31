@@ -38,7 +38,6 @@ export function mapPhraseRowsToFields(
 		id: phrase.id,
 		phrase: phrase.phrase ?? '',
 		meaning: phrase.meaning ?? '',
-		ipa: phrase.ipa ?? '',
 		words: (wordsByPhraseId.get(phrase.id) ?? []).map((word) => ({
 			id: word.id,
 			word: word.word ?? '',

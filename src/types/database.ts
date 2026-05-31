@@ -18,7 +18,6 @@ export type MyPhraseRow = {
 	category_id: string;
 	phrase: string | null;
 	meaning: string | null;
-	ipa: string | null;
 	sort_order: number | null;
 };
 
@@ -54,10 +53,10 @@ type Word = {
 	fieldId: string;
 } & Partial<Pick<MyWordRow, 'word' | 'meaning'>>;
 
-/** アプリ共通: フレーズ（MyPhraseRow の phrase / meaning / ipa に対応） */
+/** アプリ共通: フレーズ（MyPhraseRow の phrase / meaning に対応） */
 export type Phrase = {
 	fieldId: string;
-} & Partial<Pick<MyPhraseRow, 'phrase' | 'meaning' | 'ipa'>> & {
+} & Partial<Pick<MyPhraseRow, 'phrase' | 'meaning'>> & {
 		words?: Word[];
 	};
 

@@ -50,17 +50,6 @@ export function PhraseFieldCardBody({
 				value={phrase.meaning}
 				onChange={(value) => onUpdatePhrase(phrase.id, 'meaning', value)}
 			/>
-			<details className={styles.optionalField}>
-				<summary className={styles.optionalSummary}>IPA（任意）</summary>
-				<input
-					className={styles.input}
-					id={`ipa-${phrase.id}`}
-					type="text"
-					value={phrase.ipa}
-					onChange={(event) => onUpdatePhrase(phrase.id, 'ipa', event.target.value)}
-					aria-label="IPA"
-				/>
-			</details>
 
 			<section className={styles.wordsSection}>
 				<div className={styles.sectionTitle}>

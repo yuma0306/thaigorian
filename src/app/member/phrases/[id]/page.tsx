@@ -40,7 +40,7 @@ export default async function MemberCategoryDetailPage({ params }: Props) {
 
 	const { data: phraseRows } = await supabase
 		.from('my_phrases')
-		.select('id,phrase,meaning,ipa,sort_order')
+		.select('id,phrase,meaning,sort_order')
 		.eq('category_id', category.id)
 		.eq('user_id', user.id)
 		.order('sort_order', { ascending: true })

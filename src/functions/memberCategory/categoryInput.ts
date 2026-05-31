@@ -12,7 +12,6 @@ export function normalizePhrases(value: Phrase[]) {
 			fieldId: normalizeText(phrase.fieldId),
 			phrase: normalizeText(phrase.phrase),
 			meaning: normalizeText(phrase.meaning),
-			ipa: normalizeText(phrase.ipa),
 			words: (phrase.words ?? []).map((word) => ({
 				fieldId: normalizeText(word.fieldId),
 				word: normalizeText(word.word),

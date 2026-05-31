@@ -60,7 +60,7 @@ export async function getMyPhraseCategoryById(
 
 	const { data: phraseRows } = await supabase
 		.from('my_phrases')
-		.select('id,category_id,phrase,meaning,ipa,sort_order')
+		.select('id,category_id,phrase,meaning,sort_order')
 		.eq('category_id', category.id)
 		.eq('user_id', user.id)
 		.order('sort_order', { ascending: true })

@@ -4,7 +4,6 @@ export function mapMyPhraseRow(phrase: MyPhraseRow, words: MyWordRow[]): Phrase 
 	const mapped: Phrase = { fieldId: phrase.id };
 	const text = phrase.phrase?.trim();
 	const meaning = phrase.meaning?.trim();
-	const ipa = phrase.ipa?.trim();
 
 	if (text) {
 		mapped.phrase = text;
@@ -12,10 +11,6 @@ export function mapMyPhraseRow(phrase: MyPhraseRow, words: MyWordRow[]): Phrase 
 
 	if (meaning) {
 		mapped.meaning = meaning;
-	}
-
-	if (ipa) {
-		mapped.ipa = ipa;
 	}
 
 	return {

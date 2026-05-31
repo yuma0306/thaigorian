@@ -14,7 +14,6 @@ export async function insertCategoryContent(
 		user_id: userId,
 		category_id: categoryId,
 		phrase: phrase.phrase,
-		ipa: phrase.ipa,
 		meaning: phrase.meaning,
 		sort_order: index
 	}));
