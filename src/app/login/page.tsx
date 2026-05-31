@@ -10,13 +10,12 @@ type Props = {
 
 export default async function LoginPage({ searchParams }: Props) {
 	const { error } = await searchParams;
-
 	return (
 		<Inner>
 			<AuthForm
 				title="ログイン"
 				description="Googleアカウントでログインしてください。"
-				submitLabel="Googleでログイン"
+				googleButtonMode="signin"
 				alternateHref={paths.signup}
 				alternateLabel="アカウント登録はこちら"
 				initialErrorMessage={error ? `ログインに失敗しました。${error}` : ''}

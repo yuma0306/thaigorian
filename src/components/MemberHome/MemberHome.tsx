@@ -118,6 +118,9 @@ export function MemberHome() {
 						)}
 					</Stack>
 				</Card>
+				<Button variant="a" color="secondary" href={paths.memberCategory}>
+					登録したカテゴリー
+				</Button>
 				<Button variant="button" color="secondary" onClick={handleSignOut}>
 					サインアウト
 				</Button>

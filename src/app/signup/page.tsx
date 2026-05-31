@@ -8,7 +8,7 @@ export default function SignupPage() {
 			<AuthForm
 				title="サインアップ"
 				description="Googleアカウントで会員登録してください。"
-				submitLabel="Googleで会員登録"
+				googleButtonMode="signup"
 				alternateHref={paths.login}
 				alternateLabel="ログインはこちら"
 			/>

@@ -1,29 +1,30 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import type { LessonResult, Phrase, Situation } from '@/types';
-import { orderItemsByIndices, pickRandomItems } from '@/functions/lesson';
-import { loadLessonIndices } from '@/functions/lessonSession';
-import { Stack } from '@/components/Stack/Stack';
-import { Typography } from '@/components/Typography/Typography';
+import type { LessonResult, Phrase } from '@/types';
 import { Button } from '@/components/Button/Button';
-import { paths } from '@/constants/paths';
-import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
-import { Progress } from '@/components/Progress/Progress';
-import { Inner } from '@/components/Inner/Inner';
-import { SkipButton } from '@/components/SkipButton/SkipButton';
-import { ScoreCard } from '@/components/ScoreCard/ScoreCard';
-import { Input } from '@/components/Input/Input';
-import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { Card } from '@/components/Card/Card';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
+import { Inner } from '@/components/Inner/Inner';
+import { Input } from '@/components/Input/Input';
+import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
+import { Progress } from '@/components/Progress/Progress';
+import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
+import { ScoreCard } from '@/components/ScoreCard/ScoreCard';
+import { SkipButton } from '@/components/SkipButton/SkipButton';
+import { Stack } from '@/components/Stack/Stack';
+import { Typography } from '@/components/Typography/Typography';
+import { paths } from '@/constants/paths';
+import type { MyPhraseCategoryView } from '@/functions/myPhrases';
+import { orderItemsByIndices, pickRandomItems } from '@/functions/lesson';
+import { loadLessonIndices } from '@/functions/lessonSession';
 
 type Props = {
-	situation: Situation;
+	category: MyPhraseCategoryView;
 };
 
-export function SituationLesson({ situation }: Props) {
-	const allPhrases = situation.phrases ?? [];
+export function MyPhraseLesson({ category }: Props) {
+	const allPhrases = category.phrases;
 	const [phrases, setPhrases] = useState<Phrase[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [userInput, setUserInput] = useState('');
@@ -33,7 +34,7 @@ export function SituationLesson({ situation }: Props) {
 	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
-		const indices = loadLessonIndices('situation', situation.id);
+		const indices = loadLessonIndices('my-phrase', category.id);
 		// eslint-disable-next-line react-hooks/set-state-in-effect -- sessionStorage is available only after hydration
 		setPhrases(
 			indices && indices.length > 0
@@ -41,8 +42,8 @@ export function SituationLesson({ situation }: Props) {
 				: pickRandomItems(allPhrases)
 		);
 		setReady(true);
-		// eslint-disable-next-line react-hooks/exhaustive-deps -- phrases are loaded once per situation
-	}, [situation.id]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps -- phrases are loaded once per category
+	}, [category.id]);
 
 	const total = phrases.length;
 	const currentPhrase = phrases[currentIndex];
@@ -76,8 +77,8 @@ export function SituationLesson({ situation }: Props) {
 		<Inner>
 			<Crumbs
 				items={[
-					{ text: situation.title ?? '', href: paths.situation(situation.id) },
-					{ text: 'レッスン', href: paths.lesson(situation.id) }
+					{ text: category.title, href: paths.myPhrase(category.id) },
+					{ text: 'レッスン', href: paths.myPhraseLesson(category.id) }
 				]}
 			/>
 			{currentPhrase && !isFinished ? (
@@ -124,7 +125,7 @@ export function SituationLesson({ situation }: Props) {
 							</Card>
 						))}
 					</Stack>
-					<Button variant="a" color="secondary" href={paths.situation(situation.id)}>
+					<Button variant="a" color="secondary" href={paths.myPhrase(category.id)}>
 						戻る
 					</Button>
 				</Stack>

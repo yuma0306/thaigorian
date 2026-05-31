@@ -1,11 +1,13 @@
-const storageKey = (situationId: string) => `lesson:${situationId}`;
+export type LessonScope = 'situation' | 'my-phrase';
 
-export const saveLessonIndices = (situationId: string, indices: number[]) => {
-	sessionStorage.setItem(storageKey(situationId), JSON.stringify(indices));
+const storageKey = (scope: LessonScope, id: string) => `lesson:${scope}:${id}`;
+
+export const saveLessonIndices = (scope: LessonScope, id: string, indices: number[]) => {
+	sessionStorage.setItem(storageKey(scope, id), JSON.stringify(indices));
 };
 
-export const loadLessonIndices = (situationId: string) => {
-	const raw = sessionStorage.getItem(storageKey(situationId));
+export const loadLessonIndices = (scope: LessonScope, id: string) => {
+	const raw = sessionStorage.getItem(storageKey(scope, id));
 	if (!raw) return null;
 	try {
 		const parsed: unknown = JSON.parse(raw);

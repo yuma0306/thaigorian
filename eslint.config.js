@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
+
 import prettier from 'eslint-config-prettier/flat';
 import path from 'node:path';
 import { includeIgnoreFile } from '@eslint/compat';
@@ -42,3 +45,8 @@ export default defineConfig(
 	},
 	prettier
 );
+
+// "max-lines": ["warn", 300],
+// "max-lines-per-function": ["warn", 80],
+// "complexity": ["warn", 10],
+// "unused-imports/no-unused-imports": "error"

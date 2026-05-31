@@ -15,33 +15,19 @@
 	display: block;
 	text-align: center;
 }
-@media (hover: hover) {
-	.link:hover {
-		opacity: var(--opacity);
-	}
-}
-.link:active {
-	opacity: var(--opacity);
-}
+
 @media (min-width: 640px) {
 	.footer {
 		padding: calc(var(--spacing-2) * 1px);
-	}
-	.link {
-		font-size: calc(var(--font-size-2) * 1px);
-		margin-bottom: calc(var(--spacing-1) * 1px);
 	}
 	.text {
 		font-size: calc(var(--font-size-1) * 1px);
 	}
 }
+
 @media (max-width: 639px) {
 	.footer {
 		padding: calc(var(--calc-sp) * var(--spacing-2));
-	}
-	.link {
-		font-size: calc(var(--calc-sp) * var(--font-size-2));
-		margin-bottom: calc(var(--calc-sp) * var(--spacing-1));
 	}
 	.text {
 		font-size: calc(var(--calc-sp) * var(--font-size-1));

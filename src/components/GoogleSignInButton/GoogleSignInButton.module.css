@@ -1,0 +1,22 @@
+.button {
+	cursor: pointer;
+	display: block;
+	margin-inline: auto;
+	transition: opacity var(--transition);
+	width: min(100%, 220px);
+	@media (hover: hover) {
+		&:hover {
+			opacity: var(--opacity);
+		}
+	}
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 1;
+	}
+}
+
+.image {
+	display: block;
+	height: auto;
+	width: 100%;
+}

@@ -11,7 +11,7 @@
 	border: 1px solid var(--color-white);
 	color: var(--color-white);
 	flex-shrink: 0;
-	font-weight: 700;
+	font-weight: 500;
 	line-height: 1;
 	text-decoration: none;
 	transition:
@@ -19,15 +19,7 @@
 		color var(--transition),
 		opacity var(--transition);
 }
-@media (hover: hover) {
-	.signupLink:hover {
-		background-color: var(--color-white);
-		color: var(--color-primary);
-	}
-}
-.signupLink:active {
-	opacity: var(--opacity);
-}
+
 @media (min-width: 640px) {
 	.header {
 		padding: calc(var(--spacing-2) * 1px);
@@ -38,6 +30,7 @@
 		padding: calc(var(--spacing-1) * 1px) calc(var(--spacing-2) * 1px);
 	}
 }
+
 @media (max-width: 639px) {
 	.header {
 		padding: calc(var(--calc-sp) * var(--spacing-2));

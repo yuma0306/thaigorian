@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import type { FormEvent } from 'react';
 import { useState } from 'react';
-import { Button } from '@/components/Button/Button';
 import { Card } from '@/components/Card/Card';
+import {
+	GoogleSignInButton,
+	type GoogleSignInButtonMode
+} from '@/components/GoogleSignInButton/GoogleSignInButton';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
@@ -15,7 +18,7 @@ import styles from './AuthForm.module.css';
 type Props = {
 	title: string;
 	description: string;
-	submitLabel: string;
+	googleButtonMode: GoogleSignInButtonMode;
 	alternateHref: string;
 	alternateLabel: string;
 	initialErrorMessage?: string;
@@ -24,7 +27,7 @@ type Props = {
 export function AuthForm({
 	title,
 	description,
-	submitLabel,
+	googleButtonMode,
 	alternateHref,
 	alternateLabel,
 	initialErrorMessage = ''
@@ -69,9 +72,7 @@ export function AuthForm({
 								{description}
 							</Typography>
 						</Stack>
-						<Button variant="button" color="secondary" type="submit" disabled={isSubmitting}>
-							{isSubmitting ? '移動中...' : submitLabel}
-						</Button>
+						<GoogleSignInButton mode={googleButtonMode} disabled={isSubmitting} />
 						{errorMessage && (
 							<Typography size={2} variant="p" color="secondary" weight="bold" align="center">
 								{errorMessage}

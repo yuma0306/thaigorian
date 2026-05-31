@@ -1,0 +1,19 @@
+.actions {
+	display: flex;
+	justify-content: flex-end;
+}
+.list {
+	display: grid;
+	gap: calc(var(--spacing-2) * 1px);
+}
+.link {
+	color: inherit;
+	display: block;
+	text-decoration: none;
+}
+.meta {
+	color: color-mix(in srgb, var(--color-primary) 55%, var(--color-white));
+	font-size: calc(var(--font-size-1) * 1px);
+	font-weight: 700;
+	margin-top: calc(var(--spacing-1) * 1px);
+}

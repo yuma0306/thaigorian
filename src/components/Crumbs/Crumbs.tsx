@@ -11,11 +11,11 @@ type Props = {
 	items: CrumbItem[];
 };
 
-const HOME_CRUMB: CrumbItem = { text: 'ホーム', href: paths.home };
+const homeCrumb: CrumbItem = { text: 'ホーム', href: paths.home };
 
 export function Crumbs({ items }: Props) {
-	const allItems = [HOME_CRUMB, ...items];
-
+	const allItems = [homeCrumb, ...items];
+	if (allItems.length === 1) return;
 	return (
 		<ul className={styles.crumbs}>
 			{allItems.map((item, index) => (
