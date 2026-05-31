@@ -15,7 +15,6 @@ type Profile = {
 	id: string;
 	email: string | null;
 	name: string | null;
-	avatar_url: string | null;
 	created_at: string;
 	updated_at: string;
 };
@@ -51,7 +50,7 @@ export function MemberHome() {
 
 			const { data: profileData, error: profileError } = await supabase
 				.from('profiles')
-				.select('id,email,name,avatar_url,created_at,updated_at')
+				.select('id,email,name,created_at,updated_at')
 				.eq('id', currentUser.id)
 				.single();
 
