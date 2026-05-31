@@ -24,13 +24,13 @@ export function SituationDetail({ situation }: Props) {
 	function startLesson() {
 		const all = situation.phrases ?? [];
 		if (all.length === 0) return;
-		saveLessonIndices('situation', situation.id, pickRandomIndices(all.length));
-		router.push(paths.lesson(situation.id));
+		saveLessonIndices('phrase', situation.id, pickRandomIndices(all.length));
+		router.push(paths.phraseLesson(situation.id));
 	}
 
 	return (
 		<Inner>
-			<Crumbs items={[{ text: situation.title ?? '', href: paths.situation(situation.id) }]} />
+			<Crumbs items={[{ text: situation.title ?? '', href: paths.phrase(situation.id) }]} />
 			<Stack size={3} variant="section">
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					{situation.title ?? ''}

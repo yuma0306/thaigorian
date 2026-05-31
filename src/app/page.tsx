@@ -42,7 +42,7 @@ export default async function HomePage() {
 							<CardImage
 								key={situation.id}
 								id={situation.id}
-								href={paths.situation(situation.id)}
+								href={paths.phrase(situation.id)}
 								title={situation.title}
 							/>
 						))}

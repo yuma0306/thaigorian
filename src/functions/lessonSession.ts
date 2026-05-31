@@ -1,4 +1,4 @@
-export type LessonScope = 'situation' | 'my-phrase';
+export type LessonScope = 'phrase' | 'my-phrase';
 
 const storageKey = (scope: LessonScope, id: string) => `lesson:${scope}:${id}`;
 

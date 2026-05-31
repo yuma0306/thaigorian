@@ -2,7 +2,7 @@ import type { Situation } from '@/types';
 
 export const paths = {
 	home: '/',
-	situations: '/situations',
+	phrases: '/phrases',
 	login: '/login',
 	signup: '/signup',
 	member: '/member',
@@ -13,6 +13,6 @@ export const paths = {
 	memberCategoryDetail: (id: string) => `/member/category/${id}`,
 	myPhrase: (id: string) => `/my-phrases/${id}`,
 	myPhraseLesson: (id: string) => `/my-phrases/${id}/lesson`,
-	situation: (id: Situation['id']) => `/situations/${id}`,
-	lesson: (id: Situation['id']) => `/situations/${id}/lesson`
+	phrase: (id: Situation['id']) => `/phrases/${id}`,
+	phraseLesson: (id: Situation['id']) => `/phrases/${id}/lesson`
 } as const;

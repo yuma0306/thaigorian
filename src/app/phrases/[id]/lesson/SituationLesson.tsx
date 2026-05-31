@@ -33,7 +33,7 @@ export function SituationLesson({ situation }: Props) {
 	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
-		const indices = loadLessonIndices('situation', situation.id);
+		const indices = loadLessonIndices('phrase', situation.id);
 		// eslint-disable-next-line react-hooks/set-state-in-effect -- sessionStorage is available only after hydration
 		setPhrases(
 			indices && indices.length > 0
@@ -76,8 +76,8 @@ export function SituationLesson({ situation }: Props) {
 		<Inner>
 			<Crumbs
 				items={[
-					{ text: situation.title ?? '', href: paths.situation(situation.id) },
-					{ text: 'レッスン', href: paths.lesson(situation.id) }
+					{ text: situation.title ?? '', href: paths.phrase(situation.id) },
+					{ text: 'レッスン', href: paths.phraseLesson(situation.id) }
 				]}
 			/>
 			{currentPhrase && !isFinished ? (
@@ -124,7 +124,7 @@ export function SituationLesson({ situation }: Props) {
 							</Card>
 						))}
 					</Stack>
-					<Button variant="a" color="secondary" href={paths.situation(situation.id)}>
+					<Button variant="a" color="secondary" href={paths.phrase(situation.id)}>
 						戻る
 					</Button>
 				</Stack>
