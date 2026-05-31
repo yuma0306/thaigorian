@@ -1,0 +1,200 @@
+{
+	"title": "BTS・MRT 駅構内アナウンス",
+	"description": "タイの高架鉄道・地下鉄の駅・車内アナウンスと語彙メモ",
+	"phrases": [
+		{
+			"fieldId": "announcement-01",
+			"phrase": "สถานีสวนจตจักร โปรดใช้ความระมัดระวัง ขณะก้าวออกจากรถ",
+			"meaning": "チャトチャック駅です。車両から降りるときは十分注意してください。",
+			"words": [
+				{ "fieldId": "w01-1", "word": "ระมัดระวัง", "meaning": "〜に注意する。ระมัดは強調表現" },
+				{ "fieldId": "w01-2", "word": "โปรด", "meaning": "〜してください" },
+				{ "fieldId": "w01-3", "word": "ความ", "meaning": "名詞化する接続詞" },
+				{ "fieldId": "w01-4", "word": "ขณะ", "meaning": "〜する時（フォーマル）" },
+				{ "fieldId": "w01-5", "word": "ก้าว", "meaning": "ステップする、歩数" }
+			]
+		},
+		{
+			"fieldId": "announcement-02",
+			"phrase": "ผู้โดยสารโปรดทราบ",
+			"ipa": "pûu-dooi-sǎan bpròot sâap",
+			"meaning": "乗客の方知っておいてください。"
+		},
+		{
+			"fieldId": "announcement-03",
+			"phrase": "ห้ามรับประทานอาหารและเครื่องดืมในระบบรถไฟฟ้าบีทีเอส",
+			"ipa": "hâam ráp-bprà-thaan aa-hǎan láe krʉ̂ang-dʉ̀ʉm nai rá-bòp rót-fai-fáa bii-tii-eeet",
+			"meaning": "BTSのシステムの中で飲み物や食べ物を召し上がらないでください",
+			"words": [
+				{ "fieldId": "w03-1", "word": "รับประทาน", "meaning": "召し上がる" },
+				{ "fieldId": "w03-2", "word": "ใน", "meaning": "〜の中で" },
+				{ "fieldId": "w03-3", "word": "ระบบ", "meaning": "システム、制度" },
+				{ "fieldId": "w03-4", "word": "รถไฟฟ้า", "meaning": "高架鉄道（車+電気+空）" }
+			]
+		},
+		{
+			"fieldId": "announcement-04",
+			"phrase": "ประตูรถจะเปิดทางด้านขวา",
+			"meaning": "電車の右側の扉が開きます。",
+			"words": [
+				{ "fieldId": "w04-1", "word": "ทางด้าน", "meaning": "〜の方向の" },
+				{ "fieldId": "w04-2", "word": "ด้าน", "meaning": "側面" }
+			]
+		},
+		{
+			"fieldId": "announcement-05",
+			"phrase": "ผู้โดยสารสามารถเปลี่ยนเส้นทางไปรถไฟฟ้ามหานครได้ที่สถานีนี้",
+			"meaning": "乗客の皆さんはこの駅でMRTに乗り換えられます",
+			"words": [
+				{ "fieldId": "w05-1", "word": "สามารถ", "meaning": "〜できる、能力のある" },
+				{ "fieldId": "w05-2", "word": "เปลี่ยน", "meaning": "変更する、変わる" },
+				{ "fieldId": "w05-3", "word": "เส้นทาง", "meaning": "路線、ルート" },
+				{ "fieldId": "w05-4", "word": "รถไฟฟ้ามหานคร", "meaning": "MRT" }
+			]
+		},
+		{
+			"fieldId": "announcement-06",
+			"phrase": "กรุณาเดินเข้าด้านในของขบวนรถ",
+			"meaning": "車両の内側へお進みください",
+			"words": [
+				{ "fieldId": "w06-1", "word": "ด้าน", "meaning": "側" },
+				{ "fieldId": "w06-2", "word": "ใน", "meaning": "中" },
+				{ "fieldId": "w06-3", "word": "ขบวนรถ", "meaning": "車両" }
+			]
+		},
+		{
+			"fieldId": "announcement-07",
+			"phrase": "ไม่ยืนกีดขวางบริเวณประตู",
+			"meaning": "ドア付近に立って邪魔しないでください",
+			"words": [
+				{ "fieldId": "w07-1", "word": "กีดขวาง", "meaning": "妨げる、邪魔する" },
+				{ "fieldId": "w07-2", "word": "บริเวณ", "meaning": "〜の辺り、付近" }
+			]
+		},
+		{
+			"fieldId": "announcement-08",
+			"phrase": "ไม่ยืนพิงเสาและจับห่วงราวหรือเสาขณะเดินทาง",
+			"meaning": "立って柱にもたれないで、それから動いている時は吊り輪や柱、手すりに捕まってください",
+			"words": [
+				{ "fieldId": "w08-1", "word": "พิง", "meaning": "もたれる" },
+				{ "fieldId": "w08-2", "word": "จับ", "meaning": "捕まる" },
+				{ "fieldId": "w08-3", "word": "ห่วง", "meaning": "吊り輪、リング" },
+				{ "fieldId": "w08-4", "word": "เดินทาง", "meaning": "旅行する、移動する" }
+			]
+		},
+		{
+			"fieldId": "announcement-09",
+			"phrase": "ขณะเข้าออกขบวนรถ",
+			"meaning": "車両から出入りする時"
+		},
+		{
+			"fieldId": "announcement-10",
+			"phrase": "โปรดระวังช่องว่างระหว่างพื้นชานชาลากับขบวนรถ",
+			"meaning": "プラットフォームの床と車両の間の隙間に気をつけてください",
+			"words": [
+				{ "fieldId": "w10-1", "word": "ช่องว่าง", "meaning": "隙間" },
+				{ "fieldId": "w10-2", "word": "ช่อง", "meaning": "スペース、窓口、チャンネル" },
+				{ "fieldId": "w10-3", "word": "ว่าง", "meaning": "空いている" },
+				{ "fieldId": "w10-4", "word": "ระหว่าง...กับ", "meaning": "AとBの間" },
+				{ "fieldId": "w10-5", "word": "พื้น", "meaning": "床" },
+				{ "fieldId": "w10-6", "word": "ชานชาลา", "meaning": "プラットホーム" }
+			]
+		},
+		{
+			"fieldId": "announcement-11",
+			"phrase": "งดเดินขณะอยู่บนบันไดเลื่อน",
+			"meaning": "エスカレーターの上では歩くのをやめてください",
+			"words": [
+				{ "fieldId": "w11-1", "word": "งด", "meaning": "やめる、控える、中止する" },
+				{ "fieldId": "w11-2", "word": "อยู่บน", "meaning": "〜の上にいるとき" },
+				{ "fieldId": "w11-3", "word": "บันไดเลื่อน", "meaning": "エスカレーター" }
+			]
+		},
+		{
+			"fieldId": "announcement-12",
+			"phrase": "ประตูรถกำลังจะปิด กรุณาอย่ายืนกีดขวางบริเวณประตู",
+			"meaning": "まもなくドアが閉まります。ドア周辺で立って邪魔しないで",
+			"words": [
+				{ "fieldId": "w12-1", "word": "อย่า", "meaning": "しないで" },
+				{ "fieldId": "w12-2", "word": "กีดขวาง", "meaning": "邪魔する、妨げる" }
+			]
+		},
+		{
+			"fieldId": "announcement-13",
+			"phrase": "ห้ามสูบบุหรี่ ฝ่าฝืนมีโทษปรับตามกฎหมาย 5,000 บาท",
+			"meaning": "喫煙禁止。違反すると、法律に従った罰金がある。5000バーツ",
+			"words": [
+				{ "fieldId": "w13-1", "word": "ฝ่าฝืน", "meaning": "違反する" },
+				{ "fieldId": "w13-2", "word": "โทษ", "meaning": "罰" }
+			]
+		},
+		{
+			"fieldId": "announcement-14",
+			"phrase": "กรุณาจับราวบันไดเลื่อน",
+			"meaning": "エスカレーターの手すりにつかまってください",
+			"words": [
+				{ "fieldId": "w14-1", "word": "ราว", "meaning": "手すり" },
+				{ "fieldId": "w14-2", "word": "เลื่อน", "meaning": "スライドさせる、ずらす" }
+			]
+		},
+		{
+			"fieldId": "announcement-15",
+			"phrase": "ห้ามพิงบันไดเลื่อน",
+			"meaning": "エスカレーターにもたれるの禁止",
+			"words": [{ "fieldId": "w15-1", "word": "พิง", "meaning": "もたれる" }]
+		},
+		{
+			"fieldId": "announcement-16",
+			"phrase": "มาตรการรักษาความปลอดภัย",
+			"meaning": "安全を保つための対策",
+			"words": [
+				{ "fieldId": "w16-1", "word": "มาตรการ", "meaning": "措置、対策" },
+				{ "fieldId": "w16-2", "word": "รักษา", "meaning": "保つ" },
+				{ "fieldId": "w16-3", "word": "ปลอดภัย", "meaning": "安全な" }
+			]
+		},
+		{
+			"fieldId": "announcement-17",
+			"phrase": "ระวังประตูหนีบมือ",
+			"meaning": "電車のドアに手を挟まないように注意",
+			"words": [
+				{ "fieldId": "w17-1", "word": "หนีบ", "meaning": "挟む" },
+				{ "fieldId": "w17-2", "word": "มือ", "meaning": "手" }
+			]
+		},
+		{
+			"fieldId": "announcement-18",
+			"phrase": "ห้ามวัตถุไวไฟ",
+			"meaning": "燃えやすい物禁止",
+			"words": [
+				{ "fieldId": "w18-1", "word": "วัตถุ", "meaning": "物質、物" },
+				{ "fieldId": "w18-2", "word": "ไว", "meaning": "敏感な" },
+				{ "fieldId": "w18-3", "word": "ไฟ", "meaning": "火" }
+			]
+		},
+		{
+			"fieldId": "announcement-19",
+			"phrase": "ประตูเปิดฝั่งนี้",
+			"meaning": "こちら側のドアが開きます",
+			"words": [{ "fieldId": "w19-1", "word": "ฝั่ง", "meaning": "側、サイド" }]
+		},
+		{
+			"fieldId": "announcement-20",
+			"phrase": "จุดตรวจสัมภาระ",
+			"meaning": "荷物検査ポイント",
+			"words": [
+				{ "fieldId": "w20-1", "word": "ตรวจ", "meaning": "検査、チェック" },
+				{ "fieldId": "w20-2", "word": "สัมภาระ", "meaning": "手荷物" }
+			]
+		},
+		{
+			"fieldId": "announcement-21",
+			"phrase": "ห้ามล้ำเส้นเหลืองปลายชานชาลา",
+			"meaning": "ホームの端の黄色い線を越えてはいけません",
+			"words": [
+				{ "fieldId": "w21-1", "word": "ล้ำ", "meaning": "超える、はみ出す" },
+				{ "fieldId": "w21-2", "word": "ปลาย", "meaning": "端、先" }
+			]
+		}
+	]
+}

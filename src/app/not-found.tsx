@@ -1,5 +1,5 @@
-import { Inner } from '@/lib/components/Inner/Inner';
-import { Typography } from '@/lib/components/Typography/Typography';
+import { Inner } from '@/components/Inner/Inner';
+import { Typography } from '@/components/Typography/Typography';
 
 export default function NotFound() {
 	return (

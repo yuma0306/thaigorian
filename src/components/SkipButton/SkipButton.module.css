@@ -1,0 +1,31 @@
+.skip {
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	cursor: pointer;
+	display: block;
+	font-weight: 700;
+	transition: opacity var(--transition);
+	width: fit-content;
+	@media (hover: hover) {
+		&:hover {
+			opacity: var(--opacity);
+		}
+	}
+	&:active {
+		opacity: var(--opacity);
+	}
+}
+@media (min-width: 640px) {
+	.skip {
+		border-radius: calc(var(--border-radius) * 1px);
+		font-size: calc(var(--font-size-1) * 1px);
+		padding: calc(var(--spacing-2) * 1px);
+	}
+}
+@media (max-width: 639px) {
+	.skip {
+		border-radius: calc(var(--calc-sp) * var(--border-radius));
+		font-size: calc(var(--calc-sp) * var(--font-size-1));
+		padding: calc(var(--spacing-2) * var(--calc-sp));
+	}
+}

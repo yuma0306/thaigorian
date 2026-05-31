@@ -1,0 +1,9 @@
+.inner {
+	margin-inline: auto;
+	width: 100%;
+}
+@media (min-width: 640px) {
+	.inner {
+		max-width: 1200px;
+	}
+}

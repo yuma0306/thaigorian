@@ -2,33 +2,54 @@
 	"name": "learn-thai",
 	"private": true,
 	"version": "0.0.1",
+	"type": "module",
+	"engines": {
+		"npm": ">=11.10.0"
+	},
 	"scripts": {
-		"dev": "next dev --hostname 0.0.0.0",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"check": "tsc --noEmit"
+		"lint": "eslint .",
+		"lint-format": "prettier --check .",
+		"lint-style": "stylelint \"**/*.css\"",
+		"format": "prettier --write . && npm run format-style",
+		"format-style": "stylelint \"**/*.css\" --fix",
+		"check": "tsc --noEmit",
+		"knip": "knip",
+		"verify": "npm run lint-format && npm run lint && npm run lint-style && npm run check && npm run knip",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	},
 	"dependencies": {
-		"microcms-js-sdk": "^3.2.0",
-		"next": "^15.3.3",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
+		"@supabase/ssr": "^0.10.3",
+		"@supabase/supabase-js": "^2.106.2",
+		"next": "^16.2.6",
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"server-only": "^0.0.1"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.2",
 		"@eslint/js": "^9.39.2",
+		"@storybook/addon-docs": "^10.4.1",
+		"@storybook/nextjs-vite": "^10.4.1",
 		"@types/node": "^22",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"eslint": "^9.39.2",
+		"eslint-config-next": "^16.2.6",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-react": "^7.37.5",
-		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-functional": "^9.0.5",
 		"globals": "^17.3.0",
+		"knip": "^6.14.2",
 		"prettier": "^3.8.1",
+		"storybook": "^10.4.1",
+		"stylelint": "^17.12.0",
+		"stylelint-config-standard": "^40.0.0",
+		"stylelint-order": "^8.1.1",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.54.0"
+		"typescript-eslint": "^8.54.0",
+		"vite": "^8.0.14"
 	}
 }

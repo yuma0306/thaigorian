@@ -1,0 +1,13 @@
+.list {
+	display: grid;
+	justify-content: center;
+	width: 100%;
+	@media (min-width: 640px) {
+		gap: calc(var(--spacing-1) * 1px);
+		grid-template-columns: repeat(auto-fit, max(193px));
+	}
+	@media (max-width: 639px) {
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+		grid-template-columns: repeat(auto-fit, max(calc(var(--calc-sp) * 114)));
+	}
+}

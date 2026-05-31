@@ -1,0 +1,40 @@
+.item {
+	align-items: start;
+	counter-increment: item;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	line-height: var(--line-height);
+	position: relative;
+	&[data-symbol='dot'] {
+		&::before {
+			content: '・';
+		}
+	}
+	&[data-symbol='asterisk'] {
+		&::before {
+			content: '※';
+		}
+	}
+	&[data-symbol='number'] {
+		&::before {
+			content: counter(item) '.';
+		}
+	}
+	&[data-symbol='none'] {
+		&::before {
+			content: none;
+		}
+	}
+}
+@media (min-width: 640px) {
+	.item {
+		column-gap: calc(var(--spacing-1) * 1px);
+		font-size: calc(var(--font-size-1) * 1px);
+	}
+}
+@media (max-width: 639px) {
+	.item {
+		column-gap: calc(var(--calc-sp) * var(--spacing-1));
+		font-size: calc(var(--calc-sp) * var(--font-size-1));
+	}
+}
