@@ -1,6 +1,6 @@
 'use client';
 
-import type { Situation } from '@/types';
+import type { PhraseCollection } from '@/types/database';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { LessonQuizSection } from '@/components/LessonQuizSection/LessonQuizSection';
@@ -9,12 +9,11 @@ import { paths } from '@/constants/paths';
 import { usePhraseLesson } from '@/hooks/usePhraseLesson';
 
 type Props = {
-	situation: Situation;
+	collection: PhraseCollection;
 };
 
-export function SituationLesson({ situation }: Props) {
-	const allPhrases = situation.phrases ?? [];
-	const lesson = usePhraseLesson('phrase', situation.id, allPhrases);
+export function SituationLesson({ collection }: Props) {
+	const lesson = usePhraseLesson('phrase', collection.id, collection.phrases);
 
 	if (!lesson.ready) return null;
 
@@ -26,8 +25,8 @@ export function SituationLesson({ situation }: Props) {
 		<Inner>
 			<Crumbs
 				items={[
-					{ text: situation.title ?? '', href: paths.phrase(situation.id) },
-					{ text: 'レッスン', href: paths.phraseLesson(situation.id) }
+					{ text: collection.title, href: paths.phrase(collection.id) },
+					{ text: 'レッスン', href: paths.phraseLesson(collection.id) }
 				]}
 			/>
 			{showQuiz && currentPhrase && (
@@ -49,7 +48,7 @@ export function SituationLesson({ situation }: Props) {
 					correctCount={lesson.correctCount}
 					total={lesson.total}
 					results={lesson.results}
-					backHref={paths.phrase(situation.id)}
+					backHref={paths.phrase(collection.id)}
 				/>
 			)}
 		</Inner>

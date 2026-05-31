@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 import { SoundIcon } from '@/components/Icon/SoundIcon';
 import styles from './VoiceButton.module.css';
 

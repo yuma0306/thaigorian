@@ -1,7 +1,6 @@
 import { fetchWordsByPhraseIds, groupWordsByPhraseId } from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { Phrase } from '@/types';
-import type { MyCategoryTitleRow, MyPhraseRow, MyWordRow } from '@/types/database';
+import type { MyCategoryTitleRow, MyPhraseRow, MyWordRow, Phrase } from '@/types/database';
 
 export type MyPhraseCategorySummary = {
 	id: string;

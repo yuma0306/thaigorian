@@ -1,18 +1,18 @@
 import { notFound } from 'next/navigation';
-import { getSituationById } from '@/functions/microcms';
+import { getPhraseCollectionById } from '@/functions/phraseCollections';
 import { SituationLesson } from './SituationLesson';
 
 type Props = {
 	params: Promise<{ id: string }>;
 };
 
-export default async function SituationLessonPage({ params }: Props) {
+export default async function PhraseCollectionLessonPage({ params }: Props) {
 	const { id } = await params;
-	const situation = await getSituationById(id);
+	const collection = await getPhraseCollectionById(id);
 
-	if (!situation) {
+	if (!collection) {
 		notFound();
 	}
 
-	return <SituationLesson situation={situation} />;
+	return <SituationLesson collection={collection} />;
 }

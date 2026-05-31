@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 import { CopyIcon } from '@/components/Icon/CopyIcon';
 import styles from './CopyButton.module.css';
 

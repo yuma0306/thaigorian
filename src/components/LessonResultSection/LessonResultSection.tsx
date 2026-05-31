@@ -4,7 +4,7 @@ import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { ScoreCard } from '@/components/ScoreCard/ScoreCard';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
-import type { LessonResult } from '@/types';
+import type { LessonResult } from '@/types/database';
 
 type Props = {
 	correctCount: number;

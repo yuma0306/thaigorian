@@ -2,7 +2,7 @@
 
 import { deleteCategoryPhrasesAndWords } from '@/app/member/phrases/categoryContent';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 import type { MyPhraseSavedRow } from '@/types/database';
 import type { SaveMyCategoryPayload, SaveMyCategoryResult } from '@/types/myCategory';
 

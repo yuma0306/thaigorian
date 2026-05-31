@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import type { Situation } from '@/types';
+import type { PhraseCollection } from '@/types/database';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
@@ -14,33 +14,32 @@ import { Inner } from '@/components/Inner/Inner';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 
 type Props = {
-	situation: Situation;
+	collection: PhraseCollection;
 };
 
-export function SituationDetail({ situation }: Props) {
+export function SituationDetail({ collection }: Props) {
 	const router = useRouter();
-	const canStart = (situation.phrases?.length ?? 0) > 0;
+	const canStart = collection.phrases.length > 0;
 
 	function startLesson() {
-		const all = situation.phrases ?? [];
-		if (all.length === 0) return;
-		saveLessonIndices('phrase', situation.id, pickRandomIndices(all.length));
-		router.push(paths.phraseLesson(situation.id));
+		if (collection.phrases.length === 0) return;
+		saveLessonIndices('phrase', collection.id, pickRandomIndices(collection.phrases.length));
+		router.push(paths.phraseLesson(collection.id));
 	}
 
 	return (
 		<Inner>
-			<Crumbs items={[{ text: situation.title ?? '', href: paths.phrase(situation.id) }]} />
+			<Crumbs items={[{ text: collection.title, href: paths.phrase(collection.id) }]} />
 			<Stack size={3} variant="section">
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
-					{situation.title ?? ''}
+					{collection.title}
 				</Typography>
 				<Button color="secondary" variant="button" onClick={startLesson} disabled={!canStart}>
 					{`ランダム${maxLessonItems}問`}
 				</Button>
-				{situation.phrases && situation.phrases.length > 0 && (
+				{collection.phrases.length > 0 && (
 					<Stack size={2} variant="ul">
-						{situation.phrases.map((phrase, index) => (
+						{collection.phrases.map((phrase, index) => (
 							<Card
 								key={`${phrase.fieldId}-${index}`}
 								variant="li"

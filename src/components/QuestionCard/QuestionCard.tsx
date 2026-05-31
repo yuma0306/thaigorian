@@ -7,7 +7,7 @@ import { Typography } from '@/components/Typography/Typography';
 import { VoiceButton } from '@/components/VoiceButton/VoiceButton';
 import { CopyButton } from '@/components/CopyButton/CopyButton';
 import { ToggleRevealButton } from '@/components/ToggleRevealButton/ToggleRevealButton';
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 
 type Props = {
 	meaning: Phrase['meaning'];

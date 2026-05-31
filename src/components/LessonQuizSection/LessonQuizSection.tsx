@@ -5,7 +5,7 @@ import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
 import { SkipButton } from '@/components/SkipButton/SkipButton';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 
 type Props = {
 	currentIndex: number;

@@ -1,5 +1,5 @@
 import type { ActionResult } from '@/types/actionResult';
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 
 export type SaveMyCategoryPayload = {
 	contentId: string;

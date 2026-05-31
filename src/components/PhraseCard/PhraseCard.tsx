@@ -1,4 +1,4 @@
-import type { Phrase } from '@/types';
+import type { Phrase } from '@/types/database';
 import { FlexColumn } from '@/components/FlexColumn/FlexColumn';
 import { ListItem } from '@/components/ListItem/ListItem';
 import { Stack } from '@/components/Stack/Stack';

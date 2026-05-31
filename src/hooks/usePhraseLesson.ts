@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { LessonResult, Phrase } from '@/types';
+import type { LessonResult, Phrase } from '@/types/database';
 import { orderItemsByIndices, pickRandomItems } from '@/functions/lesson';
 import { loadLessonIndices, type LessonScope } from '@/functions/lessonSession';
 

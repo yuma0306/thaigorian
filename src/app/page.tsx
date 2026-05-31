@@ -1,4 +1,4 @@
-import { getSituations } from '@/functions/microcms';
+import { getPhraseCollectionSummaries } from '@/functions/phraseCollections';
 import { getMyPhraseCategorySummaries } from '@/functions/myPhrases';
 import { CardImageList } from '@/components/CardImageList/CardImageList';
 import { Stack } from '@/components/Stack/Stack';
@@ -8,8 +8,8 @@ import { paths } from '@/constants/paths';
 import { Inner } from '@/components/Inner/Inner';
 
 export default async function HomePage() {
-	const [situations, myPhraseCategories] = await Promise.all([
-		getSituations(),
+	const [phraseCollections, myPhraseCategories] = await Promise.all([
+		getPhraseCollectionSummaries(),
 		getMyPhraseCategorySummaries()
 	]);
 
@@ -38,12 +38,12 @@ export default async function HomePage() {
 						フレーズ
 					</Typography>
 					<CardImageList>
-						{situations.map((situation) => (
+						{phraseCollections.map((collection) => (
 							<CardImage
-								key={situation.id}
-								id={situation.id}
-								href={paths.phrase(situation.id)}
-								title={situation.title}
+								key={collection.id}
+								id={collection.id}
+								href={paths.phrase(collection.id)}
+								title={collection.title}
 							/>
 						))}
 					</CardImageList>

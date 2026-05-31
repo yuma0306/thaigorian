@@ -30,11 +30,17 @@
 
 ```sh
 cp .env.example .env
-# MICROCMS_SERVICE_DOMAIN / MICROCMS_API_KEY を設定
+# Supabase の URL / anon key を設定（マイフレーズ登録を使う場合）
 
 npm install
 npm run dev
 ```
+
+### フレーズデータ（JSON）
+
+- 一覧: `src/data/phrases/index.json`
+- 本文: `src/data/phrases/*.json`（例: `bts-mrt-announcements.json`）
+- 会員が登録するマイフレーズは Supabase（`/member/phrases`）
 
 ---
 
