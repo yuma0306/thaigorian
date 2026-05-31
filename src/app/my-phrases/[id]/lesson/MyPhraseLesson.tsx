@@ -1,7 +1,5 @@
 'use client';
 
-import { Crumbs } from '@/components/Crumbs/Crumbs';
-import { Inner } from '@/components/Inner/Inner';
 import { LessonQuizSection } from '@/components/LessonQuizSection/LessonQuizSection';
 import { LessonResultSection } from '@/components/LessonResultSection/LessonResultSection';
 import { paths } from '@/constants/paths';
@@ -14,21 +12,13 @@ type Props = {
 
 export function MyPhraseLesson({ category }: Props) {
 	const lesson = usePhraseLesson('my-phrase', category.id, category.phrases);
-
-	if (!lesson.ready) return null;
-
+	if (!lesson.ready) return;
 	const currentPhrase = lesson.currentPhrase;
 	const showQuiz = Boolean(currentPhrase && !lesson.isFinished);
 	const showResults = !showQuiz && lesson.phrases.length > 0;
 
 	return (
-		<Inner>
-			<Crumbs
-				items={[
-					{ text: category.title, href: paths.myPhrase(category.id) },
-					{ text: 'レッスン', href: paths.myPhraseLesson(category.id) }
-				]}
-			/>
+		<>
 			{showQuiz && currentPhrase && (
 				<LessonQuizSection
 					currentIndex={lesson.currentIndex}
@@ -51,6 +41,6 @@ export function MyPhraseLesson({ category }: Props) {
 					backHref={paths.myPhrase(category.id)}
 				/>
 			)}
-		</Inner>
+		</>
 	);
 }

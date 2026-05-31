@@ -1,55 +1,10 @@
 import { fetchWordsByPhraseIds, groupWordsByPhraseId } from '@/functions/memberCategoryPhrases';
+import { mapMyPhraseRow } from '@/functions/mapMyPhraseRow';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { MyCategoryTitleRow, MyPhraseRow, MyWordRow, Phrase } from '@/types/database';
+import type { MyCategoryTitleRow, MyPhraseRow } from '@/types/database';
+import type { MyPhraseCategorySummary, MyPhraseCategoryView } from '@/types/myPhrases';
 
-export type MyPhraseCategorySummary = {
-	id: string;
-	title: string;
-};
-
-export type MyPhraseCategoryView = {
-	id: string;
-	title: string;
-	phrases: Phrase[];
-};
-
-function toPhrase(phrase: MyPhraseRow, words: MyWordRow[]): Phrase {
-	const mapped: Phrase = { fieldId: phrase.id };
-	const text = phrase.phrase?.trim();
-	const meaning = phrase.meaning?.trim();
-	const ipa = phrase.ipa?.trim();
-
-	if (text) {
-		mapped.phrase = text;
-	}
-
-	if (meaning) {
-		mapped.meaning = meaning;
-	}
-
-	if (ipa) {
-		mapped.ipa = ipa;
-	}
-
-	return {
-		...mapped,
-		words: words.map((word) => {
-			const wordMapped: NonNullable<Phrase['words']>[number] = { fieldId: word.id };
-			const wordText = word.word?.trim();
-			const wordMeaning = word.meaning?.trim();
-
-			if (wordText) {
-				wordMapped.word = wordText;
-			}
-
-			if (wordMeaning) {
-				wordMapped.meaning = wordMeaning;
-			}
-
-			return wordMapped;
-		})
-	};
-}
+export type { MyPhraseCategorySummary, MyPhraseCategoryView } from '@/types/myPhrases';
 
 export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySummary[] | null> {
 	const supabase = await createSupabaseServerClient();
@@ -127,7 +82,7 @@ export async function getMyPhraseCategoryById(
 		id: category.id,
 		title: category.title ?? '無題',
 		phrases: (phraseRows ?? []).map((phrase) =>
-			toPhrase(phrase, wordsByPhraseId.get(phrase.id) ?? [])
+			mapMyPhraseRow(phrase, wordsByPhraseId.get(phrase.id) ?? [])
 		)
 	};
 }

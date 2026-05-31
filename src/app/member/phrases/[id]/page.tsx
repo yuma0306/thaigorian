@@ -8,7 +8,8 @@ import {
 } from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import type { MyCategoryRow, MyPhraseEditRow } from '@/types/database';
-import { deleteMyCategory, updateMyCategory } from '../actions';
+import { deleteMyCategory } from '../deleteMyCategory';
+import { updateMyCategory } from '../updateMyCategory';
 
 type Props = {
 	params: Promise<{ id: string }>;

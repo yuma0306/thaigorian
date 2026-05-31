@@ -50,13 +50,13 @@ export default defineConfig(
 			'max-lines': [
 				'warn',
 				{
-					max: 300,
+					max: 100,
 					skipBlankLines: true,
 					skipComments: true
 				}
 			],
 			'max-lines-per-function': ['warn', 80],
-			complexity: ['warn', 10],
+			complexity: ['warn', 8],
 			'no-nested-ternary': 'error'
 		}
 	},

@@ -3,6 +3,8 @@ import { paths } from '@/constants/paths';
 import { getMyPhraseCategoryById } from '@/functions/myPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import { MyPhraseLesson } from './MyPhraseLesson';
+import { Inner } from '@/components/Inner/Inner';
+import { Crumbs } from '@/components/Crumbs/Crumbs';
 
 type Props = {
 	params: Promise<{ id: string }>;
@@ -30,5 +32,15 @@ export default async function MyPhraseLessonPage({ params }: Props) {
 		notFound();
 	}
 
-	return <MyPhraseLesson category={category} />;
+	return (
+		<Inner>
+			<Crumbs
+				items={[
+					{ text: category.title, href: paths.myPhrase(category.id) },
+					{ text: 'レッスン', href: paths.myPhraseLesson(category.id) }
+				]}
+			/>
+			<MyPhraseLesson category={category} />
+		</Inner>
+	);
 }
