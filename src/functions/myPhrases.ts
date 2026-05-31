@@ -1,5 +1,10 @@
+import {
+	fetchWordsByPhraseIds,
+	groupWordsByPhraseId
+} from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import type { Phrase } from '@/types';
+import type { MyCategoryTitleRow, MyPhraseRow, MyWordRow } from '@/types/database';
 
 export type MyPhraseCategorySummary = {
 	id: string;
@@ -12,29 +17,7 @@ export type MyPhraseCategoryView = {
 	phrases: Phrase[];
 };
 
-type CategoryRow = {
-	id: string;
-	title: string | null;
-};
-
-type PhraseRow = {
-	id: string;
-	category_id: string;
-	phrase: string | null;
-	meaning: string | null;
-	ipa: string | null;
-	sort_order: number | null;
-};
-
-type WordRow = {
-	id: string;
-	phrase_id: string;
-	word: string | null;
-	meaning: string | null;
-	sort_order: number | null;
-};
-
-function toPhrase(phrase: PhraseRow, words: WordRow[]): Phrase {
+function toPhrase(phrase: MyPhraseRow, words: MyWordRow[]): Phrase {
 	const mapped: Phrase = { fieldId: phrase.id };
 	const text = phrase.phrase?.trim();
 	const meaning = phrase.meaning?.trim();
@@ -93,7 +76,7 @@ export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySu
 		.select('id,title')
 		.eq('user_id', user.id)
 		.order('updated_at', { ascending: false })
-		.returns<CategoryRow[]>();
+		.returns<MyCategoryTitleRow[]>();
 
 	if (!categoryRows) {
 		return [];
@@ -128,7 +111,7 @@ export async function getMyPhraseCategoryById(
 		.select('id,title')
 		.eq('id', categoryId)
 		.eq('user_id', user.id)
-		.single<CategoryRow>();
+		.single<MyCategoryTitleRow>();
 
 	if (!category) {
 		return null;
@@ -140,24 +123,11 @@ export async function getMyPhraseCategoryById(
 		.eq('category_id', category.id)
 		.eq('user_id', user.id)
 		.order('sort_order', { ascending: true })
-		.returns<PhraseRow[]>();
+		.returns<MyPhraseRow[]>();
 
 	const phraseIds = (phraseRows ?? []).map((phrase) => phrase.id);
-	const { data: wordRows } =
-		phraseIds.length > 0
-			? await supabase
-					.from('my_words')
-					.select('id,phrase_id,word,meaning,sort_order')
-					.eq('user_id', user.id)
-					.in('phrase_id', phraseIds)
-					.order('sort_order', { ascending: true })
-					.returns<WordRow[]>()
-			: { data: [] as WordRow[] };
-
-	const wordsByPhraseId = new Map<string, WordRow[]>();
-	(wordRows ?? []).forEach((word) => {
-		wordsByPhraseId.set(word.phrase_id, [...(wordsByPhraseId.get(word.phrase_id) ?? []), word]);
-	});
+	const wordRows = await fetchWordsByPhraseIds(supabase, user.id, phraseIds);
+	const wordsByPhraseId = groupWordsByPhraseId(wordRows);
 
 	return {
 		id: category.id,

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { paths } from '@/constants/paths';
 import { Crumbs } from './Crumbs';
 
 const meta = {

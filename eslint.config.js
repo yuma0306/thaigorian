@@ -1,6 +1,3 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
-
 import prettier from 'eslint-config-prettier/flat';
 import path from 'node:path';
 import { includeIgnoreFile } from '@eslint/compat';
@@ -40,13 +37,28 @@ export default defineConfig(
 			'react/jsx-boolean-value': ['error', 'never'],
 			'react/jsx-no-useless-fragment': 'error',
 			'react/no-children-prop': 'error',
-			'react/jsx-no-target-blank': 'error'
+			'react/jsx-no-target-blank': 'error',
+			'react-hooks/rules-of-hooks': 'error',
+			'react/jsx-handler-names': [
+				'warn',
+				{
+					eventHandlerPrefix: 'handle',
+					eventHandlerPropPrefix: 'on'
+				}
+			],
+			'@typescript-eslint/no-unused-vars': 'error',
+			'max-lines': [
+				'warn',
+				{
+					max: 300,
+					skipBlankLines: true,
+					skipComments: true
+				}
+			],
+			'max-lines-per-function': ['warn', 80],
+			complexity: ['warn', 10],
+			'no-nested-ternary': 'error'
 		}
 	},
 	prettier
 );
-
-// "max-lines": ["warn", 300],
-// "max-lines-per-function": ["warn", 80],
-// "complexity": ["warn", 10],
-// "unused-imports/no-unused-imports": "error"

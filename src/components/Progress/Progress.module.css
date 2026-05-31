@@ -13,12 +13,14 @@
 .progress::-moz-progress-bar {
 	background-color: var(--color-secondary);
 }
+
 @media (min-width: 640px) {
 	.progress {
 		border-radius: calc(var(--border-radius) * 1px);
 		height: calc(var(--spacing-1) * 1px);
 	}
 }
+
 @media (max-width: 639px) {
 	.progress {
 		border-radius: calc(var(--calc-sp) * var(--border-radius));

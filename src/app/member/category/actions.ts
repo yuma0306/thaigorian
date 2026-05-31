@@ -1,28 +1,10 @@
 'use server';
 
+import { deleteCategoryPhrasesAndWords } from '@/app/member/category/categoryContent';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import type { Phrase } from '@/types';
-
-export type SaveMyCategoryPayload = {
-	contentId: string;
-	title: string;
-	phrases: Phrase[];
-};
-
-export type SaveMyCategoryResult =
-	| {
-			ok: true;
-			contentId: string;
-	  }
-	| {
-			ok: false;
-			message: string;
-	  };
-
-type SavedPhrase = {
-	id: string;
-	sort_order: number;
-};
+import type { MyPhraseSavedRow } from '@/types/database';
+import type { SaveMyCategoryPayload, SaveMyCategoryResult } from '@/types/myCategory';
 
 const contentIdPattern = /^[a-zA-Z0-9_-]+$/;
 
@@ -44,6 +26,18 @@ function normalizePhrases(value: Phrase[]) {
 			}))
 		}))
 		.filter((phrase) => phrase.fieldId);
+}
+
+function parseCategoryInput(contentId: string, title: string, phrases: Phrase[]) {
+	const normalizedContentId = normalizeText(contentId);
+	const normalizedTitle = normalizeText(title);
+	const normalizedPhrases = normalizePhrases(phrases);
+
+	if (!normalizedContentId || !contentIdPattern.test(normalizedContentId) || !normalizedTitle) {
+		return { ok: false as const, message: 'タイトルを確認してください。' };
+	}
+
+	return { ok: true as const, normalizedContentId, normalizedTitle, normalizedPhrases };
 }
 
 async function getCurrentUser() {
@@ -88,7 +82,7 @@ async function insertCategoryContent(
 		.from('my_phrases')
 		.insert(phraseRows)
 		.select('id,sort_order')
-		.returns<SavedPhrase[]>();
+		.returns<MyPhraseSavedRow[]>();
 
 	if (phrasesError || !savedPhrases) {
 		return { ok: false as const };
@@ -124,12 +118,9 @@ export async function saveMyCategory({
 	title,
 	phrases
 }: SaveMyCategoryPayload): Promise<SaveMyCategoryResult> {
-	const normalizedContentId = normalizeText(contentId);
-	const normalizedTitle = normalizeText(title);
-	const normalizedPhrases = normalizePhrases(phrases);
-
-	if (!normalizedContentId || !contentIdPattern.test(normalizedContentId) || !normalizedTitle) {
-		return { ok: false, message: 'タイトルを確認してください。' };
+	const parsed = parseCategoryInput(contentId, title, phrases);
+	if (!parsed.ok) {
+		return parsed;
 	}
 
 	const { supabase, userId, message } = await getCurrentUser();
@@ -142,8 +133,8 @@ export async function saveMyCategory({
 		.from('my_categories')
 		.insert({
 			user_id: userId,
-			title: normalizedTitle,
-			slug: normalizedContentId
+			title: parsed.normalizedTitle,
+			slug: parsed.normalizedContentId
 		})
 		.select('id')
 		.single();
@@ -152,7 +143,12 @@ export async function saveMyCategory({
 		return { ok: false, message: '保存に失敗しました。' };
 	}
 
-	const result = await insertCategoryContent(supabase, userId, category.id, normalizedPhrases);
+	const result = await insertCategoryContent(
+		supabase,
+		userId,
+		category.id,
+		parsed.normalizedPhrases
+	);
 
 	if (!result.ok) {
 		await supabase.from('my_phrases').delete().eq('category_id', category.id);
@@ -160,19 +156,16 @@ export async function saveMyCategory({
 		return { ok: false, message: '保存に失敗しました。' };
 	}
 
-	return { ok: true, contentId: normalizedContentId };
+	return { ok: true, contentId: parsed.normalizedContentId };
 }
 
 export async function updateMyCategory(
 	categoryId: string,
 	{ contentId, title, phrases }: SaveMyCategoryPayload
 ): Promise<SaveMyCategoryResult> {
-	const normalizedContentId = normalizeText(contentId);
-	const normalizedTitle = normalizeText(title);
-	const normalizedPhrases = normalizePhrases(phrases);
-
-	if (!normalizedContentId || !contentIdPattern.test(normalizedContentId) || !normalizedTitle) {
-		return { ok: false, message: 'タイトルを確認してください。' };
+	const parsed = parseCategoryInput(contentId, title, phrases);
+	if (!parsed.ok) {
+		return parsed;
 	}
 
 	const { supabase, userId, message } = await getCurrentUser();
@@ -181,45 +174,16 @@ export async function updateMyCategory(
 		return { ok: false, message };
 	}
 
-	const { data: existingPhrases, error: phrasesSelectError } = await supabase
-		.from('my_phrases')
-		.select('id')
-		.eq('user_id', userId)
-		.eq('category_id', categoryId);
-
-	if (phrasesSelectError) {
-		return { ok: false, message: '保存に失敗しました。' };
-	}
-
-	const phraseIds = (existingPhrases ?? []).map((phrase) => phrase.id as string);
-
-	if (phraseIds.length > 0) {
-		const { error: wordsDeleteError } = await supabase
-			.from('my_words')
-			.delete()
-			.eq('user_id', userId)
-			.in('phrase_id', phraseIds);
-
-		if (wordsDeleteError) {
-			return { ok: false, message: '保存に失敗しました。' };
-		}
-	}
-
-	const { error: phrasesDeleteError } = await supabase
-		.from('my_phrases')
-		.delete()
-		.eq('user_id', userId)
-		.eq('category_id', categoryId);
-
-	if (phrasesDeleteError) {
+	const cleared = await deleteCategoryPhrasesAndWords(supabase, userId, categoryId);
+	if (!cleared.ok) {
 		return { ok: false, message: '保存に失敗しました。' };
 	}
 
 	const { error: categoryError } = await supabase
 		.from('my_categories')
 		.update({
-			title: normalizedTitle,
-			slug: normalizedContentId,
+			title: parsed.normalizedTitle,
+			slug: parsed.normalizedContentId,
 			updated_at: new Date().toISOString()
 		})
 		.eq('id', categoryId)
@@ -229,13 +193,18 @@ export async function updateMyCategory(
 		return { ok: false, message: '保存に失敗しました。' };
 	}
 
-	const result = await insertCategoryContent(supabase, userId, categoryId, normalizedPhrases);
+	const result = await insertCategoryContent(
+		supabase,
+		userId,
+		categoryId,
+		parsed.normalizedPhrases
+	);
 
 	if (!result.ok) {
 		return { ok: false, message: '保存に失敗しました。' };
 	}
 
-	return { ok: true, contentId: normalizedContentId };
+	return { ok: true, contentId: parsed.normalizedContentId };
 }
 
 export async function deleteMyCategory(categoryId: string): Promise<SaveMyCategoryResult> {
@@ -245,37 +214,8 @@ export async function deleteMyCategory(categoryId: string): Promise<SaveMyCatego
 		return { ok: false, message };
 	}
 
-	const { data: existingPhrases, error: phrasesSelectError } = await supabase
-		.from('my_phrases')
-		.select('id')
-		.eq('user_id', userId)
-		.eq('category_id', categoryId);
-
-	if (phrasesSelectError) {
-		return { ok: false, message: '削除に失敗しました。' };
-	}
-
-	const phraseIds = (existingPhrases ?? []).map((phrase) => phrase.id as string);
-
-	if (phraseIds.length > 0) {
-		const { error: wordsDeleteError } = await supabase
-			.from('my_words')
-			.delete()
-			.eq('user_id', userId)
-			.in('phrase_id', phraseIds);
-
-		if (wordsDeleteError) {
-			return { ok: false, message: '削除に失敗しました。' };
-		}
-	}
-
-	const { error: phrasesDeleteError } = await supabase
-		.from('my_phrases')
-		.delete()
-		.eq('user_id', userId)
-		.eq('category_id', categoryId);
-
-	if (phrasesDeleteError) {
+	const cleared = await deleteCategoryPhrasesAndWords(supabase, userId, categoryId);
+	if (!cleared.ok) {
 		return { ok: false, message: '削除に失敗しました。' };
 	}
 

@@ -1,33 +1,17 @@
 import { notFound, redirect } from 'next/navigation';
 import { MyCategoryRegister } from '@/components/MyCategoryRegister/MyCategoryRegister';
 import { paths } from '@/constants/paths';
+import {
+	fetchWordsByPhraseIds,
+	groupWordsByPhraseId,
+	mapPhraseRowsToFields
+} from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
+import type { MyCategoryRow, MyPhraseEditRow } from '@/types/database';
 import { deleteMyCategory, updateMyCategory } from '../actions';
 
 type Props = {
 	params: Promise<{ id: string }>;
-};
-
-type CategoryRow = {
-	id: string;
-	title: string | null;
-	slug: string | null;
-};
-
-type PhraseRow = {
-	id: string;
-	phrase: string | null;
-	meaning: string | null;
-	ipa: string | null;
-	sort_order: number | null;
-};
-
-type WordRow = {
-	id: string;
-	phrase_id: string;
-	word: string | null;
-	meaning: string | null;
-	sort_order: number | null;
 };
 
 export default async function MemberCategoryDetailPage({ params }: Props) {
@@ -51,7 +35,7 @@ export default async function MemberCategoryDetailPage({ params }: Props) {
 		.select('id,title,slug')
 		.eq('id', id)
 		.eq('user_id', user.id)
-		.single<CategoryRow>();
+		.single<MyCategoryRow>();
 
 	if (!category) {
 		notFound();
@@ -63,36 +47,12 @@ export default async function MemberCategoryDetailPage({ params }: Props) {
 		.eq('category_id', category.id)
 		.eq('user_id', user.id)
 		.order('sort_order', { ascending: true })
-		.returns<PhraseRow[]>();
+		.returns<MyPhraseEditRow[]>();
 
 	const phraseIds = (phraseRows ?? []).map((phrase) => phrase.id);
-	const { data: wordRows } =
-		phraseIds.length > 0
-			? await supabase
-					.from('my_words')
-					.select('id,phrase_id,word,meaning,sort_order')
-					.eq('user_id', user.id)
-					.in('phrase_id', phraseIds)
-					.order('sort_order', { ascending: true })
-					.returns<WordRow[]>()
-			: { data: [] as WordRow[] };
-
-	const wordsByPhraseId = new Map<string, WordRow[]>();
-	(wordRows ?? []).forEach((word) => {
-		wordsByPhraseId.set(word.phrase_id, [...(wordsByPhraseId.get(word.phrase_id) ?? []), word]);
-	});
-
-	const phrases = (phraseRows ?? []).map((phrase) => ({
-		id: phrase.id,
-		phrase: phrase.phrase ?? '',
-		meaning: phrase.meaning ?? '',
-		ipa: phrase.ipa ?? '',
-		words: (wordsByPhraseId.get(phrase.id) ?? []).map((word) => ({
-			id: word.id,
-			word: word.word ?? '',
-			meaning: word.meaning ?? ''
-		}))
-	}));
+	const wordRows = await fetchWordsByPhraseIds(supabase, user.id, phraseIds);
+	const wordsByPhraseId = groupWordsByPhraseId(wordRows);
+	const phrases = mapPhraseRowsToFields(phraseRows ?? [], wordsByPhraseId);
 
 	return (
 		<MyCategoryRegister
