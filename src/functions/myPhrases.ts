@@ -1,7 +1,4 @@
-import {
-	fetchWordsByPhraseIds,
-	groupWordsByPhraseId
-} from '@/functions/memberCategoryPhrases';
+import { fetchWordsByPhraseIds, groupWordsByPhraseId } from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import type { Phrase } from '@/types';
 import type { MyCategoryTitleRow, MyPhraseRow, MyWordRow } from '@/types/database';
@@ -55,7 +52,6 @@ function toPhrase(phrase: MyPhraseRow, words: MyWordRow[]): Phrase {
 	};
 }
 
-/** ログイン中の会員カテゴリー一覧。未ログイン・Supabase未設定時は null */
 export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySummary[] | null> {
 	const supabase = await createSupabaseServerClient();
 
@@ -84,11 +80,10 @@ export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySu
 
 	return categoryRows.map((category) => ({
 		id: category.id,
-		title: category.title ?? '無題のカテゴリー'
+		title: category.title ?? '無題'
 	}));
 }
 
-/** 会員のカテゴリー詳細（学習用）。存在しない・権限なしのとき null */
 export async function getMyPhraseCategoryById(
 	categoryId: string
 ): Promise<MyPhraseCategoryView | null> {
@@ -131,7 +126,9 @@ export async function getMyPhraseCategoryById(
 
 	return {
 		id: category.id,
-		title: category.title ?? '無題のカテゴリー',
-		phrases: (phraseRows ?? []).map((phrase) => toPhrase(phrase, wordsByPhraseId.get(phrase.id) ?? []))
+		title: category.title ?? '無題',
+		phrases: (phraseRows ?? []).map((phrase) =>
+			toPhrase(phrase, wordsByPhraseId.get(phrase.id) ?? [])
+		)
 	};
 }

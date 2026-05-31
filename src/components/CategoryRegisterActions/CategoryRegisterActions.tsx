@@ -21,7 +21,7 @@ export function CategoryRegisterActions({
 	return (
 		<>
 			<div className={styles.actions}>
-				<a className={styles.secondaryLink} href={paths.memberCategory}>
+				<a className={styles.secondaryLink} href={paths.memberPhrases}>
 					戻る
 				</a>
 				{categoryId && onDelete && (

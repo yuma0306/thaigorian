@@ -44,7 +44,7 @@ export function useCategoryPersist({
 
 			setMessage('保存しました。');
 			setIsSaving(false);
-			router.push(paths.memberCategory);
+			router.push(paths.memberPhrases);
 		} catch {
 			setMessage('保存に失敗しました。');
 			setIsSaving(false);
@@ -68,7 +68,7 @@ export function useCategoryPersist({
 				return;
 			}
 
-			router.push(paths.memberCategory);
+			router.push(paths.memberPhrases);
 		} catch {
 			setMessage('削除に失敗しました。');
 			setIsDeleting(false);

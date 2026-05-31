@@ -44,8 +44,8 @@ export function MemberHome() {
 					email={getMemberEmail(profile, user)}
 					errorMessage={errorMessage}
 				/>
-				<Button variant="a" color="secondary" href={paths.memberCategory}>
-					登録したカテゴリー
+				<Button variant="a" color="secondary" href={paths.memberPhrases}>
+					フレーズを登録
 				</Button>
 				<Button variant="button" color="secondary" onClick={handleSignOut}>
 					サインアウト

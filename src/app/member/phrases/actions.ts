@@ -1,6 +1,6 @@
 'use server';
 
-import { deleteCategoryPhrasesAndWords } from '@/app/member/category/categoryContent';
+import { deleteCategoryPhrasesAndWords } from '@/app/member/phrases/categoryContent';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import type { Phrase } from '@/types';
 import type { MyPhraseSavedRow } from '@/types/database';

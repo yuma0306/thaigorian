@@ -30,6 +30,7 @@
 		text-align: right;
 	}
 }
+
 @media (min-width: 640px) {
 	.typography {
 		&[data-size='1'] {
@@ -49,6 +50,7 @@
 		}
 	}
 }
+
 @media (max-width: 639px) {
 	.typography {
 		&[data-size='1'] {
