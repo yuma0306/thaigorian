@@ -13,7 +13,6 @@ export function toSavePayload(
 			fieldId: phrase.id,
 			phrase: phrase.phrase,
 			meaning: phrase.meaning,
-			ipa: phrase.ipa,
 			words: phrase.words.map((word) => ({
 				fieldId: word.id,
 				word: word.word,

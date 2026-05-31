@@ -12,6 +12,5 @@ export const createPhrase = (): PhraseField => ({
 	id: createId(),
 	phrase: '',
 	meaning: '',
-	ipa: '',
 	words: []
 });

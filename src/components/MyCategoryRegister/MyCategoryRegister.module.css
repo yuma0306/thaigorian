@@ -158,38 +158,6 @@
 .detailsContent {
 	display: block;
 }
-.optionalField {
-	margin-bottom: calc(var(--spacing-5) * 1px);
-	width: fit-content;
-}
-.optionalField[open] {
-	width: 100%;
-}
-.optionalSummary {
-	align-items: center;
-	background-color: color-mix(in srgb, var(--color-gray) 14%, var(--color-white));
-	color: color-mix(in srgb, var(--color-primary) 68%, var(--color-white));
-	cursor: pointer;
-	display: flex;
-	font-size: calc(var(--font-size-2) * 1px);
-	font-weight: 700;
-	gap: calc(var(--spacing-1) * 1px);
-	padding: calc(var(--spacing-2) * 1px);
-	width: fit-content;
-}
-.optionalSummary::marker {
-	content: '';
-}
-.optionalSummary::-webkit-details-marker {
-	display: none;
-}
-.optionalSummary::before {
-	content: '▸';
-	width: 20px;
-}
-.optionalField[open] .optionalSummary::before {
-	content: '▾';
-}
 
 .menuWrapper {
 	position: relative;

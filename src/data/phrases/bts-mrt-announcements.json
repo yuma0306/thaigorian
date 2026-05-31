@@ -17,13 +17,11 @@
 		{
 			"fieldId": "announcement-02",
 			"phrase": "ผู้โดยสารโปรดทราบ",
-			"ipa": "pûu-dooi-sǎan bpròot sâap",
 			"meaning": "乗客の方知っておいてください。"
 		},
 		{
 			"fieldId": "announcement-03",
 			"phrase": "ห้ามรับประทานอาหารและเครื่องดืมในระบบรถไฟฟ้าบีทีเอส",
-			"ipa": "hâam ráp-bprà-thaan aa-hǎan láe krʉ̂ang-dʉ̀ʉm nai rá-bòp rót-fai-fáa bii-tii-eeet",
 			"meaning": "BTSのシステムの中で飲み物や食べ物を召し上がらないでください",
 			"words": [
 				{ "fieldId": "w03-1", "word": "รับประทาน", "meaning": "召し上がる" },

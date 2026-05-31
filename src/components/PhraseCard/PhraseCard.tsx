@@ -24,11 +24,6 @@ export function PhraseCard({ phrase }: Props) {
 					<VoiceButton text={phrase.phrase} />
 					<CopyButton text={phrase.phrase} />
 				</FlexColumn>
-				{phrase.ipa && (
-					<Typography size={2} variant="dd" color="dark" weight="normal" align="left">
-						{phrase.ipa}
-					</Typography>
-				)}
 				{phrase.meaning && (
 					<Typography size={2} variant="dd" color="dark" weight="normal" align="left">
 						{phrase.meaning}
