@@ -3,7 +3,7 @@ import { Card } from '@/components/Card/Card';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
 import type { MyCategoryListRow } from '@/types/database';
-import styles from '@/app/member/phrases/page.module.css';
+import styles from './MemberCategoryList.module.css';
 
 type Props = {
 	categories: MyCategoryListRow[];

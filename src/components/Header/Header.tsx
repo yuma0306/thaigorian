@@ -9,14 +9,12 @@ import { createSupabaseBrowserClient } from '@/functions/supabase';
 import styles from './Header.module.css';
 
 export function Header() {
+	const supabase = createSupabaseBrowserClient();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const linkHref = isLoggedIn ? paths.member : paths.login;
 	const linkText = isLoggedIn ? 'マイページ' : 'ログイン';
 
 	useEffect(() => {
-		const supabase = createSupabaseBrowserClient();
-		if (!supabase) return;
-
 		void supabase.auth
 			.getUser()
 			.then(({ data: { user } }) => {
@@ -35,7 +33,7 @@ export function Header() {
 		return () => {
 			subscription.unsubscribe();
 		};
-	}, []);
+	}, [supabase]);
 
 	return (
 		<header className={styles.header}>

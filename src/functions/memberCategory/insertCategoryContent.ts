@@ -1,6 +1,6 @@
 import type { createSupabaseServerClient } from '@/functions/supabaseServer';
+import type { normalizePhrases } from '@/functions/memberCategory/categoryInput';
 import type { MyPhraseSavedRow } from '@/types/database';
-import type { normalizePhrases } from '@/app/member/phrases/categoryInput';
 
 type Supabase = NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>;
 

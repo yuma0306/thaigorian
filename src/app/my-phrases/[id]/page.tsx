@@ -12,10 +12,6 @@ export default async function MyPhrasePage({ params }: Props) {
 	const { id } = await params;
 	const supabase = await createSupabaseServerClient();
 
-	if (!supabase) {
-		notFound();
-	}
-
 	const {
 		data: { user }
 	} = await supabase.auth.getUser();

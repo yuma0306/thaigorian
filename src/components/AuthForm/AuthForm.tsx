@@ -32,18 +32,13 @@ export function AuthForm({
 	alternateLabel,
 	initialErrorMessage = ''
 }: Props) {
+	const supabase = createSupabaseBrowserClient();
 	const [errorMessage, setErrorMessage] = useState(initialErrorMessage);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	async function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		setErrorMessage('');
-
-		const supabase = createSupabaseBrowserClient();
-		if (!supabase) {
-			setErrorMessage('Supabaseの環境変数を設定してください。');
-			return;
-		}
 
 		setIsSubmitting(true);
 		const { error } = await supabase.auth.signInWithOAuth({

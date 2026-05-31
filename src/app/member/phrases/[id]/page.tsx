@@ -8,8 +8,8 @@ import {
 } from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
 import type { MyCategoryRow, MyPhraseEditRow } from '@/types/database';
-import { deleteMyCategory } from '../deleteMyCategory';
-import { updateMyCategory } from '../updateMyCategory';
+import { deleteMyCategory } from '@/functions/memberCategory/deleteMyCategory';
+import { updateMyCategory } from '@/functions/memberCategory/updateMyCategory';
 
 type Props = {
 	params: Promise<{ id: string }>;
@@ -18,10 +18,6 @@ type Props = {
 export default async function MemberCategoryDetailPage({ params }: Props) {
 	const { id } = await params;
 	const supabase = await createSupabaseServerClient();
-
-	if (!supabase) {
-		notFound();
-	}
 
 	const {
 		data: { user }

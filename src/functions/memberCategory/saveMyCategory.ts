@@ -1,8 +1,8 @@
 'use server';
 
-import { getCurrentUser } from '@/app/member/phrases/categoryAuth';
-import { parseCategoryInput } from '@/app/member/phrases/categoryInput';
-import { insertCategoryContent } from '@/app/member/phrases/insertCategoryContent';
+import { getCurrentUser } from '@/functions/memberCategory/categoryAuth';
+import { parseCategoryInput } from '@/functions/memberCategory/categoryInput';
+import { insertCategoryContent } from '@/functions/memberCategory/insertCategoryContent';
 import type { SaveMyCategoryPayload, SaveMyCategoryResult } from '@/types/myCategory';
 
 export async function saveMyCategory({

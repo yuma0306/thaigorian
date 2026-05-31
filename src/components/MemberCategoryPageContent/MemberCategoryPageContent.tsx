@@ -4,7 +4,7 @@ import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
 import type { MyCategoryListRow } from '@/types/database';
-import styles from '@/app/member/phrases/page.module.css';
+import styles from './MemberCategoryPageContent.module.css';
 
 type Props = {
 	categories: MyCategoryListRow[] | null;

@@ -9,10 +9,6 @@ export type { MyPhraseCategorySummary, MyPhraseCategoryView } from '@/types/myPh
 export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySummary[] | null> {
 	const supabase = await createSupabaseServerClient();
 
-	if (!supabase) {
-		return null;
-	}
-
 	const {
 		data: { user }
 	} = await supabase.auth.getUser();
@@ -42,10 +38,6 @@ export async function getMyPhraseCategoryById(
 	categoryId: string
 ): Promise<MyPhraseCategoryView | null> {
 	const supabase = await createSupabaseServerClient();
-
-	if (!supabase) {
-		return null;
-	}
 
 	const {
 		data: { user }

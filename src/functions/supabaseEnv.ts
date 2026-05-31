@@ -9,3 +9,13 @@ export function getSupabaseEnv() {
 
 	return { url, key };
 }
+
+export function assertSupabaseEnv() {
+	const env = getSupabaseEnv();
+
+	if (!env) {
+		throw new Error('Supabase is not configured');
+	}
+
+	return env;
+}

@@ -7,30 +7,21 @@ import { MemberProfileCard } from '@/components/MemberProfileCard/MemberProfileC
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
-import { getMemberDisplayName, getMemberEmail } from '@/functions/memberDisplayName';
 import { createSupabaseBrowserClient } from '@/functions/supabase';
-import { useMemberSession } from '@/hooks/useMemberSession';
 
-export function MemberHome() {
+type Props = {
+	displayName: string;
+	email: string;
+	errorMessage: string;
+};
+
+export function MemberHome({ displayName, email, errorMessage }: Props) {
 	const router = useRouter();
-	const { user, profile, isLoading, errorMessage } = useMemberSession();
+	const supabase = createSupabaseBrowserClient();
 
 	async function handleSignOut() {
-		const supabase = createSupabaseBrowserClient();
-		if (!supabase) return;
-
 		await supabase.auth.signOut();
 		router.replace(paths.home);
-	}
-
-	if (isLoading) {
-		return (
-			<Inner>
-				<Typography size={3} variant="p" color="dark" weight="bold" align="center">
-					会員情報を読み込み中です。
-				</Typography>
-			</Inner>
-		);
 	}
 
 	return (
@@ -39,13 +30,9 @@ export function MemberHome() {
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					マイページ
 				</Typography>
-				<MemberProfileCard
-					displayName={getMemberDisplayName(profile, user)}
-					email={getMemberEmail(profile, user)}
-					errorMessage={errorMessage}
-				/>
+				<MemberProfileCard displayName={displayName} email={email} errorMessage={errorMessage} />
 				<Button variant="a" color="secondary" href={paths.memberPhrases}>
-					フレーズを登録
+					フレーズ一覧
 				</Button>
 				<Button variant="button" color="secondary" onClick={handleSignOut}>
 					サインアウト

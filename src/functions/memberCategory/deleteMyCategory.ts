@@ -1,7 +1,7 @@
 'use server';
 
-import { deleteCategoryPhrasesAndWords } from '@/app/member/phrases/categoryContent';
-import { getCurrentUser } from '@/app/member/phrases/categoryAuth';
+import { deleteCategoryPhrasesAndWords } from '@/functions/memberCategory/categoryContent';
+import { getCurrentUser } from '@/functions/memberCategory/categoryAuth';
 import type { SaveMyCategoryResult } from '@/types/myCategory';
 
 export async function deleteMyCategory(categoryId: string): Promise<SaveMyCategoryResult> {

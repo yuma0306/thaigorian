@@ -1,12 +1,7 @@
 import { createBrowserClient } from '@supabase/ssr';
-import { getSupabaseEnv } from '@/functions/supabaseEnv';
+import { assertSupabaseEnv } from '@/functions/supabaseEnv';
 
 export function createSupabaseBrowserClient() {
-	const env = getSupabaseEnv();
-
-	if (!env) {
-		return null;
-	}
-
+	const env = assertSupabaseEnv();
 	return createBrowserClient(env.url, env.key);
 }
