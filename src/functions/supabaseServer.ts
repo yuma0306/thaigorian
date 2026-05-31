@@ -1,26 +1,29 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey =
-	process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+import { getSupabaseEnv } from '@/functions/supabaseEnv';
 
 export async function createSupabaseServerClient() {
-	if (!supabaseUrl || !supabaseKey) {
+	const env = getSupabaseEnv();
+
+	if (!env) {
 		return null;
 	}
 
 	const cookieStore = await cookies();
 
-	return createServerClient(supabaseUrl, supabaseKey, {
+	return createServerClient(env.url, env.key, {
 		cookies: {
 			getAll() {
 				return cookieStore.getAll();
 			},
 			setAll(cookiesToSet) {
-				cookiesToSet.forEach(({ name, value, options }) => {
-					cookieStore.set(name, value, options);
-				});
+				try {
+					cookiesToSet.forEach(({ name, value, options }) => {
+						cookieStore.set(name, value, options);
+					});
+				} catch {
+					// Server Component では Cookie を書き込めない（Server Action / Route Handler のみ可）
+				}
 			}
 		}
 	});
