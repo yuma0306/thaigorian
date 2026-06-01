@@ -1,5 +1,6 @@
 import { InputText } from '@/components/InputText/InputText';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import { Stack } from '../Stack/Stack';
+import { Typography } from '../Typography/Typography';
 
 type Props = {
 	id: string;
@@ -10,9 +11,11 @@ type Props = {
 
 export function CategoryTextField({ id, label, value, onChange }: Props) {
 	return (
-		<div className={styles.field}>
-			<label className={styles.label} htmlFor={id}>
-				{label}
+		<Stack variant="div" size={1} justifyItems="start">
+			<label htmlFor={id}>
+				<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+					{label}
+				</Typography>
 			</label>
 			<InputText
 				id={id}
@@ -20,6 +23,6 @@ export function CategoryTextField({ id, label, value, onChange }: Props) {
 				onChange={(e) => onChange(e.target.value)}
 				isCorrect={false}
 			/>
-		</div>
+		</Stack>
 	);
 }

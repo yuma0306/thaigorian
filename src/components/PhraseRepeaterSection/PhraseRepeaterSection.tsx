@@ -3,6 +3,8 @@ import type { MouseEvent } from 'react';
 import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
 import { PhraseFieldCard } from '@/components/PhraseFieldCard/PhraseFieldCard';
 import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
+import { Typography } from '@/components/Typography/Typography';
+import { Stack } from '../Stack/Stack';
 
 type Props = {
 	phrases: PhraseField[];
@@ -45,11 +47,10 @@ export function PhraseRepeaterSection({
 	onUpdateWord
 }: Props) {
 	return (
-		<section className={styles.repeaterSection}>
-			<div className={styles.sectionTitle}>
-				<h1>フレーズ集</h1>
-			</div>
-
+		<Stack variant="div" size={2}>
+			<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+				フレーズ集
+			</Typography>
 			{phrases.length === 0 ? (
 				<button
 					className={styles.timelineAddButton}
@@ -90,6 +91,6 @@ export function PhraseRepeaterSection({
 					</button>
 				</div>
 			)}
-		</section>
+		</Stack>
 	);
 }

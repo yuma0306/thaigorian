@@ -53,7 +53,7 @@ export function PhraseFieldCard({
 				<span className={styles.number}>{phraseIndex + 1}</span>
 			</div>
 			<details className={styles.cardBody} open>
-				<summary className={styles.groupLabel}>
+				<summary className={styles.summary}>
 					<span className={styles.visuallyHidden}>開く・閉じる</span>
 					<PhraseFieldCardMenu
 						phraseId={phrase.id}

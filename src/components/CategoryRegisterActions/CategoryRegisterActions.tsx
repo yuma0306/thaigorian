@@ -19,7 +19,7 @@ export function CategoryRegisterActions({
 }: Props) {
 	return (
 		<>
-			<div className={styles.actions}>
+			<div>
 				{categoryId && onDeleteClick && (
 					<button
 						className={styles.deleteButton}

@@ -3,6 +3,8 @@ import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.cs
 import { WordFieldCard } from '@/components/WordFieldCard/WordFieldCard';
 import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
 import type { MouseEvent } from 'react';
+import { Stack } from '../Stack/Stack';
+import { Typography } from '../Typography/Typography';
 
 type Props = {
 	phrase: PhraseField;
@@ -37,7 +39,7 @@ export function PhraseFieldCardBody({
 	onUpdateWord
 }: Props) {
 	return (
-		<div className={styles.detailsContent}>
+		<Stack variant="div" size={2}>
 			<CategoryTextField
 				id={`phrase-${phrase.id}`}
 				label="フレーズ"
@@ -50,14 +52,12 @@ export function PhraseFieldCardBody({
 				value={phrase.meaning}
 				onChange={(value) => onUpdatePhrase(phrase.id, 'meaning', value)}
 			/>
-
-			<section className={styles.wordsSection}>
-				<div className={styles.sectionTitle}>
-					<h2>用語</h2>
-				</div>
-
+			<Stack variant="div" size={2}>
+				<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+					用語
+				</Typography>
 				{phrase.words.length > 0 && (
-					<div className={styles.wordList}>
+					<Stack variant="ul" size={2}>
 						{phrase.words.map((word, wordIndex) => (
 							<WordFieldCard
 								key={word.id}
@@ -73,9 +73,8 @@ export function PhraseFieldCardBody({
 								onUpdateWord={onUpdateWord}
 							/>
 						))}
-					</div>
+					</Stack>
 				)}
-
 				<button
 					className={styles.wordTimelineAddButton}
 					type="button"
@@ -84,7 +83,7 @@ export function PhraseFieldCardBody({
 				>
 					<span aria-hidden="true">＋</span>
 				</button>
-			</section>
-		</div>
+			</Stack>
+		</Stack>
 	);
 }

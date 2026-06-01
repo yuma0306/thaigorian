@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import { CategoryRegisterActions } from '@/components/CategoryRegisterActions/CategoryRegisterActions';
-import { CategoryTitleField } from '@/components/CategoryTitleField/CategoryTitleField';
 import { Inner } from '@/components/Inner/Inner';
 import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/PhraseRepeaterSection';
 import { createId } from './fieldFactory';
 import { useCategoryPersist } from './useCategoryPersist';
 import { usePhraseFields } from './usePhraseFields';
 import type { MyCategoryRegisterProps } from './types';
+import { InputText } from '@/components/InputText/InputText';
+import { Stack } from '@/components/Stack/Stack';
+import { Typography } from '@/components/Typography/Typography';
 
 export function MyCategoryRegister({
 	categoryId,
@@ -35,32 +37,44 @@ export function MyCategoryRegister({
 	return (
 		<Inner>
 			<form onSubmit={persist.handleSubmit}>
-				<CategoryTitleField value={title} onChange={setTitle} />
-
-				<PhraseRepeaterSection
-					phrases={phraseFields.phrases}
-					openMenu={phraseFields.openMenu}
-					onAddPhrase={phraseFields.handleAddPhrase}
-					onToggleMenu={phraseFields.handleToggleMenu}
-					onInsertPhrase={phraseFields.handleInsertPhrase}
-					onMovePhrase={phraseFields.handleMovePhrase}
-					onRemovePhrase={phraseFields.handleRemovePhrase}
-					onUpdatePhrase={phraseFields.handleUpdatePhrase}
-					onAddWord={phraseFields.handleAddWord}
-					onInsertWord={phraseFields.handleInsertWord}
-					onMoveWord={phraseFields.handleMoveWord}
-					onRemoveWord={phraseFields.handleRemoveWord}
-					onUpdateWord={phraseFields.handleUpdateWord}
-				/>
-
-				<CategoryRegisterActions
-					saveLabel={saveLabel}
-					isSaving={persist.isSaving}
-					isDeleting={persist.isDeleting}
-					message={persist.message}
-					{...(categoryId !== undefined && { categoryId })}
-					{...(onDelete !== undefined ? { onDeleteClick: persist.handleDeleteClick } : {})}
-				/>
+				<Stack variant="div" size={3}>
+					<Stack variant="div" size={1} justifyItems="start">
+						<label htmlFor="category-title">
+							<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+								タイトル
+							</Typography>
+						</label>
+						<InputText
+							id="category-title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							isCorrect={false}
+						/>
+					</Stack>
+					<PhraseRepeaterSection
+						phrases={phraseFields.phrases}
+						openMenu={phraseFields.openMenu}
+						onAddPhrase={phraseFields.handleAddPhrase}
+						onToggleMenu={phraseFields.handleToggleMenu}
+						onInsertPhrase={phraseFields.handleInsertPhrase}
+						onMovePhrase={phraseFields.handleMovePhrase}
+						onRemovePhrase={phraseFields.handleRemovePhrase}
+						onUpdatePhrase={phraseFields.handleUpdatePhrase}
+						onAddWord={phraseFields.handleAddWord}
+						onInsertWord={phraseFields.handleInsertWord}
+						onMoveWord={phraseFields.handleMoveWord}
+						onRemoveWord={phraseFields.handleRemoveWord}
+						onUpdateWord={phraseFields.handleUpdateWord}
+					/>
+					<CategoryRegisterActions
+						saveLabel={saveLabel}
+						isSaving={persist.isSaving}
+						isDeleting={persist.isDeleting}
+						message={persist.message}
+						{...(categoryId !== undefined && { categoryId })}
+						{...(onDelete !== undefined ? { onDeleteClick: persist.handleDeleteClick } : {})}
+					/>
+				</Stack>
 			</form>
 		</Inner>
 	);

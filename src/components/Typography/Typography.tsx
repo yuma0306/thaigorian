@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import styles from './Typography.module.css';
 
-type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'dt' | 'dd';
+type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'dt' | 'dd' | 'div';
 
 type Props = {
 	children: ReactNode;
