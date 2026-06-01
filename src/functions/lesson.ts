@@ -1,4 +1,4 @@
-export const maxLessonItems = 10;
+export const maxLessonItems = 5;
 
 export const pickRandomItems = <T>(items: T[], max = maxLessonItems) => {
 	return shuffle(items).slice(0, Math.min(max, items.length));
