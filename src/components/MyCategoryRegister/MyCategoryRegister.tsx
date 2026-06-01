@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import { CategoryRegisterActions } from '@/components/CategoryRegisterActions/CategoryRegisterActions';
-import { CategoryTitleField } from '@/components/CategoryTitleField/CategoryTitleField';
 import { Inner } from '@/components/Inner/Inner';
 import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/PhraseRepeaterSection';
 import { createId } from './fieldFactory';
 import { useCategoryPersist } from './useCategoryPersist';
 import { usePhraseFields } from './usePhraseFields';
 import type { MyCategoryRegisterProps } from './types';
+import { InputText } from '@/components/InputText/InputText';
+import { Stack } from '@/components/Stack/Stack';
+import { Typography } from '@/components/Typography/Typography';
 
 export function MyCategoryRegister({
 	categoryId,
@@ -35,8 +37,19 @@ export function MyCategoryRegister({
 	return (
 		<Inner>
 			<form onSubmit={persist.handleSubmit}>
-				<CategoryTitleField value={title} onChange={setTitle} />
-
+				<Stack variant="div" size={1}>
+					<label htmlFor="category-title">
+						<Typography size={4} variant="span" color="primary" weight="bold" align="left">
+							タイトル
+						</Typography>
+					</label>
+					<InputText
+						id="category-title"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						isCorrect={false}
+					/>
+				</Stack>
 				<PhraseRepeaterSection
 					phrases={phraseFields.phrases}
 					openMenu={phraseFields.openMenu}
@@ -52,7 +65,6 @@ export function MyCategoryRegister({
 					onRemoveWord={phraseFields.handleRemoveWord}
 					onUpdateWord={phraseFields.handleUpdateWord}
 				/>
-
 				<CategoryRegisterActions
 					saveLabel={saveLabel}
 					isSaving={persist.isSaving}

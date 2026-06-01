@@ -1,6 +1,8 @@
 .stack {
 	display: grid;
+	justify-items: start;
 }
+
 @media (min-width: 640px) {
 	.stack {
 		&[data-size='1'] {
@@ -20,6 +22,7 @@
 		}
 	}
 }
+
 @media (max-width: 639px) {
 	.stack {
 		&[data-size='1'] {
