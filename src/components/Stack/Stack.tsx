@@ -7,12 +7,13 @@ type Props = HTMLAttributes<HTMLElement> & {
 	size: 1 | 2 | 3 | 4 | 5;
 	variant: Variant;
 	children: ReactNode;
+	justifyItems?: 'start';
 };
 
-export function Stack({ size, variant, children, ...rest }: Props) {
+export function Stack({ size, variant, children, justifyItems, ...rest }: Props) {
 	const Tag = variant;
 	return (
-		<Tag className={styles.stack} data-size={size} {...rest}>
+		<Tag className={styles.stack} data-size={size} data-justify-items={justifyItems} {...rest}>
 			{children}
 		</Tag>
 	);

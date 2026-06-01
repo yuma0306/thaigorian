@@ -37,42 +37,44 @@ export function MyCategoryRegister({
 	return (
 		<Inner>
 			<form onSubmit={persist.handleSubmit}>
-				<Stack variant="div" size={1}>
-					<label htmlFor="category-title">
-						<Typography size={4} variant="span" color="primary" weight="bold" align="left">
-							タイトル
-						</Typography>
-					</label>
-					<InputText
-						id="category-title"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						isCorrect={false}
+				<Stack variant="div" size={3}>
+					<Stack variant="div" size={1} justifyItems="start">
+						<label htmlFor="category-title">
+							<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+								タイトル
+							</Typography>
+						</label>
+						<InputText
+							id="category-title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							isCorrect={false}
+						/>
+					</Stack>
+					<PhraseRepeaterSection
+						phrases={phraseFields.phrases}
+						openMenu={phraseFields.openMenu}
+						onAddPhrase={phraseFields.handleAddPhrase}
+						onToggleMenu={phraseFields.handleToggleMenu}
+						onInsertPhrase={phraseFields.handleInsertPhrase}
+						onMovePhrase={phraseFields.handleMovePhrase}
+						onRemovePhrase={phraseFields.handleRemovePhrase}
+						onUpdatePhrase={phraseFields.handleUpdatePhrase}
+						onAddWord={phraseFields.handleAddWord}
+						onInsertWord={phraseFields.handleInsertWord}
+						onMoveWord={phraseFields.handleMoveWord}
+						onRemoveWord={phraseFields.handleRemoveWord}
+						onUpdateWord={phraseFields.handleUpdateWord}
+					/>
+					<CategoryRegisterActions
+						saveLabel={saveLabel}
+						isSaving={persist.isSaving}
+						isDeleting={persist.isDeleting}
+						message={persist.message}
+						{...(categoryId !== undefined && { categoryId })}
+						{...(onDelete !== undefined ? { onDeleteClick: persist.handleDeleteClick } : {})}
 					/>
 				</Stack>
-				<PhraseRepeaterSection
-					phrases={phraseFields.phrases}
-					openMenu={phraseFields.openMenu}
-					onAddPhrase={phraseFields.handleAddPhrase}
-					onToggleMenu={phraseFields.handleToggleMenu}
-					onInsertPhrase={phraseFields.handleInsertPhrase}
-					onMovePhrase={phraseFields.handleMovePhrase}
-					onRemovePhrase={phraseFields.handleRemovePhrase}
-					onUpdatePhrase={phraseFields.handleUpdatePhrase}
-					onAddWord={phraseFields.handleAddWord}
-					onInsertWord={phraseFields.handleInsertWord}
-					onMoveWord={phraseFields.handleMoveWord}
-					onRemoveWord={phraseFields.handleRemoveWord}
-					onUpdateWord={phraseFields.handleUpdateWord}
-				/>
-				<CategoryRegisterActions
-					saveLabel={saveLabel}
-					isSaving={persist.isSaving}
-					isDeleting={persist.isDeleting}
-					message={persist.message}
-					{...(categoryId !== undefined && { categoryId })}
-					{...(onDelete !== undefined ? { onDeleteClick: persist.handleDeleteClick } : {})}
-				/>
 			</form>
 		</Inner>
 	);

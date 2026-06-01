@@ -40,7 +40,7 @@ export function WordFieldCard({
 				<span className={styles.number}>{wordIndex + 1}</span>
 			</div>
 			<details className={styles.cardBody} open>
-				<summary className={styles.groupLabel}>
+				<summary className={styles.summary}>
 					<span className={styles.visuallyHidden}>開く・閉じる</span>
 					<div className={styles.menuWrapper}>
 						<button
