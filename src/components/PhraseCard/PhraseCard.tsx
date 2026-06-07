@@ -25,12 +25,8 @@ export function PhraseCard({ phrase, hideThai = false }: Props) {
 							{phrase.phrase}
 						</Typography>
 					</MaskedThaiText>
-					{!hideThai && (
-						<>
-							<VoiceButton text={phrase.phrase} />
-							<CopyButton text={phrase.phrase} />
-						</>
-					)}
+					<VoiceButton text={phrase.phrase} />
+					<CopyButton text={phrase.phrase} />
 				</FlexColumn>
 				{phrase.meaning && (
 					<Typography size={2} variant="dd" color="dark" weight="normal" align="left">
@@ -52,22 +48,20 @@ export function PhraseCard({ phrase, hideThai = false }: Props) {
 									<Typography size={2} variant="span" color="dark" weight="normal" align="left">
 										{word.meaning}
 									</Typography>
-									{!hideThai && (
-										<FlexColumn
-											gap={1}
-											variant="div"
-											alignItems="center"
-											justifyContent="start"
-											isWrap
-										>
-											{word.word && (
-												<>
-													<VoiceButton text={word.word} />
-													<CopyButton text={word.word} />
-												</>
-											)}
-										</FlexColumn>
-									)}
+									<FlexColumn
+										gap={1}
+										variant="div"
+										alignItems="center"
+										justifyContent="start"
+										isWrap
+									>
+										{word.word && (
+											<>
+												<VoiceButton text={word.word} />
+												<CopyButton text={word.word} />
+											</>
+										)}
+									</FlexColumn>
 								</FlexColumn>
 							</ListItem>
 						))}
