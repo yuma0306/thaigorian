@@ -9,6 +9,7 @@ type Props = {
 	deleteLabel: string;
 	isMoveUpDisabled: boolean;
 	isMoveDownDisabled: boolean;
+	align?: 'start' | 'end';
 	onAddAbove: () => void;
 	onAddBelow: () => void;
 	onMoveUp: () => void;
@@ -24,6 +25,7 @@ export function FieldMenu({
 	deleteLabel,
 	isMoveUpDisabled,
 	isMoveDownDisabled,
+	align = 'start',
 	onAddAbove,
 	onAddBelow,
 	onMoveUp,
@@ -37,7 +39,7 @@ export function FieldMenu({
 	}
 
 	return (
-		<div className={styles.fieldMenu} role="menu">
+		<div className={styles.fieldMenu} data-align={align} role="menu">
 			<button type="button" role="menuitem" onClick={(event) => handleAction(event, onAddAbove)}>
 				<span aria-hidden="true">＋</span>
 				{addAboveLabel}

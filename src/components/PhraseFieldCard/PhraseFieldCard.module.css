@@ -3,30 +3,3 @@
 	gap: calc(var(--spacing-1) * 1px);
 	position: relative;
 }
-
-.number {
-	align-items: center;
-	background-color: color-mix(in srgb, var(--color-input) 80%, var(--color-primary));
-	border-radius: 999px;
-	color: var(--color-white);
-	display: flex;
-	font-size: calc(var(--font-size-2) * 1px);
-	font-weight: 700;
-	height: 32px;
-	justify-content: center;
-	width: 32px;
-	z-index: 1;
-}
-
-.summary {
-	display: inline-block;
-}
-
-.visuallyHidden {
-	clip-path: inset(50%);
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
-}

@@ -3,31 +3,3 @@
 	gap: calc(var(--spacing-1) * 1px);
 	position: relative;
 }
-.summary {
-	display: inline-block;
-}
-.visuallyHidden {
-	clip-path: inset(50%);
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;
-}
-.menuWrapper {
-	position: relative;
-}
-.menuButton {
-	background-color: transparent;
-	color: color-mix(in srgb, var(--color-primary) 55%, var(--color-white));
-	cursor: pointer;
-	font-size: calc(var(--font-size-4) * 1px);
-	font-weight: 700;
-	line-height: 1;
-	min-height: 32px;
-	min-width: 32px;
-	padding: 0;
-}
-.detailsContent {
-	display: block;
-}

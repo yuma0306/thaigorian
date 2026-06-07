@@ -1,7 +1,6 @@
 import type { MouseEvent } from 'react';
 import type { Control } from 'react-hook-form';
 import { PhraseFieldCardBody } from '@/components/PhraseFieldCardBody/PhraseFieldCardBody';
-import { PhraseFieldCardMenu } from '@/components/PhraseFieldCardMenu/PhraseFieldCardMenu';
 import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 import type { MenuState } from '@/types/myCategoryRegister';
 import styles from './PhraseFieldCard.module.css';
@@ -33,29 +32,18 @@ export function PhraseFieldCard({
 }: Props) {
 	return (
 		<article className={styles.phraseCard}>
-			<details className={styles.cardBody} open>
-				<summary className={styles.summary}>
-					<span className={styles.visuallyHidden}>開く・閉じる</span>
-					<PhraseFieldCardMenu
-						phraseId={phraseId}
-						phraseIndex={phraseIndex}
-						phraseCount={phraseCount}
-						openMenu={openMenu}
-						onToggleMenu={onToggleMenu}
-						onInsertPhrase={onInsertPhrase}
-						onMovePhrase={onMovePhrase}
-						onRemovePhrase={onRemovePhrase}
-					/>
-				</summary>
-				<PhraseFieldCardBody
-					control={control}
-					phraseIndex={phraseIndex}
-					phraseId={phraseId}
-					openMenu={openMenu}
-					onToggleMenu={onToggleMenu}
-					onCloseMenu={onCloseMenu}
-				/>
-			</details>
+			<PhraseFieldCardBody
+				control={control}
+				phraseIndex={phraseIndex}
+				phraseId={phraseId}
+				phraseCount={phraseCount}
+				openMenu={openMenu}
+				onToggleMenu={onToggleMenu}
+				onInsertPhrase={onInsertPhrase}
+				onMovePhrase={onMovePhrase}
+				onRemovePhrase={onRemovePhrase}
+				onCloseMenu={onCloseMenu}
+			/>
 		</article>
 	);
 }

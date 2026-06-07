@@ -11,6 +11,10 @@
 	top: calc(100% + var(--spacing-1) * 1px);
 	z-index: 10;
 }
+.fieldMenu[data-align='end'] {
+	left: auto;
+	right: 0;
+}
 .fieldMenu button {
 	align-items: center;
 	background-color: transparent;

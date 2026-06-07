@@ -39,6 +39,7 @@ export function PhraseFieldCardMenu({
 			</button>
 			{openMenu?.type === 'phrase' && openMenu.id === phraseId && (
 				<FieldMenu
+					align="end"
 					addAboveLabel="上にフィールドを追加"
 					addBelowLabel="下にフィールドを追加"
 					moveUpLabel="1つ上に移動"

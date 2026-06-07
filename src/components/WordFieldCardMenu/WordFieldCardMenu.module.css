@@ -2,7 +2,6 @@
 	flex-shrink: 0;
 	position: relative;
 }
-
 .menuButton {
 	background-color: transparent;
 	color: color-mix(in srgb, var(--color-primary) 55%, var(--color-white));
