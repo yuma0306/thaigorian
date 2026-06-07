@@ -1,0 +1,20 @@
+.wrapper {
+  height: 24px;
+  position: relative;
+  &::before {
+    background-color: var(--color-input);
+    content: '';
+    display: block;
+    height: 1px;
+    left: 0%;
+    position: absolute;
+    top: 50%;
+    translate: 0% -50%;
+    width: 100%;
+  }
+  &[data-layer="secound"] {
+    &::before {
+      background-color: var(--color-input-50);
+    }
+  }
+}

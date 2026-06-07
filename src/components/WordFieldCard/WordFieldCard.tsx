@@ -33,9 +33,6 @@ export function WordFieldCard({
 }: Props) {
 	return (
 		<article className={styles.wordCard}>
-			<div className={styles.timeline}>
-				<span className={styles.number}>{wordIndex + 1}</span>
-			</div>
 			<details className={styles.cardBody} open>
 				<summary className={styles.summary}>
 					<span className={styles.visuallyHidden}>開く・閉じる</span>

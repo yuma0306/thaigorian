@@ -33,9 +33,6 @@ export function PhraseFieldCard({
 }: Props) {
 	return (
 		<article className={styles.phraseCard}>
-			<div className={styles.timeline}>
-				<span className={styles.number}>{phraseIndex + 1}</span>
-			</div>
 			<details className={styles.cardBody} open>
 				<summary className={styles.summary}>
 					<span className={styles.visuallyHidden}>開く・閉じる</span>

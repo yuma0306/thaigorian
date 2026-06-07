@@ -8,7 +8,9 @@ import type { MenuState } from '@/types/myCategoryRegister';
 import { Stack } from '../Stack/Stack';
 import { Typography } from '../Typography/Typography';
 import { PhraseWordFieldList } from './PhraseWordFieldList';
-import styles from './PhraseFieldCardBody.module.css';
+import { FlexColumn } from '../FlexColumn/FlexColumn';
+import { PhraseAddButton } from '../PhraseAddButton/PhraseAddButton';
+import { PhraseAddButtonWrapper } from '../PhraseAddButtonWrapper/PhraseAddButtonWrapper';
 
 type Props = {
 	control: Control<CategoryRegisterFormValues>;
@@ -66,11 +68,21 @@ export function PhraseFieldCardBody({
 				name={`phrases.${phraseIndex}.meaning`}
 				control={control}
 			/>
-			<Stack variant="div" size={2}>
+			<FlexColumn gap={1} variant="div" alignItems="center">
 				<Typography size={3} variant="span" color="primary" weight="bold" align="left">
 					用語
 				</Typography>
-				{wordFieldArray.fields.length > 0 && (
+				{wordFieldArray.fields.length < 1 && (
+					<PhraseAddButton
+						onClick={handleAddWord}
+						layer="secound"
+						position="left"
+						isAbsolute={false}
+					/>
+				)}
+			</FlexColumn>
+			{wordFieldArray.fields.length > 0 && (
+				<>
 					<PhraseWordFieldList
 						control={control}
 						phraseIndex={phraseIndex}
@@ -81,16 +93,11 @@ export function PhraseFieldCardBody({
 						onMoveWord={handleMoveWord}
 						onRemoveWord={handleRemoveWord}
 					/>
-				)}
-				<button
-					className={styles.wordTimelineAddButton}
-					type="button"
-					onClick={handleAddWord}
-					aria-label="用語のフィールドを追加"
-				>
-					<span aria-hidden="true">＋</span>
-				</button>
-			</Stack>
+					<PhraseAddButtonWrapper layer="secound">
+						<PhraseAddButton onClick={handleAddWord} layer="secound" position="center" isAbsolute />
+					</PhraseAddButtonWrapper>
+				</>
+			)}
 		</Stack>
 	);
 }

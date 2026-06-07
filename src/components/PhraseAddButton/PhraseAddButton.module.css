@@ -1,0 +1,45 @@
+.button {
+  aspect-ratio: 1;
+	background-color: var(--color-input);
+	border-radius: 100dvw;
+	cursor: pointer;
+	display: grid;
+	font-weight: 700;
+  place-content: center;
+  position: relative;
+	width: 24px;
+	z-index: 1;
+  &[data-position="center"] {
+    margin-inline: auto;
+  }
+  &[data-is-absolute="true"] {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    translate: -50% -50%;
+  }
+  &[data-layer="secound"] {
+    background-color: var(--color-input-50);
+  }
+}
+
+.icon {
+  color: var(--color-white);
+  display: flex;
+  font-size: calc(var(--font-size-2) * 1px);
+  justify-self: center;
+  position: relative;
+  z-index: 2;
+  &[data-layer="secound"] {
+    color: var(--color-input);
+  }
+}
+
+@media (hover: hover) {
+  .button {
+    transition: opacity var(--transition);
+    &:hover {
+      opacity: var(--opacity);
+    }
+  }
+}

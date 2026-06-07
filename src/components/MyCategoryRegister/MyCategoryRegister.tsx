@@ -34,7 +34,6 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 	const { categoryId, initialTitle = '', onDelete, saveLabel = '保存する' } = props;
 	const registerForm = useCategoryRegisterForm(createRegisterFormOptions(props));
 	const { control } = registerForm.form;
-
 	const crumbItems = categoryId
 		? [
 				{ text: 'マイページ', href: paths.member },
@@ -48,45 +47,47 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 			];
 
 	return (
-		<Inner>
+		<Stack size={3} variant="div">
 			<Crumbs items={crumbItems} />
-			<form onSubmit={(event) => event.preventDefault()}>
-				<Stack variant="div" size={3}>
-					<CategoryTextField
-						id="category-title"
-						label="タイトル"
-						name="title"
-						control={control}
-						labelAction={
-							categoryId && onDelete ? (
-								<CategoryDeleteButton
-									isDeleting={registerForm.isDeleting}
-									isSaving={registerForm.isSaving}
-									onClick={registerForm.handleDeleteClick}
-								/>
-							) : undefined
-						}
-					/>
-					<PhraseRepeaterSection
-						control={control}
-						phraseFields={registerForm.phraseFields}
-						openMenu={registerForm.openMenu}
-						onAddPhrase={registerForm.handleAddPhrase}
-						onToggleMenu={registerForm.handleToggleMenu}
-						onInsertPhrase={registerForm.handleInsertPhrase}
-						onMovePhrase={registerForm.handleMovePhrase}
-						onRemovePhrase={registerForm.handleRemovePhrase}
-						onCloseMenu={registerForm.handleCloseMenu}
-					/>
-					<CategoryRegisterActions
-						saveLabel={saveLabel}
-						isSaving={registerForm.isSaving}
-						onSaveClick={() => {
-							void registerForm.handleSave();
-						}}
-					/>
-				</Stack>
-			</form>
-		</Inner>
+			<Inner>
+				<form onSubmit={(event) => event.preventDefault()}>
+					<Stack variant="div" size={3}>
+						<CategoryTextField
+							id="category-title"
+							label="タイトル"
+							name="title"
+							control={control}
+							labelAction={
+								categoryId && onDelete ? (
+									<CategoryDeleteButton
+										isDeleting={registerForm.isDeleting}
+										isSaving={registerForm.isSaving}
+										onClick={registerForm.handleDeleteClick}
+									/>
+								) : undefined
+							}
+						/>
+						<PhraseRepeaterSection
+							control={control}
+							phraseFields={registerForm.phraseFields}
+							openMenu={registerForm.openMenu}
+							onAddPhrase={registerForm.handleAddPhrase}
+							onToggleMenu={registerForm.handleToggleMenu}
+							onInsertPhrase={registerForm.handleInsertPhrase}
+							onMovePhrase={registerForm.handleMovePhrase}
+							onRemovePhrase={registerForm.handleRemovePhrase}
+							onCloseMenu={registerForm.handleCloseMenu}
+						/>
+						<CategoryRegisterActions
+							saveLabel={saveLabel}
+							isSaving={registerForm.isSaving}
+							onSaveClick={() => {
+								void registerForm.handleSave();
+							}}
+						/>
+					</Stack>
+				</form>
+			</Inner>
+		</Stack>
 	);
 }

@@ -14,6 +14,7 @@
 	--color-success-10: color-mix(in srgb, var(--color-success) 10%, var(--color-white));
 	--color-success-black: color-mix(in srgb, var(--color-success) 60%, var(--color-black));
 	--color-input: #3b82f6;
+	--color-input-50: color-mix(in srgb, var(--color-input) 50%, var(--color-white));
 	--color-input-10: color-mix(in srgb, var(--color-input) 10%, var(--color-white));
 	--color-warning: #ffc107;
 	--color-warning-10: color-mix(in srgb, var(--color-warning) 10%, var(--color-white));

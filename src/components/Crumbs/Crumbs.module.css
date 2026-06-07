@@ -1,6 +1,7 @@
 .crumbs {
 	align-items: end;
 	display: flex;
+	margin-inline: auto;
 	overflow-x: auto;
 	white-space: nowrap;
 }
@@ -38,6 +39,7 @@
 	.crumbs {
 		gap: calc(var(--spacing-4) * 1px);
 		padding-bottom: calc(var(--spacing-1) * 1px);
+		width: min(100%, 1200px);
 	}
 	.item {
 		&:not(:last-of-type)::after {
@@ -58,6 +60,7 @@
 	.crumbs {
 		gap: calc(var(--calc-sp) * var(--spacing-4));
 		padding-bottom: calc(var(--calc-sp) * var(--spacing-1));
+		width: 100%;
 	}
 	.item {
 		&:not(:last-of-type)::after {

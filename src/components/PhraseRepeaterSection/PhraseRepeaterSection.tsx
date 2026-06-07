@@ -6,6 +6,8 @@ import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 import type { MenuState } from '@/types/myCategoryRegister';
 import { Typography } from '@/components/Typography/Typography';
 import { Stack } from '../Stack/Stack';
+import { PhraseAddButton } from '@/components/PhraseAddButton/PhraseAddButton';
+import { PhraseAddButtonWrapper } from '../PhraseAddButtonWrapper/PhraseAddButtonWrapper';
 
 type Props = {
 	control: Control<CategoryRegisterFormValues>;
@@ -61,14 +63,9 @@ export function PhraseRepeaterSection({
 							onCloseMenu={onCloseMenu}
 						/>
 					))}
-					<button
-						className={styles.timelineAddButton}
-						type="button"
-						onClick={onAddPhrase}
-						aria-label="フィールドを追加"
-					>
-						<span aria-hidden="true">＋</span>
-					</button>
+					<PhraseAddButtonWrapper layer="first">
+						<PhraseAddButton onClick={onAddPhrase} position="center" layer="first" isAbsolute />
+					</PhraseAddButtonWrapper>
 				</div>
 			)}
 		</Stack>
