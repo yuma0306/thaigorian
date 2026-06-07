@@ -1,0 +1,14 @@
+.wrapper {
+	display: inline-grid;
+	position: relative;
+}
+.wrapper > :not(.mask) {
+	grid-area: 1 / 1;
+}
+.mask {
+	background-color: var(--color-gray);
+	grid-area: 1 / 1;
+	min-height: 100%;
+	min-width: 100%;
+	z-index: 1;
+}
