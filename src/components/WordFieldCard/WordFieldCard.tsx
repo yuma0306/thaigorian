@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react';
 import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
 import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './WordFieldCard.module.css';
 import type { MenuState, WordField } from '@/types/myCategoryRegister';
 
 type Props = {

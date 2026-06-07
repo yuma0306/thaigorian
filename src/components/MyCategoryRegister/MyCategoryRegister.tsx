@@ -36,7 +36,7 @@ export function MyCategoryRegister({
 
 	return (
 		<Inner>
-			<form onSubmit={persist.handleSubmit}>
+			<form onSubmit={(event) => event.preventDefault()}>
 				<Stack variant="div" size={3}>
 					<Stack variant="div" size={1} justifyItems="start">
 						<label htmlFor="category-title">
@@ -71,6 +71,7 @@ export function MyCategoryRegister({
 						isSaving={persist.isSaving}
 						isDeleting={persist.isDeleting}
 						message={persist.message}
+						onSaveClick={persist.handleSaveClick}
 						{...(categoryId !== undefined && { categoryId })}
 						{...(onDelete !== undefined ? { onDeleteClick: persist.handleDeleteClick } : {})}
 					/>

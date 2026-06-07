@@ -1,6 +1,5 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import type { FormEvent } from 'react';
 import { deleteCategoryConfirmModal } from '@/components/Modal/deleteCategoryConfirmModal';
 import { useModal } from '@/components/Modal/useModal';
 import { paths } from '@/constants/paths';
@@ -31,23 +30,21 @@ export function useCategoryPersist({
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [message, setMessage] = useState('');
 
-	async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-		event.preventDefault();
+	async function handleSaveClick() {
 		setMessage('');
 		setIsSaving(true);
-
 		try {
 			const result = await onSave(toSavePayload(contentId, title, phrases));
-
 			if (!result.ok) {
 				setMessage(result.message);
 				setIsSaving(false);
 				return;
 			}
-
 			setMessage('保存しました。');
 			setIsSaving(false);
-			router.push(paths.memberPhrases);
+			if (!categoryId) {
+				router.push(paths.memberPhrases);
+			}
 		} catch {
 			setMessage('保存に失敗しました。');
 			setIsSaving(false);
@@ -67,19 +64,15 @@ export function useCategoryPersist({
 		if (!categoryId || !onDelete || isDeleting) {
 			return;
 		}
-
 		setMessage('');
 		setIsDeleting(true);
-
 		try {
 			const result = await onDelete(categoryId);
-
 			if (!result.ok) {
 				setMessage(result.message);
 				setIsDeleting(false);
 				return;
 			}
-
 			router.push(paths.memberPhrases);
 		} catch {
 			setMessage('削除に失敗しました。');
@@ -91,7 +84,7 @@ export function useCategoryPersist({
 		isSaving,
 		isDeleting,
 		message,
-		handleSubmit,
+		handleSaveClick,
 		handleDeleteClick
 	};
 }

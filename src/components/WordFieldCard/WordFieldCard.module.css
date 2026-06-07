@@ -1,0 +1,70 @@
+.wordCard {
+	display: grid;
+	gap: calc(var(--spacing-1) * 1px);
+	grid-template-columns: 40px minmax(0, 1fr);
+	position: relative;
+}
+.timeline {
+	display: grid;
+	gap: calc(var(--spacing-1) * 1px);
+	grid-template-columns: 1fr;
+	place-items: flex-start center;
+	position: relative;
+}
+.wordCard .timeline::after {
+	background-color: color-mix(in srgb, var(--color-input) 34%, var(--color-white));
+	content: '';
+	height: calc(100% + var(--spacing-4) * 1px);
+	position: absolute;
+	top: 0;
+	width: 2px;
+}
+.number {
+	align-items: center;
+	background-color: color-mix(in srgb, var(--color-input) 48%, var(--color-white));
+	border-radius: 999px;
+	color: color-mix(in srgb, var(--color-input) 76%, var(--color-primary));
+	display: flex;
+	font-size: calc(var(--font-size-2) * 1px);
+	font-weight: 700;
+	height: 28px;
+	justify-content: center;
+	width: 28px;
+	z-index: 1;
+}
+.cardBody {
+	padding-bottom: calc(var(--spacing-3) * 1px);
+}
+.summary {
+	display: inline-block;
+}
+.visuallyHidden {
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+.menuWrapper {
+	position: relative;
+}
+.menuButton {
+	background-color: transparent;
+	color: color-mix(in srgb, var(--color-primary) 55%, var(--color-white));
+	cursor: pointer;
+	font-size: calc(var(--font-size-4) * 1px);
+	font-weight: 700;
+	line-height: 1;
+	min-height: 32px;
+	min-width: 32px;
+	padding: 0;
+}
+.detailsContent {
+	display: block;
+}
+@media (max-width: 639px) {
+	.wordCard {
+		grid-template-columns: 32px minmax(0, 1fr);
+	}
+}

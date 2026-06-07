@@ -1,0 +1,53 @@
+.phraseCard {
+	display: grid;
+	gap: calc(var(--spacing-1) * 1px);
+	grid-template-columns: 48px minmax(0, 1fr);
+	position: relative;
+}
+.timeline {
+	display: grid;
+	gap: calc(var(--spacing-1) * 1px);
+	grid-template-columns: 1fr;
+	place-items: flex-start center;
+	position: relative;
+}
+.timeline::after {
+	background-color: color-mix(in srgb, var(--color-input) 80%, var(--color-primary));
+	content: '';
+	height: calc(100% + var(--spacing-4) * 1px);
+	position: absolute;
+	top: 0;
+	width: 3px;
+}
+.number {
+	align-items: center;
+	background-color: color-mix(in srgb, var(--color-input) 80%, var(--color-primary));
+	border-radius: 999px;
+	color: var(--color-white);
+	display: flex;
+	font-size: calc(var(--font-size-2) * 1px);
+	font-weight: 700;
+	height: 32px;
+	justify-content: center;
+	width: 32px;
+	z-index: 1;
+}
+.cardBody {
+	padding-bottom: calc(var(--spacing-3) * 1px);
+}
+.summary {
+	display: inline-block;
+}
+.visuallyHidden {
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+@media (max-width: 639px) {
+	.phraseCard {
+		grid-template-columns: 32px minmax(0, 1fr);
+	}
+}

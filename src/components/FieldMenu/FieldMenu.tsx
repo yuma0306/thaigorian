@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './FieldMenu.module.css';
 
 type Props = {
 	addAboveLabel: string;

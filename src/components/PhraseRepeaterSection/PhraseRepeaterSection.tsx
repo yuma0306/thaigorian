@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react';
 
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './PhraseRepeaterSection.module.css';
 import { PhraseFieldCard } from '@/components/PhraseFieldCard/PhraseFieldCard';
 import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
 import { Typography } from '@/components/Typography/Typography';

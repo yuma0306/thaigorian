@@ -1,8 +1,7 @@
 import type { MouseEvent } from 'react';
-
 import { PhraseFieldCardBody } from '@/components/PhraseFieldCardBody/PhraseFieldCardBody';
 import { PhraseFieldCardMenu } from '@/components/PhraseFieldCardMenu/PhraseFieldCardMenu';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './PhraseFieldCard.module.css';
 import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
 
 type Props = {

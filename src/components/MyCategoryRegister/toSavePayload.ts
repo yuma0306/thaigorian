@@ -7,16 +7,16 @@ export function toSavePayload(
 	phrases: PhraseField[]
 ): SaveMyCategoryPayload {
 	return {
-		contentId,
-		title,
+		contentId: contentId.trim(),
+		title: title.trim(),
 		phrases: phrases.map((phrase) => ({
 			fieldId: phrase.id,
-			phrase: phrase.phrase,
-			meaning: phrase.meaning,
+			phrase: phrase.phrase.trim(),
+			meaning: phrase.meaning.trim(),
 			words: phrase.words.map((word) => ({
 				fieldId: word.id,
-				word: word.word,
-				meaning: word.meaning
+				word: word.word.trim(),
+				meaning: word.meaning.trim()
 			}))
 		}))
 	};

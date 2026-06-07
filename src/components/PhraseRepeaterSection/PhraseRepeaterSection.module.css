@@ -1,0 +1,27 @@
+.repeaterList {
+	display: grid;
+	gap: calc(var(--spacing-4) * 1px);
+}
+.timelineAddButton {
+	align-items: center;
+	background-color: color-mix(in srgb, var(--color-input) 80%, var(--color-primary));
+	border-radius: 999px;
+	color: var(--color-white);
+	cursor: pointer;
+	display: flex;
+	font-size: calc(var(--font-size-3) * 1px);
+	font-weight: 700;
+	height: 32px;
+	justify-content: center;
+	margin-left: 8px;
+	position: relative;
+	width: 32px;
+	z-index: 1;
+}
+.timelineAddButton:hover {
+	background-color: var(--color-input);
+}
+.timelineAddButton span {
+	color: inherit;
+	line-height: 1;
+}

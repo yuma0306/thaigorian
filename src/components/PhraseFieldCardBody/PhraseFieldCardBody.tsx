@@ -1,5 +1,5 @@
 import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './PhraseFieldCardBody.module.css';
 import { WordFieldCard } from '@/components/WordFieldCard/WordFieldCard';
 import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
 import type { MouseEvent } from 'react';

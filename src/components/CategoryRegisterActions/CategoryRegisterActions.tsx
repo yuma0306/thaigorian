@@ -1,4 +1,4 @@
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './CategoryRegisterActions.module.css';
 
 type Props = {
 	categoryId?: string;
@@ -6,6 +6,7 @@ type Props = {
 	isSaving: boolean;
 	isDeleting: boolean;
 	message: string;
+	onSaveClick: () => void;
 	onDeleteClick?: () => void;
 };
 
@@ -15,6 +16,7 @@ export function CategoryRegisterActions({
 	isSaving,
 	isDeleting,
 	message,
+	onSaveClick,
 	onDeleteClick
 }: Props) {
 	return (
@@ -30,7 +32,12 @@ export function CategoryRegisterActions({
 						{isDeleting ? '削除中...' : '削除する'}
 					</button>
 				)}
-				<button className={styles.saveButton} type="submit" disabled={isSaving}>
+				<button
+					className={styles.saveButton}
+					type="button"
+					disabled={isSaving}
+					onClick={onSaveClick}
+				>
 					{isSaving ? '保存中...' : saveLabel}
 				</button>
 			</div>

@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react';
 import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import styles from './PhraseFieldCardMenu.module.css';
 import type { MenuState } from '@/types/myCategoryRegister';
 
 type Props = {
