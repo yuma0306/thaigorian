@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/Button/Button';
+import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { MemberProfileCard } from '@/components/MemberProfileCard/MemberProfileCard';
 import { Stack } from '@/components/Stack/Stack';
@@ -26,6 +27,7 @@ export function MemberHome({ displayName, email, errorMessage }: Props) {
 
 	return (
 		<Inner>
+			<Crumbs items={[{ text: 'マイページ', href: paths.member }]} />
 			<Stack size={3} variant="section">
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					マイページ

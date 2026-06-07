@@ -1,79 +1,89 @@
 'use client';
 
-import { useState } from 'react';
+import { CategoryDeleteButton } from '@/components/CategoryDeleteButton/CategoryDeleteButton';
 import { CategoryRegisterActions } from '@/components/CategoryRegisterActions/CategoryRegisterActions';
+import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
+import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/PhraseRepeaterSection';
-import { createId } from './fieldFactory';
-import { useCategoryPersist } from './useCategoryPersist';
-import { usePhraseFields } from './usePhraseFields';
-import type { MyCategoryRegisterProps } from './types';
-import { InputText } from '@/components/InputText/InputText';
 import { Stack } from '@/components/Stack/Stack';
-import { Typography } from '@/components/Typography/Typography';
+import { paths } from '@/constants/paths';
+import { useCategoryRegisterForm } from '@/hooks/useCategoryRegisterForm';
+import { createId } from './fieldFactory';
+import type { MyCategoryRegisterProps } from './types';
 
-export function MyCategoryRegister({
+function createRegisterFormOptions({
 	categoryId,
 	initialPhrases = [],
 	initialTitle = '',
 	initialContentId,
 	onDelete,
-	onSave,
-	saveLabel = '保存する'
+	onSave
 }: MyCategoryRegisterProps) {
-	const [title, setTitle] = useState(initialTitle);
-	const [contentId] = useState(() => initialContentId ?? `category-${createId()}`);
-
-	const phraseFields = usePhraseFields(initialPhrases);
-	const persist = useCategoryPersist({
-		contentId,
-		title,
-		phrases: phraseFields.phrases,
+	return {
+		initialContentId: initialContentId ?? `category-${createId()}`,
+		initialTitle,
+		initialPhrases,
 		onSave,
 		...(categoryId !== undefined ? { categoryId } : {}),
 		...(onDelete !== undefined ? { onDelete } : {})
-	});
+	};
+}
+
+export function MyCategoryRegister(props: MyCategoryRegisterProps) {
+	const { categoryId, initialTitle = '', onDelete, saveLabel = '保存する' } = props;
+	const registerForm = useCategoryRegisterForm(createRegisterFormOptions(props));
+	const { control } = registerForm.form;
+
+	const crumbItems = categoryId
+		? [
+				{ text: 'マイページ', href: paths.member },
+				{ text: 'フレーズ一覧', href: paths.memberPhrases },
+				{ text: initialTitle, href: paths.memberPhrasesDetail(categoryId) }
+			]
+		: [
+				{ text: 'マイページ', href: paths.member },
+				{ text: 'フレーズ一覧', href: paths.memberPhrases },
+				{ text: 'フレーズ登録', href: paths.memberPhrasesRegister }
+			];
 
 	return (
 		<Inner>
+			<Crumbs items={crumbItems} />
 			<form onSubmit={(event) => event.preventDefault()}>
 				<Stack variant="div" size={3}>
-					<Stack variant="div" size={1} justifyItems="start">
-						<label htmlFor="category-title">
-							<Typography size={3} variant="span" color="primary" weight="bold" align="left">
-								タイトル
-							</Typography>
-						</label>
-						<InputText
-							id="category-title"
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-							isCorrect={false}
-						/>
-					</Stack>
+					<CategoryTextField
+						id="category-title"
+						label="タイトル"
+						name="title"
+						control={control}
+						labelAction={
+							categoryId && onDelete ? (
+								<CategoryDeleteButton
+									isDeleting={registerForm.isDeleting}
+									isSaving={registerForm.isSaving}
+									onClick={registerForm.handleDeleteClick}
+								/>
+							) : undefined
+						}
+					/>
 					<PhraseRepeaterSection
-						phrases={phraseFields.phrases}
-						openMenu={phraseFields.openMenu}
-						onAddPhrase={phraseFields.handleAddPhrase}
-						onToggleMenu={phraseFields.handleToggleMenu}
-						onInsertPhrase={phraseFields.handleInsertPhrase}
-						onMovePhrase={phraseFields.handleMovePhrase}
-						onRemovePhrase={phraseFields.handleRemovePhrase}
-						onUpdatePhrase={phraseFields.handleUpdatePhrase}
-						onAddWord={phraseFields.handleAddWord}
-						onInsertWord={phraseFields.handleInsertWord}
-						onMoveWord={phraseFields.handleMoveWord}
-						onRemoveWord={phraseFields.handleRemoveWord}
-						onUpdateWord={phraseFields.handleUpdateWord}
+						control={control}
+						phraseFields={registerForm.phraseFields}
+						openMenu={registerForm.openMenu}
+						onAddPhrase={registerForm.handleAddPhrase}
+						onToggleMenu={registerForm.handleToggleMenu}
+						onInsertPhrase={registerForm.handleInsertPhrase}
+						onMovePhrase={registerForm.handleMovePhrase}
+						onRemovePhrase={registerForm.handleRemovePhrase}
+						onCloseMenu={registerForm.handleCloseMenu}
 					/>
 					<CategoryRegisterActions
 						saveLabel={saveLabel}
-						isSaving={persist.isSaving}
-						isDeleting={persist.isDeleting}
-						message={persist.message}
-						onSaveClick={persist.handleSaveClick}
-						{...(categoryId !== undefined && { categoryId })}
-						{...(onDelete !== undefined ? { onDeleteClick: persist.handleDeleteClick } : {})}
+						isSaving={registerForm.isSaving}
+						onSaveClick={() => {
+							void registerForm.handleSave();
+						}}
 					/>
 				</Stack>
 			</form>

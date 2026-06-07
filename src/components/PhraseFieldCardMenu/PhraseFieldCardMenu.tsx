@@ -1,17 +1,20 @@
 import type { MouseEvent } from 'react';
 import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
-import styles from './PhraseFieldCardMenu.module.css';
 import type { MenuState } from '@/types/myCategoryRegister';
+import styles from './PhraseFieldCardMenu.module.css';
 
 type Props = {
 	phraseId: string;
 	phraseIndex: number;
 	phraseCount: number;
 	openMenu: MenuState;
-	onToggleMenu: (event: MouseEvent<HTMLButtonElement>, menu: { type: 'phrase'; id: string }) => void;
+	onToggleMenu: (
+		event: MouseEvent<HTMLButtonElement>,
+		menu: { type: 'phrase'; id: string }
+	) => void;
 	onInsertPhrase: (index: number) => void;
 	onMovePhrase: (fromIndex: number, toIndex: number) => void;
-	onRemovePhrase: (phraseId: string) => void;
+	onRemovePhrase: (index: number) => void;
 };
 
 export function PhraseFieldCardMenu({
@@ -47,7 +50,7 @@ export function PhraseFieldCardMenu({
 					onAddBelow={() => onInsertPhrase(phraseIndex + 1)}
 					onMoveUp={() => onMovePhrase(phraseIndex, phraseIndex - 1)}
 					onMoveDown={() => onMovePhrase(phraseIndex, phraseIndex + 1)}
-					onDelete={() => onRemovePhrase(phraseId)}
+					onDelete={() => onRemovePhrase(phraseIndex)}
 				/>
 			)}
 		</div>

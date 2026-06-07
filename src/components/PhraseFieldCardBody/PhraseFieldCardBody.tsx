@@ -1,84 +1,91 @@
-import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
-import styles from './PhraseFieldCardBody.module.css';
-import { WordFieldCard } from '@/components/WordFieldCard/WordFieldCard';
-import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
 import type { MouseEvent } from 'react';
+import type { Control } from 'react-hook-form';
+import { useFieldArray } from 'react-hook-form';
+import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
+import { createWord } from '@/components/MyCategoryRegister/fieldFactory';
+import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
+import type { MenuState } from '@/types/myCategoryRegister';
 import { Stack } from '../Stack/Stack';
 import { Typography } from '../Typography/Typography';
+import { PhraseWordFieldList } from './PhraseWordFieldList';
+import styles from './PhraseFieldCardBody.module.css';
 
 type Props = {
-	phrase: PhraseField;
+	control: Control<CategoryRegisterFormValues>;
+	phraseIndex: number;
+	phraseId: string;
 	openMenu: MenuState;
 	onToggleMenu: (event: MouseEvent<HTMLButtonElement>, menu: Exclude<MenuState, null>) => void;
-	onUpdatePhrase: (
-		phraseId: string,
-		key: keyof Omit<PhraseField, 'id' | 'words'>,
-		value: string
-	) => void;
-	onAddWord: (phraseId: string) => void;
-	onInsertWord: (phraseId: string, index: number) => void;
-	onMoveWord: (phraseId: string, fromIndex: number, toIndex: number) => void;
-	onRemoveWord: (phraseId: string, wordId: string) => void;
-	onUpdateWord: (
-		phraseId: string,
-		wordId: string,
-		key: keyof Omit<WordField, 'id'>,
-		value: string
-	) => void;
+	onCloseMenu: () => void;
 };
 
 export function PhraseFieldCardBody({
-	phrase,
+	control,
+	phraseIndex,
+	phraseId,
 	openMenu,
 	onToggleMenu,
-	onUpdatePhrase,
-	onAddWord,
-	onInsertWord,
-	onMoveWord,
-	onRemoveWord,
-	onUpdateWord
+	onCloseMenu
 }: Props) {
+	const wordFieldArray = useFieldArray({
+		control,
+		name: `phrases.${phraseIndex}.words`,
+		keyName: 'fieldKey'
+	});
+
+	function handleAddWord() {
+		wordFieldArray.append(createWord());
+	}
+
+	function handleInsertWord(index: number) {
+		wordFieldArray.insert(index, createWord());
+		onCloseMenu();
+	}
+
+	function handleRemoveWord(index: number) {
+		wordFieldArray.remove(index);
+		onCloseMenu();
+	}
+
+	function handleMoveWord(fromIndex: number, toIndex: number) {
+		wordFieldArray.move(fromIndex, toIndex);
+		onCloseMenu();
+	}
+
 	return (
 		<Stack variant="div" size={2}>
 			<CategoryTextField
-				id={`phrase-${phrase.id}`}
+				id={`phrase-${phraseId}`}
 				label="フレーズ"
-				value={phrase.phrase}
-				onChange={(value) => onUpdatePhrase(phrase.id, 'phrase', value)}
+				name={`phrases.${phraseIndex}.phrase`}
+				control={control}
 			/>
 			<CategoryTextField
-				id={`meaning-${phrase.id}`}
+				id={`meaning-${phraseId}`}
 				label="意味"
-				value={phrase.meaning}
-				onChange={(value) => onUpdatePhrase(phrase.id, 'meaning', value)}
+				name={`phrases.${phraseIndex}.meaning`}
+				control={control}
 			/>
 			<Stack variant="div" size={2}>
 				<Typography size={3} variant="span" color="primary" weight="bold" align="left">
 					用語
 				</Typography>
-				{phrase.words.length > 0 && (
-					<Stack variant="ul" size={2}>
-						{phrase.words.map((word, wordIndex) => (
-							<WordFieldCard
-								key={word.id}
-								phraseId={phrase.id}
-								word={word}
-								wordIndex={wordIndex}
-								wordCount={phrase.words.length}
-								openMenu={openMenu}
-								onToggleMenu={onToggleMenu}
-								onInsertWord={onInsertWord}
-								onMoveWord={onMoveWord}
-								onRemoveWord={onRemoveWord}
-								onUpdateWord={onUpdateWord}
-							/>
-						))}
-					</Stack>
+				{wordFieldArray.fields.length > 0 && (
+					<PhraseWordFieldList
+						control={control}
+						phraseIndex={phraseIndex}
+						wordFields={wordFieldArray.fields}
+						openMenu={openMenu}
+						onToggleMenu={onToggleMenu}
+						onInsertWord={handleInsertWord}
+						onMoveWord={handleMoveWord}
+						onRemoveWord={handleRemoveWord}
+					/>
 				)}
 				<button
 					className={styles.wordTimelineAddButton}
 					type="button"
-					onClick={() => onAddWord(phrase.id)}
+					onClick={handleAddWord}
 					aria-label="用語のフィールドを追加"
 				>
 					<span aria-hidden="true">＋</span>

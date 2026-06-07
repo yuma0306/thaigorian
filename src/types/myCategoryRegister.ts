@@ -1,15 +1,4 @@
-export type WordField = {
-	id: string;
-	word: string;
-	meaning: string;
-};
-
-export type PhraseField = {
-	id: string;
-	phrase: string;
-	meaning: string;
-	words: WordField[];
-};
+export type { PhraseField, WordField } from '@/schemas/myCategory';
 
 export type MenuState =
 	| {

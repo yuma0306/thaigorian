@@ -1,5 +1,5 @@
 import type { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { normalizePhrases } from '@/functions/memberCategory/categoryInput';
+import type { NormalizedPhrase } from '@/schemas/myCategory';
 import type { MyPhraseSavedRow } from '@/types/database';
 
 type Supabase = NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>;
@@ -8,7 +8,7 @@ export async function insertCategoryContent(
 	supabase: Supabase,
 	userId: string,
 	categoryId: string,
-	phrases: ReturnType<typeof normalizePhrases>
+	phrases: NormalizedPhrase[]
 ) {
 	const phraseRows = phrases.map((phrase, index) => ({
 		user_id: userId,
