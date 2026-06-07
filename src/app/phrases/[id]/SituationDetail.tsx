@@ -5,13 +5,14 @@ import type { PhraseCollection } from '@/types/database';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
-import { pickRandomIndices, maxLessonItems } from '@/functions/lesson';
+import { pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
-import { Button } from '@/components/Button/Button';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { Card } from '@/components/Card/Card';
 import { Inner } from '@/components/Inner/Inner';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
+import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
+import { useThaiVisibility } from '@/hooks/useThaiVisibility';
 
 type Props = {
 	collection: PhraseCollection;
@@ -19,6 +20,7 @@ type Props = {
 
 export function SituationDetail({ collection }: Props) {
 	const router = useRouter();
+	const { hideThai, toggleHideThai } = useThaiVisibility();
 	const canStart = collection.phrases.length > 0;
 
 	function startLesson() {
@@ -34,9 +36,12 @@ export function SituationDetail({ collection }: Props) {
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					{collection.title}
 				</Typography>
-				<Button color="secondary" variant="button" onClick={startLesson} disabled={!canStart}>
-					{`ランダム${maxLessonItems}問`}
-				</Button>
+				<PhraseDetailToolbar
+					canStart={canStart}
+					hideThai={hideThai}
+					onStartLesson={startLesson}
+					onToggleHideThai={toggleHideThai}
+				/>
 				{collection.phrases.length > 0 && (
 					<Stack size={2} variant="ul">
 						{collection.phrases.map((phrase, index) => (
@@ -46,7 +51,7 @@ export function SituationDetail({ collection }: Props) {
 								borderColor="gray"
 								hasBorderLeft
 							>
-								<PhraseCard phrase={phrase} />
+								<PhraseCard phrase={phrase} hideThai={hideThai} />
 							</Card>
 						))}
 					</Stack>
