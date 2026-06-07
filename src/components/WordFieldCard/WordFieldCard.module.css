@@ -1,0 +1,5 @@
+.wordCard {
+	display: grid;
+	gap: calc(var(--spacing-1) * 1px);
+	position: relative;
+}

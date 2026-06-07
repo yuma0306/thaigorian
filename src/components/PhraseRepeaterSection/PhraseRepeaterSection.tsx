@@ -1,57 +1,43 @@
 import type { MouseEvent } from 'react';
-
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
+import type { Control, FieldArrayWithId } from 'react-hook-form';
+import styles from './PhraseRepeaterSection.module.css';
 import { PhraseFieldCard } from '@/components/PhraseFieldCard/PhraseFieldCard';
-import type { MenuState, PhraseField, WordField } from '@/types/myCategoryRegister';
+import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
+import type { MenuState } from '@/types/myCategoryRegister';
 import { Typography } from '@/components/Typography/Typography';
 import { Stack } from '../Stack/Stack';
+import { PhraseAddButton } from '@/components/PhraseAddButton/PhraseAddButton';
+import { PhraseAddButtonWrapper } from '../PhraseAddButtonWrapper/PhraseAddButtonWrapper';
 
 type Props = {
-	phrases: PhraseField[];
+	control: Control<CategoryRegisterFormValues>;
+	phraseFields: FieldArrayWithId<CategoryRegisterFormValues, 'phrases', 'fieldKey'>[];
 	openMenu: MenuState;
 	onAddPhrase: () => void;
 	onToggleMenu: (event: MouseEvent<HTMLButtonElement>, menu: Exclude<MenuState, null>) => void;
 	onInsertPhrase: (index: number) => void;
 	onMovePhrase: (fromIndex: number, toIndex: number) => void;
-	onRemovePhrase: (phraseId: string) => void;
-	onUpdatePhrase: (
-		phraseId: string,
-		key: keyof Omit<PhraseField, 'id' | 'words'>,
-		value: string
-	) => void;
-	onAddWord: (phraseId: string) => void;
-	onInsertWord: (phraseId: string, index: number) => void;
-	onMoveWord: (phraseId: string, fromIndex: number, toIndex: number) => void;
-	onRemoveWord: (phraseId: string, wordId: string) => void;
-	onUpdateWord: (
-		phraseId: string,
-		wordId: string,
-		key: keyof Omit<WordField, 'id'>,
-		value: string
-	) => void;
+	onRemovePhrase: (index: number) => void;
+	onCloseMenu: () => void;
 };
 
 export function PhraseRepeaterSection({
-	phrases,
+	control,
+	phraseFields,
 	openMenu,
 	onAddPhrase,
 	onToggleMenu,
 	onInsertPhrase,
 	onMovePhrase,
 	onRemovePhrase,
-	onUpdatePhrase,
-	onAddWord,
-	onInsertWord,
-	onMoveWord,
-	onRemoveWord,
-	onUpdateWord
+	onCloseMenu
 }: Props) {
 	return (
 		<Stack variant="div" size={2}>
 			<Typography size={3} variant="span" color="primary" weight="bold" align="left">
 				フレーズ集
 			</Typography>
-			{phrases.length === 0 ? (
+			{phraseFields.length === 0 ? (
 				<button
 					className={styles.timelineAddButton}
 					type="button"
@@ -62,33 +48,24 @@ export function PhraseRepeaterSection({
 				</button>
 			) : (
 				<div className={styles.repeaterList}>
-					{phrases.map((phrase, phraseIndex) => (
+					{phraseFields.map((phrase, phraseIndex) => (
 						<PhraseFieldCard
-							key={phrase.id}
-							phrase={phrase}
+							key={phrase.fieldKey}
+							control={control}
 							phraseIndex={phraseIndex}
-							phraseCount={phrases.length}
+							phraseId={phrase.id}
+							phraseCount={phraseFields.length}
 							openMenu={openMenu}
 							onToggleMenu={onToggleMenu}
 							onInsertPhrase={onInsertPhrase}
 							onMovePhrase={onMovePhrase}
 							onRemovePhrase={onRemovePhrase}
-							onUpdatePhrase={onUpdatePhrase}
-							onAddWord={onAddWord}
-							onInsertWord={onInsertWord}
-							onMoveWord={onMoveWord}
-							onRemoveWord={onRemoveWord}
-							onUpdateWord={onUpdateWord}
+							onCloseMenu={onCloseMenu}
 						/>
 					))}
-					<button
-						className={styles.timelineAddButton}
-						type="button"
-						onClick={onAddPhrase}
-						aria-label="フィールドを追加"
-					>
-						<span aria-hidden="true">＋</span>
-					</button>
+					<PhraseAddButtonWrapper layer="first">
+						<PhraseAddButton onClick={onAddPhrase} position="center" layer="first" isAbsolute />
+					</PhraseAddButtonWrapper>
 				</div>
 			)}
 		</Stack>

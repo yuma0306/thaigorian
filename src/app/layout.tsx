@@ -6,6 +6,7 @@ import { Header } from '@/components/Header/Header';
 import { Main } from '@/components/Main/Main';
 import { Footer } from '@/components/Footer/Footer';
 import { ModalProvider } from '@/context/ModalContext';
+import { ToastProvider } from '@/context/ToastContext';
 import { siteData } from '@/constants/siteData';
 
 const siteUrl = `https://${siteData.domain}`;
@@ -49,11 +50,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="ja">
 			<body>
 				<ModalProvider>
-					<Wrapper>
-						<Header />
-						<Main>{children}</Main>
-						<Footer />
-					</Wrapper>
+					<ToastProvider>
+						<Wrapper>
+							<Header />
+							<Main>{children}</Main>
+							<Footer />
+						</Wrapper>
+					</ToastProvider>
 				</ModalProvider>
 			</body>
 		</html>

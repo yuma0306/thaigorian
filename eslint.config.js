@@ -67,5 +67,27 @@ export default defineConfig(
 			'no-nested-ternary': 'error'
 		}
 	},
+	{
+		files: ['src/**/*.{ts,tsx}'],
+		rules: {
+			'no-restricted-imports': [
+				'error',
+				{
+					patterns: [
+						{
+							group: ['@/components/**/*.module.css'],
+							message:
+								'他コンポーネントの CSS モジュールは import しないでください。同階層の ./ComponentName.module.css を使ってください。'
+						},
+						{
+							group: ['../*/*.module.css', '../**/*.module.css'],
+							message:
+								'他コンポーネントの CSS モジュールは import しないでください。同階層の ./ComponentName.module.css を使ってください。'
+						}
+					]
+				}
+			]
+		}
+	},
 	prettier
 );

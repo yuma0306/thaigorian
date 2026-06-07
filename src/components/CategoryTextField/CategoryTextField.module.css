@@ -1,0 +1,8 @@
+.labelRow {
+	align-items: center;
+	display: flex;
+	gap: calc(var(--spacing-2) * 1px);
+	justify-content: space-between;
+	overflow: visible;
+	width: 100%;
+}

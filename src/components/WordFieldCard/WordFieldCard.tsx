@@ -1,89 +1,65 @@
 import type { MouseEvent } from 'react';
+import type { Control } from 'react-hook-form';
 import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
-import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
-import styles from '@/components/MyCategoryRegister/MyCategoryRegister.module.css';
-import type { MenuState, WordField } from '@/types/myCategoryRegister';
+import { WordFieldCardMenu } from '@/components/WordFieldCardMenu/WordFieldCardMenu';
+import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
+import type { MenuState } from '@/types/myCategoryRegister';
+import { Stack } from '../Stack/Stack';
+import styles from './WordFieldCard.module.css';
 
 type Props = {
-	phraseId: string;
-	word: WordField;
+	control: Control<CategoryRegisterFormValues>;
+	phraseIndex: number;
 	wordIndex: number;
+	wordId: string;
 	wordCount: number;
 	openMenu: MenuState;
 	onToggleMenu: (event: MouseEvent<HTMLButtonElement>, menu: Exclude<MenuState, null>) => void;
-	onInsertWord: (phraseId: string, index: number) => void;
-	onMoveWord: (phraseId: string, fromIndex: number, toIndex: number) => void;
-	onRemoveWord: (phraseId: string, wordId: string) => void;
-	onUpdateWord: (
-		phraseId: string,
-		wordId: string,
-		key: keyof Omit<WordField, 'id'>,
-		value: string
-	) => void;
+	onInsertWord: (index: number) => void;
+	onMoveWord: (fromIndex: number, toIndex: number) => void;
+	onRemoveWord: (index: number) => void;
 };
 
 export function WordFieldCard({
-	phraseId,
-	word,
+	control,
+	phraseIndex,
 	wordIndex,
+	wordId,
 	wordCount,
 	openMenu,
 	onToggleMenu,
 	onInsertWord,
 	onMoveWord,
-	onRemoveWord,
-	onUpdateWord
+	onRemoveWord
 }: Props) {
 	return (
 		<article className={styles.wordCard}>
-			<div className={styles.timeline}>
-				<span className={styles.number}>{wordIndex + 1}</span>
-			</div>
-			<details className={styles.cardBody} open>
-				<summary className={styles.summary}>
-					<span className={styles.visuallyHidden}>開く・閉じる</span>
-					<div className={styles.menuWrapper}>
-						<button
-							className={styles.menuButton}
-							type="button"
-							onClick={(event) => onToggleMenu(event, { type: 'word', id: word.id })}
-							aria-label={`用語${wordIndex + 1}の操作を開く`}
-						>
-							⋮
-						</button>
-						{openMenu?.type === 'word' && openMenu.id === word.id && (
-							<FieldMenu
-								addAboveLabel="上に用語を追加"
-								addBelowLabel="下に用語を追加"
-								moveUpLabel="1つ上に移動"
-								moveDownLabel="1つ下に移動"
-								deleteLabel="用語を削除"
-								isMoveUpDisabled={wordIndex === 0}
-								isMoveDownDisabled={wordIndex === wordCount - 1}
-								onAddAbove={() => onInsertWord(phraseId, wordIndex)}
-								onAddBelow={() => onInsertWord(phraseId, wordIndex + 1)}
-								onMoveUp={() => onMoveWord(phraseId, wordIndex, wordIndex - 1)}
-								onMoveDown={() => onMoveWord(phraseId, wordIndex, wordIndex + 1)}
-								onDelete={() => onRemoveWord(phraseId, word.id)}
-							/>
-						)}
-					</div>
-				</summary>
-				<div className={styles.detailsContent}>
-					<CategoryTextField
-						id={`word-${word.id}`}
-						label="用語"
-						value={word.word}
-						onChange={(value) => onUpdateWord(phraseId, word.id, 'word', value)}
-					/>
-					<CategoryTextField
-						id={`word-meaning-${word.id}`}
-						label="意味"
-						value={word.meaning}
-						onChange={(value) => onUpdateWord(phraseId, word.id, 'meaning', value)}
-					/>
-				</div>
-			</details>
+			<Stack variant="div" size={2}>
+				<CategoryTextField
+					id={`word-${wordId}`}
+					label="用語"
+					name={`phrases.${phraseIndex}.words.${wordIndex}.word`}
+					control={control}
+					labelAction={
+						<WordFieldCardMenu
+							wordId={wordId}
+							wordIndex={wordIndex}
+							wordCount={wordCount}
+							openMenu={openMenu}
+							onToggleMenu={onToggleMenu}
+							onInsertWord={onInsertWord}
+							onMoveWord={onMoveWord}
+							onRemoveWord={onRemoveWord}
+						/>
+					}
+				/>
+				<CategoryTextField
+					id={`word-meaning-${wordId}`}
+					label="意味"
+					name={`phrases.${phraseIndex}.words.${wordIndex}.meaning`}
+					control={control}
+				/>
+			</Stack>
 		</article>
 	);
 }

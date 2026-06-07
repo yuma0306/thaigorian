@@ -1,4 +1,5 @@
 import { Button } from '@/components/Button/Button';
+import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { MemberCategoryList } from '@/components/MemberCategoryList/MemberCategoryList';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
@@ -34,6 +35,12 @@ export function MemberCategoryPageContent({ categories, error }: Props) {
 
 	return (
 		<Stack size={3} variant="section">
+			<Crumbs
+				items={[
+					{ text: 'マイページ', href: paths.member },
+					{ text: 'フレーズ一覧', href: paths.memberPhrases }
+				]}
+			/>
 			<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 				フレーズ一覧
 			</Typography>

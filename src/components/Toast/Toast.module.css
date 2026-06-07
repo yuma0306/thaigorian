@@ -1,0 +1,25 @@
+.toast {
+	background-color: var(--color-white);
+	border-radius: calc(var(--border-radius) * 1px);
+	box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 18%, transparent);
+	color: var(--color-primary);
+	font-size: calc(var(--font-size-2) * 1px);
+	font-weight: 700;
+	left: 50%;
+	line-height: var(--line-height);
+	max-width: min(400px, calc(100vw - 48px));
+	padding: calc(var(--spacing-2) * 1px) calc(var(--spacing-3) * 1px);
+	position: fixed;
+	text-align: center;
+	top: calc(var(--spacing-3) * 1px);
+	transform: translateX(-50%);
+	width: 100%;
+	z-index: 110;
+}
+.toast[data-variant='success'] {
+	border: 1px solid color-mix(in srgb, var(--color-success) 40%, var(--color-white));
+}
+.toast[data-variant='error'] {
+	border: 1px solid color-mix(in srgb, var(--color-secondary) 40%, var(--color-white));
+	color: var(--color-secondary);
+}

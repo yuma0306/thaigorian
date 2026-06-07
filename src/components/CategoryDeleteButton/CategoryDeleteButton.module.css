@@ -1,0 +1,14 @@
+.deleteButton {
+	background: none;
+	border: none;
+	color: var(--color-secondary);
+	cursor: pointer;
+	font-size: calc(var(--font-size-1) * 1px);
+	font-weight: 400;
+	padding: 0;
+	text-decoration: underline;
+}
+.deleteButton:disabled {
+	cursor: not-allowed;
+	opacity: 0.65;
+}

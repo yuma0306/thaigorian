@@ -1,0 +1,15 @@
+.menuWrapper {
+	flex-shrink: 0;
+	position: relative;
+}
+.menuButton {
+	background-color: transparent;
+	color: color-mix(in srgb, var(--color-primary) 55%, var(--color-white));
+	cursor: pointer;
+	font-size: calc(var(--font-size-4) * 1px);
+	font-weight: 700;
+	line-height: 1;
+	min-height: 32px;
+	min-width: 32px;
+	text-align: center;
+}
