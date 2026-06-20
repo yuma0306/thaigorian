@@ -5,6 +5,10 @@
 	cursor: pointer;
 	transition: opacity var(--transition);
 }
+.toggleReveal[data-is-fixed='true'] {
+	position: fixed;
+	z-index: 10;
+}
 .toggleReveal:hover {
 	opacity: var(--opacity);
 }
@@ -17,11 +21,19 @@
 		font-size: calc(var(--font-size-2) * 1px);
 		padding: calc(var(--spacing-1) * 1px);
 	}
+	.toggleReveal[data-is-fixed='true'] {
+		bottom: calc(var(--spacing-2) * 1px);
+		right: calc(var(--spacing-2) * 1px);
+	}
 }
 @media (max-width: 639px) {
 	.toggleReveal {
 		border-radius: calc(var(--calc-sp) * var(--border-radius));
 		font-size: calc(var(--calc-sp) * var(--font-size-2));
 		padding: calc(var(--calc-sp) * var(--spacing-1));
+	}
+	.toggleReveal[data-is-fixed='true'] {
+		bottom: calc(var(--calc-sp) * var(--spacing-2));
+		right: calc(var(--calc-sp) * var(--spacing-2));
 	}
 }

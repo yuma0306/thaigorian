@@ -6,6 +6,7 @@ type Props = {
 	showLabel: string;
 	hideLabel: string;
 	ariaLabel: string;
+	isFixed?: boolean;
 	onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
@@ -14,10 +15,17 @@ export function ToggleRevealButton({
 	showLabel,
 	hideLabel,
 	ariaLabel,
+	isFixed = false,
 	onClick
 }: Props) {
 	return (
-		<button type="button" className={styles.toggleReveal} onClick={onClick} aria-label={ariaLabel}>
+		<button
+			type="button"
+			className={styles.toggleReveal}
+			data-is-fixed={isFixed}
+			onClick={onClick}
+			aria-label={ariaLabel}
+		>
 			{expanded ? hideLabel : showLabel}
 		</button>
 	);

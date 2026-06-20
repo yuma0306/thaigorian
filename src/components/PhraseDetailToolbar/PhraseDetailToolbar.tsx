@@ -17,17 +17,20 @@ export function PhraseDetailToolbar({
 	onToggleHideThai
 }: Props) {
 	return (
-		<div className={styles.toolbar}>
-			<Button color="secondary" variant="button" onClick={onStartLesson} disabled={!canStart}>
-				{`ランダム${maxLessonItems}問`}
-			</Button>
+		<>
+			<div className={styles.toolbar}>
+				<Button color="secondary" variant="button" onClick={onStartLesson} disabled={!canStart}>
+					{`ランダム${maxLessonItems}問`}
+				</Button>
+			</div>
 			<ToggleRevealButton
+				isFixed
 				expanded={!hideThai}
-				showLabel="👀 タイ語を表示"
-				hideLabel="🙈 タイ語を隠す"
+				showLabel="👀"
+				hideLabel="🙈"
 				ariaLabel={hideThai ? 'タイ語を表示' : 'タイ語を隠す'}
 				onClick={onToggleHideThai}
 			/>
-		</div>
+		</>
 	);
 }
