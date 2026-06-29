@@ -51,7 +51,7 @@ export function MyPhraseDetail({ category }: Props) {
 								borderColor="gray"
 								hasBorderLeft
 							>
-								<PhraseCard phrase={phrase} hideThai={hideThai} />
+								<PhraseCard phrase={phrase} hideThai={hideThai} speechLang={category.speechLang} />
 							</Card>
 						))}
 					</Stack>

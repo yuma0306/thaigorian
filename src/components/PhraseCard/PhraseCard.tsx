@@ -1,4 +1,6 @@
 import type { Phrase } from '@/types/database';
+import type { SpeechLang } from '@/constants/speechLangs';
+import { resolveSpeechLang } from '@/constants/speechLangs';
 import { FlexColumn } from '@/components/FlexColumn/FlexColumn';
 import { ListItem } from '@/components/ListItem/ListItem';
 import { MaskedThaiText } from '@/components/MaskedThaiText/MaskedThaiText';
@@ -11,9 +13,11 @@ import styles from './PhraseCard.module.css';
 type Props = {
 	phrase: Phrase;
 	hideThai?: boolean;
+	speechLang?: SpeechLang | string;
 };
 
-export function PhraseCard({ phrase, hideThai = false }: Props) {
+export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
+	const voiceLang = resolveSpeechLang(speechLang);
 	const hasWords = Boolean(phrase.words && phrase.words.length > 0);
 
 	return (
@@ -25,7 +29,7 @@ export function PhraseCard({ phrase, hideThai = false }: Props) {
 							{phrase.phrase}
 						</Typography>
 					</MaskedThaiText>
-					<VoiceButton text={phrase.phrase} />
+					<VoiceButton text={phrase.phrase} lang={voiceLang} />
 					<CopyButton text={phrase.phrase} />
 				</FlexColumn>
 				{phrase.meaning && (
@@ -57,7 +61,7 @@ export function PhraseCard({ phrase, hideThai = false }: Props) {
 									>
 										{word.word && (
 											<>
-												<VoiceButton text={word.word} />
+												<VoiceButton text={word.word} lang={voiceLang} />
 												<CopyButton text={word.word} />
 											</>
 										)}

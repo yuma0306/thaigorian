@@ -54,7 +54,7 @@ export function PhraseWordFieldsSection({
 		<>
 			<FlexColumn gap={1} variant="div" alignItems="center">
 				<Typography size={3} variant="span" color="primary" weight="bold" align="left">
-					用語
+					用語集
 				</Typography>
 				{wordFieldArray.fields.length < 1 && (
 					<PhraseAddButton

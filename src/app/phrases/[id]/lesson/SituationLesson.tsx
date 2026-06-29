@@ -1,6 +1,7 @@
 'use client';
 
 import type { PhraseCollection } from '@/types/database';
+import { resolveSpeechLang } from '@/constants/speechLangs';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { LessonQuizSection } from '@/components/LessonQuizSection/LessonQuizSection';
@@ -14,6 +15,7 @@ type Props = {
 
 export function SituationLesson({ collection }: Props) {
 	const lesson = usePhraseLesson('phrase', collection.id, collection.phrases);
+	const speechLang = resolveSpeechLang(collection.speechLang);
 
 	if (!lesson.ready) return null;
 
@@ -35,6 +37,7 @@ export function SituationLesson({ collection }: Props) {
 					total={lesson.total}
 					phrase={currentPhrase}
 					showAnswer={lesson.showAnswer}
+					speechLang={speechLang}
 					onShowAnswerChange={lesson.handleShowAnswerChange}
 					isCorrect={lesson.isCorrect}
 					userInput={lesson.userInput}
@@ -48,6 +51,7 @@ export function SituationLesson({ collection }: Props) {
 					correctCount={lesson.correctCount}
 					total={lesson.total}
 					results={lesson.results}
+					speechLang={speechLang}
 					backHref={paths.phrase(collection.id)}
 				/>
 			)}

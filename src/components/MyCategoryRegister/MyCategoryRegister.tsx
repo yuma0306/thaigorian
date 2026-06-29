@@ -2,11 +2,13 @@
 
 import { CategoryDeleteButton } from '@/components/CategoryDeleteButton/CategoryDeleteButton';
 import { CategoryRegisterActions } from '@/components/CategoryRegisterActions/CategoryRegisterActions';
+import { CategorySpeechLangSelect } from '@/components/CategorySpeechLangSelect/CategorySpeechLangSelect';
 import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/PhraseRepeaterSection';
 import { Stack } from '@/components/Stack/Stack';
+import { defaultSpeechLang } from '@/constants/speechLangs';
 import { paths } from '@/constants/paths';
 import { useCategoryRegisterForm } from '@/hooks/useCategoryRegisterForm';
 import { createId } from './fieldFactory';
@@ -17,12 +19,14 @@ function createRegisterFormOptions({
 	initialPhrases = [],
 	initialTitle = '',
 	initialContentId,
+	initialSpeechLang = defaultSpeechLang,
 	onDelete,
 	onSave
 }: MyCategoryRegisterProps) {
 	return {
 		initialContentId: initialContentId ?? `category-${createId()}`,
 		initialTitle,
+		initialSpeechLang,
 		initialPhrases,
 		onSave,
 		...(categoryId !== undefined ? { categoryId } : {}),
@@ -67,6 +71,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 								) : undefined
 							}
 						/>
+						<CategorySpeechLangSelect control={control} />
 						<PhraseRepeaterSection
 							control={control}
 							phraseFields={registerForm.phraseFields}

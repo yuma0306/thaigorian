@@ -1,8 +1,13 @@
 import { z } from 'zod';
+import { speechLangOptions, type SpeechLang } from '@/constants/speechLangs';
 
 const contentIdPattern = /^[a-zA-Z0-9_-]+$/;
 
 const trimmedString = z.string().trim();
+
+const speechLangSchema = z.enum(
+	speechLangOptions.map((option) => option.value) as [SpeechLang, ...SpeechLang[]]
+);
 
 const wordPayloadSchema = z.object({
 	fieldId: trimmedString.min(1),
@@ -20,6 +25,7 @@ const phrasePayloadSchema = z.object({
 const saveMyCategorySchema = z.object({
 	contentId: trimmedString.min(1).regex(contentIdPattern),
 	title: trimmedString.min(1),
+	speechLang: speechLangSchema,
 	phrases: z.array(phrasePayloadSchema)
 });
 
@@ -39,6 +45,7 @@ const phraseFormFieldSchema = z.object({
 export const categoryRegisterFormSchema = z.object({
 	contentId: trimmedString.min(1).regex(contentIdPattern),
 	title: trimmedString.min(1),
+	speechLang: speechLangSchema,
 	phrases: z.array(phraseFormFieldSchema)
 });
 
@@ -52,6 +59,7 @@ export function toSaveMyCategoryPayload(values: CategoryRegisterFormValues): Sav
 	return saveMyCategorySchema.parse({
 		contentId: values.contentId,
 		title: values.title,
+		speechLang: values.speechLang,
 		phrases: values.phrases.map((phrase) => ({
 			fieldId: phrase.id,
 			phrase: phrase.phrase,
@@ -65,15 +73,21 @@ export function toSaveMyCategoryPayload(values: CategoryRegisterFormValues): Sav
 	});
 }
 
-export function parseSaveMyCategoryInput(contentId: string, title: string, phrases: unknown) {
-	const result = saveMyCategorySchema.safeParse({ contentId, title, phrases });
+export function parseSaveMyCategoryInput(
+	contentId: string,
+	title: string,
+	speechLang: string,
+	phrases: unknown
+) {
+	const result = saveMyCategorySchema.safeParse({ contentId, title, speechLang, phrases });
 	if (!result.success) {
-		return { ok: false as const, message: 'タイトルを確認してください。' };
+		return { ok: false as const, message: '入力内容を確認してください。' };
 	}
 	return {
 		ok: true as const,
 		normalizedContentId: result.data.contentId,
 		normalizedTitle: result.data.title,
+		normalizedSpeechLang: result.data.speechLang,
 		normalizedPhrases: result.data.phrases
 	};
 }

@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import type { SpeechLang } from '@/constants/speechLangs';
 import { paths } from '@/constants/paths';
 import { useCategoryDelete } from '@/hooks/useCategoryDelete';
 import { useFieldMenu } from '@/hooks/useFieldMenu';
@@ -17,6 +18,7 @@ type Params = {
 	categoryId?: string;
 	initialContentId: string;
 	initialTitle: string;
+	initialSpeechLang: SpeechLang;
 	initialPhrases: CategoryRegisterFormValues['phrases'];
 	onSave: (payload: SaveMyCategoryPayload) => Promise<SaveMyCategoryResult>;
 	onDelete?: (categoryId: string) => Promise<SaveMyCategoryResult>;
@@ -26,6 +28,7 @@ export function useCategoryRegisterForm({
 	categoryId,
 	initialContentId,
 	initialTitle,
+	initialSpeechLang,
 	initialPhrases,
 	onSave,
 	onDelete
@@ -39,11 +42,15 @@ export function useCategoryRegisterForm({
 		defaultValues: {
 			contentId: initialContentId,
 			title: initialTitle,
+			speechLang: initialSpeechLang,
 			phrases: initialPhrases
 		}
 	});
 
-	const phraseActions = usePhraseFieldArray({ control: form.control, onCloseMenu: handleCloseMenu });
+	const phraseActions = usePhraseFieldArray({
+		control: form.control,
+		onCloseMenu: handleCloseMenu
+	});
 
 	const deleteActions = useCategoryDelete({
 		...(categoryId !== undefined ? { categoryId } : {}),

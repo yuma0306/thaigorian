@@ -1,5 +1,6 @@
 'use server';
 
+import { updateMyCategoryRow } from '@/functions/memberCategory/categorySpeechLangPersist';
 import { deleteCategoryPhrasesAndWords } from '@/functions/memberCategory/categoryContent';
 import { getCurrentUser } from '@/functions/memberCategory/categoryAuth';
 import { parseCategoryInput } from '@/functions/memberCategory/categoryInput';
@@ -8,9 +9,9 @@ import type { SaveMyCategoryPayload, SaveMyCategoryResult } from '@/types/myCate
 
 export async function updateMyCategory(
 	categoryId: string,
-	{ contentId, title, phrases }: SaveMyCategoryPayload
+	{ contentId, title, speechLang, phrases }: SaveMyCategoryPayload
 ): Promise<SaveMyCategoryResult> {
-	const parsed = parseCategoryInput(contentId, title, phrases);
+	const parsed = parseCategoryInput(contentId, title, speechLang, phrases);
 	if (!parsed.ok) {
 		return parsed;
 	}
@@ -26,15 +27,12 @@ export async function updateMyCategory(
 		return { ok: false, message: '保存に失敗しました。' };
 	}
 
-	const { error: categoryError } = await supabase
-		.from('my_categories')
-		.update({
-			title: parsed.normalizedTitle,
-			slug: parsed.normalizedContentId,
-			updated_at: new Date().toISOString()
-		})
-		.eq('id', categoryId)
-		.eq('user_id', userId);
+	const { error: categoryError } = await updateMyCategoryRow(supabase, categoryId, userId, {
+		title: parsed.normalizedTitle,
+		slug: parsed.normalizedContentId,
+		speech_lang: parsed.normalizedSpeechLang,
+		updated_at: new Date().toISOString()
+	});
 
 	if (categoryError) {
 		return { ok: false, message: '保存に失敗しました。' };

@@ -23,6 +23,7 @@ async function loadCollection(entry: PhraseCollectionIndexEntry): Promise<Phrase
 		id: entry.id,
 		title: data.title,
 		...(data.description !== undefined ? { description: data.description } : {}),
+		...(data.speechLang !== undefined ? { speechLang: data.speechLang } : {}),
 		phrases: data.phrases
 	};
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { resolveSpeechLang } from '@/constants/speechLangs';
 import type { PhraseCollection } from '@/types/database';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
@@ -22,6 +23,7 @@ export function SituationDetail({ collection }: Props) {
 	const router = useRouter();
 	const { hideThai, toggleHideThai } = useThaiVisibility();
 	const canStart = collection.phrases.length > 0;
+	const speechLang = resolveSpeechLang(collection.speechLang);
 
 	function startLesson() {
 		if (collection.phrases.length === 0) return;
@@ -51,7 +53,7 @@ export function SituationDetail({ collection }: Props) {
 								borderColor="gray"
 								hasBorderLeft
 							>
-								<PhraseCard phrase={phrase} hideThai={hideThai} />
+								<PhraseCard phrase={phrase} hideThai={hideThai} speechLang={speechLang} />
 							</Card>
 						))}
 					</Stack>
