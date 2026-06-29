@@ -13,11 +13,7 @@ export async function insertMyCategoryRow(
 		speech_lang: SpeechLang;
 	}
 ) {
-	const withLang = await supabase
-		.from('my_categories')
-		.insert(row)
-		.select('id')
-		.single();
+	const withLang = await supabase.from('my_categories').insert(row).select('id').single();
 
 	if (!withLang.error) {
 		return withLang;

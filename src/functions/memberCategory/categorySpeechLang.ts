@@ -1,8 +1,4 @@
-import {
-	defaultSpeechLang,
-	resolveSpeechLang,
-	type SpeechLang
-} from '@/constants/speechLangs';
+import { defaultSpeechLang, resolveSpeechLang, type SpeechLang } from '@/constants/speechLangs';
 import type { createSupabaseServerClient } from '@/functions/supabaseServer';
 import { isMissingSpeechLangColumn } from '@/functions/memberCategory/isMissingSpeechLangColumn';
 
