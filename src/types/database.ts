@@ -3,11 +3,9 @@ export type MyCategoryListRow = {
 	id: string;
 	title: string | null;
 	slug: string | null;
+	speech_lang: string;
 	updated_at: string;
 };
-
-/** Supabase: my_categories（詳細・編集） */
-export type MyCategoryRow = Pick<MyCategoryListRow, 'id' | 'title' | 'slug'>;
 
 /** Supabase: my_categories（id + title のみ） */
 export type MyCategoryTitleRow = Pick<MyCategoryListRow, 'id' | 'title'>;
@@ -69,6 +67,7 @@ export type LessonResult = {
 export type PhraseCollectionFile = {
 	title: string;
 	description?: string;
+	speechLang?: string;
 	phrases: Phrase[];
 };
 
@@ -84,5 +83,6 @@ export type PhraseCollection = {
 	id: string;
 	title: string;
 	description?: string;
+	speechLang?: string;
 	phrases: Phrase[];
 };

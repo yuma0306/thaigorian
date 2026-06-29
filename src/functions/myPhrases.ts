@@ -1,3 +1,4 @@
+import { fetchMyCategoryForEdit } from '@/functions/memberCategory/categorySpeechLang';
 import { fetchWordsByPhraseIds, groupWordsByPhraseId } from '@/functions/memberCategoryPhrases';
 import { mapMyPhraseRow } from '@/functions/mapMyPhraseRow';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
@@ -47,12 +48,7 @@ export async function getMyPhraseCategoryById(
 		return null;
 	}
 
-	const { data: category } = await supabase
-		.from('my_categories')
-		.select('id,title')
-		.eq('id', categoryId)
-		.eq('user_id', user.id)
-		.single<MyCategoryTitleRow>();
+	const category = await fetchMyCategoryForEdit(supabase, user.id, categoryId);
 
 	if (!category) {
 		return null;
@@ -73,6 +69,7 @@ export async function getMyPhraseCategoryById(
 	return {
 		id: category.id,
 		title: category.title ?? '無題',
+		speechLang: category.speechLang,
 		phrases: (phraseRows ?? []).map((phrase) =>
 			mapMyPhraseRow(phrase, wordsByPhraseId.get(phrase.id) ?? [])
 		)

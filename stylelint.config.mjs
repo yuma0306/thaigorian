@@ -3,7 +3,7 @@ import stylelintOrder from 'stylelint-order';
 const config = {
 	extends: ['stylelint-config-standard'],
 	plugins: [stylelintOrder],
-	ignoreFiles: ['src/styles/reset.css'],
+	ignoreFiles: ['src/styles/reset.css', 'storybook-static/**'],
 	rules: {
 		'order/properties-alphabetical-order': true,
 		'selector-class-pattern': null,

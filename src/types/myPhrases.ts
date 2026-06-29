@@ -1,3 +1,4 @@
+import type { SpeechLang } from '@/constants/speechLangs';
 import type { Phrase } from '@/types/database';
 
 export type MyPhraseCategorySummary = {
@@ -8,5 +9,6 @@ export type MyPhraseCategorySummary = {
 export type MyPhraseCategoryView = {
 	id: string;
 	title: string;
+	speechLang: SpeechLang;
 	phrases: Phrase[];
 };

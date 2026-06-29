@@ -25,6 +25,7 @@ export function MyPhraseLesson({ category }: Props) {
 					total={lesson.total}
 					phrase={currentPhrase}
 					showAnswer={lesson.showAnswer}
+					speechLang={category.speechLang}
 					onShowAnswerChange={lesson.handleShowAnswerChange}
 					isCorrect={lesson.isCorrect}
 					userInput={lesson.userInput}
@@ -38,6 +39,7 @@ export function MyPhraseLesson({ category }: Props) {
 					correctCount={lesson.correctCount}
 					total={lesson.total}
 					results={lesson.results}
+					speechLang={category.speechLang}
 					backHref={paths.myPhrase(category.id)}
 				/>
 			)}

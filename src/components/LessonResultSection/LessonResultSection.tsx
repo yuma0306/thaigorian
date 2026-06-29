@@ -10,10 +10,11 @@ type Props = {
 	correctCount: number;
 	total: number;
 	results: LessonResult[];
+	speechLang: string;
 	backHref: string;
 };
 
-export function LessonResultSection({ correctCount, total, results, backHref }: Props) {
+export function LessonResultSection({ correctCount, total, results, speechLang, backHref }: Props) {
 	return (
 		<Stack size={3} variant="section">
 			<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
@@ -28,7 +29,7 @@ export function LessonResultSection({ correctCount, total, results, backHref }: 
 						borderColor={result.correct ? 'success' : 'warning'}
 						hasBorderLeft
 					>
-						<PhraseCard phrase={result.phrase} />
+						<PhraseCard phrase={result.phrase} speechLang={speechLang} />
 					</Card>
 				))}
 			</Stack>

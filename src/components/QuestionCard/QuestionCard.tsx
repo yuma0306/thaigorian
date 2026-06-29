@@ -13,10 +13,17 @@ type Props = {
 	meaning: Phrase['meaning'];
 	phrase: Phrase['phrase'];
 	showAnswer: boolean;
+	speechLang: string;
 	onShowAnswerChange: (value: boolean) => void;
 };
 
-export function QuestionCard({ meaning, phrase, showAnswer, onShowAnswerChange }: Props) {
+export function QuestionCard({
+	meaning,
+	phrase,
+	showAnswer,
+	speechLang,
+	onShowAnswerChange
+}: Props) {
 	return (
 		<Card variant="div" borderColor="gray" hasBorderLeft={false}>
 			<Stack size={2} variant="div">
@@ -26,7 +33,7 @@ export function QuestionCard({ meaning, phrase, showAnswer, onShowAnswerChange }
 					</Typography>
 				</Stack>
 				<FlexColumn gap={1} variant="div" alignItems="stretch" justifyContent="center">
-					<VoiceButton text={phrase} />
+					<VoiceButton text={phrase} lang={speechLang} />
 					<ToggleRevealButton
 						expanded={showAnswer}
 						showLabel="👀 回答を見る"

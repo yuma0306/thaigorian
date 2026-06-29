@@ -1,13 +1,14 @@
 import { notFound, redirect } from 'next/navigation';
 import { MyCategoryRegister } from '@/components/MyCategoryRegister/MyCategoryRegister';
 import { paths } from '@/constants/paths';
+import { fetchMyCategoryForEdit } from '@/functions/memberCategory/categorySpeechLang';
 import {
 	fetchWordsByPhraseIds,
 	groupWordsByPhraseId,
 	mapPhraseRowsToFields
 } from '@/functions/memberCategoryPhrases';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { MyCategoryRow, MyPhraseEditRow } from '@/types/database';
+import type { MyPhraseEditRow } from '@/types/database';
 import { deleteMyCategory } from '@/functions/memberCategory/deleteMyCategory';
 import { updateMyCategory } from '@/functions/memberCategory/updateMyCategory';
 
@@ -27,12 +28,7 @@ export default async function MemberCategoryDetailPage({ params }: Props) {
 		redirect(paths.login);
 	}
 
-	const { data: category } = await supabase
-		.from('my_categories')
-		.select('id,title,slug')
-		.eq('id', id)
-		.eq('user_id', user.id)
-		.single<MyCategoryRow>();
+	const category = await fetchMyCategoryForEdit(supabase, user.id, id);
 
 	if (!category) {
 		notFound();
@@ -57,6 +53,7 @@ export default async function MemberCategoryDetailPage({ params }: Props) {
 			initialContentId={category.slug ?? `category-${category.id}`}
 			initialPhrases={phrases}
 			initialTitle={category.title ?? ''}
+			initialSpeechLang={category.speechLang}
 			onDelete={deleteMyCategory}
 			onSave={updateMyCategory.bind(null, category.id)}
 			saveLabel="更新する"

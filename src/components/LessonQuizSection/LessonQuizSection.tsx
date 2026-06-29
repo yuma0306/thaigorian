@@ -12,6 +12,7 @@ type Props = {
 	total: number;
 	phrase: Phrase;
 	showAnswer: boolean;
+	speechLang: string;
 	onShowAnswerChange: (value: boolean) => void;
 	isCorrect: boolean;
 	userInput: string;
@@ -25,6 +26,7 @@ export function LessonQuizSection({
 	total,
 	phrase,
 	showAnswer,
+	speechLang,
 	onShowAnswerChange,
 	isCorrect,
 	userInput,
@@ -44,6 +46,7 @@ export function LessonQuizSection({
 				meaning={phrase.meaning}
 				phrase={phrase.phrase}
 				showAnswer={showAnswer}
+				speechLang={speechLang}
 				onShowAnswerChange={onShowAnswerChange}
 			/>
 			<InputText
