@@ -4,7 +4,7 @@ import { Card } from '@/components/Card/Card';
 import { Hr } from '@/components/Hr/Hr';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
-import { speechLangOptions } from '@/constants/speechLangs';
+import { groupBySpeechLang } from '@/functions/groupBySpeechLang';
 import { paths } from '@/constants/paths';
 import type { MyCategoryListItem } from '@/types/database';
 import styles from './MemberCategoryList.module.css';
@@ -22,12 +22,7 @@ function formatDate(value: string) {
 }
 
 export function MemberCategoryList({ categories }: Props) {
-	const groups = speechLangOptions
-		.map((option) => ({
-			...option,
-			categories: categories.filter((category) => category.speechLang === option.value)
-		}))
-		.filter((group) => group.categories.length > 0);
+	const groups = groupBySpeechLang(categories);
 
 	return (
 		<Stack size={3} variant="div">
@@ -39,7 +34,7 @@ export function MemberCategoryList({ categories }: Props) {
 							{group.label}
 						</Typography>
 						<Stack size={2} variant="ul">
-							{group.categories.map((category) => (
+							{group.items.map((category) => (
 								<Card key={category.id} variant="li" borderColor="gray" hasBorderLeft={false}>
 									<Link className={styles.link} href={paths.memberPhrasesDetail(category.id)}>
 										<Typography size={3} variant="h2" color="primary" weight="bold" align="left">
