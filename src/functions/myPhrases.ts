@@ -1,8 +1,11 @@
-import { fetchMyCategoryForEdit } from '@/functions/memberCategory/categorySpeechLang';
+import {
+	fetchMyCategoryForEdit,
+	fetchMyCategoryList
+} from '@/functions/memberCategory/categorySpeechLang';
 import { fetchWordsByPhraseIds, groupWordsByPhraseId } from '@/functions/memberCategoryPhrases';
 import { mapMyPhraseRow } from '@/functions/mapMyPhraseRow';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { MyCategoryTitleRow, MyPhraseRow } from '@/types/database';
+import type { MyPhraseRow } from '@/types/database';
 import type { MyPhraseCategorySummary, MyPhraseCategoryView } from '@/types/myPhrases';
 
 export type { MyPhraseCategorySummary, MyPhraseCategoryView } from '@/types/myPhrases';
@@ -18,20 +21,16 @@ export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySu
 		return null;
 	}
 
-	const { data: categoryRows } = await supabase
-		.from('my_categories')
-		.select('id,title')
-		.eq('user_id', user.id)
-		.order('updated_at', { ascending: false })
-		.returns<MyCategoryTitleRow[]>();
+	const { categories, error } = await fetchMyCategoryList(supabase, user.id);
 
-	if (!categoryRows) {
+	if (error || !categories) {
 		return [];
 	}
 
-	return categoryRows.map((category) => ({
+	return categories.map((category) => ({
 		id: category.id,
-		title: category.title ?? '無題'
+		title: category.title ?? '無題',
+		speechLang: category.speechLang
 	}));
 }
 
