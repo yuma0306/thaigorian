@@ -1,3 +1,5 @@
+import type { SpeechLang } from '@/constants/speechLangs';
+
 /** Supabase: my_categories（一覧） */
 export type MyCategoryListRow = {
 	id: string;
@@ -5,6 +7,15 @@ export type MyCategoryListRow = {
 	slug: string | null;
 	speech_lang: string;
 	updated_at: string;
+};
+
+/** アプリ: フレーズ一覧表示用 */
+export type MyCategoryListItem = {
+	id: string;
+	title: string | null;
+	slug: string | null;
+	updated_at: string;
+	speechLang: SpeechLang;
 };
 
 /** Supabase: my_categories（id + title のみ） */

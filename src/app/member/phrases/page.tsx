@@ -2,8 +2,8 @@ import { redirect } from 'next/navigation';
 import { Inner } from '@/components/Inner/Inner';
 import { MemberCategoryPageContent } from '@/components/MemberCategoryPageContent/MemberCategoryPageContent';
 import { paths } from '@/constants/paths';
+import { fetchMyCategoryList } from '@/functions/memberCategory/categorySpeechLang';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import type { MyCategoryListRow } from '@/types/database';
 
 export default async function MemberCategoryPage() {
 	const supabase = await createSupabaseServerClient();
@@ -16,12 +16,7 @@ export default async function MemberCategoryPage() {
 		redirect(paths.login);
 	}
 
-	const { data: categories, error } = await supabase
-		.from('my_categories')
-		.select('id,title,slug,updated_at')
-		.eq('user_id', user.id)
-		.order('updated_at', { ascending: false })
-		.returns<MyCategoryListRow[]>();
+	const { categories, error } = await fetchMyCategoryList(supabase, user.id);
 
 	return (
 		<Inner>
