@@ -4,11 +4,11 @@ import { MemberCategoryList } from '@/components/MemberCategoryList/MemberCatego
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
-import type { MyCategoryListRow } from '@/types/database';
+import type { MyCategoryListItem } from '@/types/database';
 import styles from './MemberCategoryPageContent.module.css';
 
 type Props = {
-	categories: MyCategoryListRow[] | null;
+	categories: MyCategoryListItem[] | null;
 	error: Error | null;
 };
 
