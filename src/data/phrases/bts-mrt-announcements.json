@@ -1,6 +1,7 @@
 {
 	"title": "BTS・MRT 駅構内アナウンス",
 	"description": "タイの高架鉄道・地下鉄の駅・車内アナウンスと語彙メモ",
+	"speechLang": "th-TH",
 	"phrases": [
 		{
 			"fieldId": "announcement-01",

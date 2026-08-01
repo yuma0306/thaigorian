@@ -1,22 +1,21 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/Button/Button';
+import { CardImage } from '@/components/CardImage/CardImage';
+import { CardImageList } from '@/components/CardImageList/CardImageList';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
-import { MemberProfileCard } from '@/components/MemberProfileCard/MemberProfileCard';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
 import { createSupabaseBrowserClient } from '@/functions/supabase';
 
-type Props = {
-	displayName: string;
-	email: string;
-	errorMessage: string;
-};
+const menuItems = [
+	{ id: 'member-phrases', title: 'フレーズ一覧', href: paths.memberPhrases },
+	{ id: 'member-profile', title: '会員情報', href: paths.memberProfile }
+] as const;
 
-export function MemberHome({ displayName, email, errorMessage }: Props) {
+export function MemberHome() {
 	const router = useRouter();
 	const supabase = createSupabaseBrowserClient();
 
@@ -32,13 +31,17 @@ export function MemberHome({ displayName, email, errorMessage }: Props) {
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					マイページ
 				</Typography>
-				<MemberProfileCard displayName={displayName} email={email} errorMessage={errorMessage} />
-				<Button variant="a" color="secondary" href={paths.memberPhrases}>
-					フレーズ一覧
-				</Button>
-				<Button variant="button" color="secondary" onClick={handleSignOut}>
-					サインアウト
-				</Button>
+				<CardImageList>
+					{menuItems.map((item) => (
+						<CardImage key={item.id} id={item.id} href={item.href} title={item.title} />
+					))}
+					<CardImage
+						id="member-sign-out"
+						variant="button"
+						title="サインアウト"
+						onClick={handleSignOut}
+					/>
+				</CardImageList>
 			</Stack>
 		</Inner>
 	);
