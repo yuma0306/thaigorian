@@ -25,6 +25,10 @@ export function SpeechLangCardImageList({ items }: Props) {
 	const [activeLang, setActiveLang] = useState<SpeechLang>(defaultSpeechLang);
 	const activeGroup = groups.find((group) => group.value === activeLang) ?? groups[0];
 
+	if (!activeGroup) {
+		return null;
+	}
+
 	return (
 		<Stack size={2} variant="div">
 			<div className={styles.tabList} role="tablist" aria-label="読み上げ言語">
