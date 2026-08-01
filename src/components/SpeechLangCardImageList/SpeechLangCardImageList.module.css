@@ -1,0 +1,44 @@
+.tabList {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.tab {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid var(--color-gray);
+	color: var(--color-dark);
+	cursor: pointer;
+	flex: 1;
+	font-weight: 700;
+	max-width: 200px;
+	text-align: center;
+	transition:
+		color var(--transition),
+		border-color var(--transition),
+		background-color var(--transition);
+}
+
+.tab[aria-selected='true'] {
+	border-bottom-color: var(--color-secondary);
+	color: var(--color-secondary);
+}
+
+.tab:hover {
+	background-color: var(--color-secondary-10);
+}
+
+@media (min-width: 640px) {
+	.tab {
+		font-size: calc(var(--font-size-2) * 1px);
+		padding: calc(var(--spacing-1) * 1px) calc(var(--spacing-2) * 1px);
+	}
+}
+
+@media (max-width: 639px) {
+	.tab {
+		font-size: calc(var(--calc-sp) * var(--font-size-2));
+		padding: calc(var(--calc-sp) * var(--spacing-1)) calc(var(--calc-sp) * var(--spacing-2));
+	}
+}

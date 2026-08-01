@@ -21,7 +21,12 @@ export default async function HomePage() {
 							マイフレーズ
 						</Typography>
 						{myPhraseCategories.length > 0 && (
-							<SpeechLangCardImageList items={myPhraseCategories} getHref={paths.myPhrase} />
+							<SpeechLangCardImageList
+								items={myPhraseCategories.map((item) => ({
+									...item,
+									href: paths.myPhrase(item.id)
+								}))}
+							/>
 						)}
 					</Stack>
 				)}
@@ -30,7 +35,12 @@ export default async function HomePage() {
 						フレーズ
 					</Typography>
 					{phraseCollections.length > 0 && (
-						<SpeechLangCardImageList items={phraseCollections} getHref={paths.phrase} />
+						<SpeechLangCardImageList
+							items={phraseCollections.map((item) => ({
+								...item,
+								href: paths.phrase(item.id)
+							}))}
+						/>
 					)}
 				</Stack>
 			</Stack>

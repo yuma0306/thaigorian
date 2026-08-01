@@ -1,0 +1,35 @@
+.inputRow {
+	align-items: center;
+	display: flex;
+	width: 100%;
+}
+
+.inputWrap {
+	flex: 1;
+	min-width: 0;
+}
+
+.particle {
+	color: var(--color-primary);
+	flex-shrink: 0;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+	.inputRow {
+		gap: calc(var(--spacing-1) * 1px);
+	}
+	.particle {
+		font-size: calc(var(--font-size-3) * 1px);
+	}
+}
+
+@media (max-width: 639px) {
+	.inputRow {
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+	}
+	.particle {
+		font-size: calc(var(--calc-sp) * var(--font-size-3));
+	}
+}

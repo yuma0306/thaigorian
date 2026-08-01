@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { LessonResult, Phrase } from '@/types/database';
-import { orderItemsByIndices, pickRandomItems } from '@/functions/lesson';
+import { orderItemsByIndices, pickRandomItems, splitTrailingThaiParticles } from '@/functions/lesson';
 import { loadLessonIndices, type LessonScope } from '@/functions/lessonSession';
 
 export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases: Phrase[]) {
@@ -31,7 +31,11 @@ export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases
 
 	function handleUserInputChange(value: string) {
 		setUserInput(value);
-		if (currentPhrase?.phrase !== undefined && value === currentPhrase.phrase) {
+		if (currentPhrase?.phrase === undefined || currentPhrase.phrase === null) {
+			return;
+		}
+		const { core } = splitTrailingThaiParticles(currentPhrase.phrase);
+		if (value === core) {
 			setResults((prev) => [...prev, { phrase: currentPhrase, correct: true }]);
 			setIsCorrect(true);
 		}

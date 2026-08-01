@@ -5,7 +5,9 @@ import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
 import { SkipButton } from '@/components/SkipButton/SkipButton';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
+import { splitTrailingThaiParticles } from '@/functions/lesson';
 import type { Phrase } from '@/types/database';
+import styles from './LessonQuizSection.module.css';
 
 type Props = {
 	currentIndex: number;
@@ -34,6 +36,8 @@ export function LessonQuizSection({
 	onAdvance,
 	onSkip
 }: Props) {
+	const { particle } = splitTrailingThaiParticles(phrase.phrase);
+
 	return (
 		<Stack size={3} variant="section">
 			<Stack size={1} variant="div">
@@ -49,14 +53,19 @@ export function LessonQuizSection({
 				speechLang={speechLang}
 				onShowAnswerChange={onShowAnswerChange}
 			/>
-			<InputText
-				isCorrect={isCorrect}
-				value={userInput}
-				onChange={(e) => onUserInputChange(e.target.value)}
-				placeholder="タイ文字を入力！"
-				lang="th"
-				disabled={isCorrect}
-			/>
+			<div className={styles.inputRow}>
+				<div className={styles.inputWrap}>
+					<InputText
+						isCorrect={isCorrect}
+						value={userInput}
+						onChange={(e) => onUserInputChange(e.target.value)}
+						placeholder="タイ文字を入力！"
+						lang="th"
+						disabled={isCorrect}
+					/>
+				</div>
+				{particle && <span className={styles.particle}>{particle}</span>}
+			</div>
 			{isCorrect && (
 				<Button variant="button" color="success" onClick={onAdvance}>
 					次へ進む
