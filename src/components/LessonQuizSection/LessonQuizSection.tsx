@@ -39,7 +39,7 @@ export function LessonQuizSection({
 	const { particle } = splitTrailingThaiParticles(phrase.phrase);
 
 	return (
-		<Stack size={3} variant="section">
+		<Stack size={2} variant="section">
 			<Stack size={1} variant="div">
 				<Typography size={2} variant="p" color="dark" weight="bold" align="center">
 					{currentIndex + 1} / {total}

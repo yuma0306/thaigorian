@@ -10,7 +10,7 @@ import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDeta
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
-import type { MyPhraseCategoryView } from '@/functions/myPhrases';
+import type { MyPhraseCategoryView } from '@/types/myPhrases';
 import { pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
 import { useThaiVisibility } from '@/hooks/useThaiVisibility';
@@ -31,34 +31,40 @@ export function MyPhraseDetail({ category }: Props) {
 	}
 
 	return (
-		<Inner>
+		<Stack size={2} variant="div">
 			<Crumbs items={[{ text: category.title, href: paths.myPhrase(category.id) }]} />
-			<Stack size={3} variant="section">
-				<PairPageLink href={paths.memberPhrasesDetail(category.id)}>編集する</PairPageLink>
-				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
-					{category.title}
-				</Typography>
-				<PhraseDetailToolbar
-					canStart={canStart}
-					hideThai={hideThai}
-					onStartLesson={startLesson}
-					onToggleHideThai={toggleHideThai}
-				/>
-				{category.phrases.length > 0 && (
-					<Stack size={2} variant="ul">
-						{category.phrases.map((phrase, index) => (
-							<Card
-								key={`${phrase.fieldId}-${index}`}
-								variant="li"
-								borderColor="gray"
-								hasBorderLeft
-							>
-								<PhraseCard phrase={phrase} hideThai={hideThai} speechLang={category.speechLang} />
-							</Card>
-						))}
-					</Stack>
-				)}
-			</Stack>
-		</Inner>
+			<Inner>
+				<Stack size={2} variant="section">
+					<PairPageLink href={paths.memberPhrasesDetail(category.id)}>編集する</PairPageLink>
+					<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
+						{category.title}
+					</Typography>
+					<PhraseDetailToolbar
+						canStart={canStart}
+						hideThai={hideThai}
+						onStartLesson={startLesson}
+						onToggleHideThai={toggleHideThai}
+					/>
+					{category.phrases.length > 0 && (
+						<Stack size={2} variant="ul">
+							{category.phrases.map((phrase, index) => (
+								<Card
+									key={`${phrase.fieldId}-${index}`}
+									variant="li"
+									borderColor="gray"
+									hasBorderLeft
+								>
+									<PhraseCard
+										phrase={phrase}
+										hideThai={hideThai}
+										speechLang={category.speechLang}
+									/>
+								</Card>
+							))}
+						</Stack>
+					)}
+				</Stack>
+			</Inner>
+		</Stack>
 	);
 }

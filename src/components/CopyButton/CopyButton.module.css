@@ -10,9 +10,6 @@
 			opacity: var(--opacity);
 		}
 	}
-	&:active {
-		opacity: var(--opacity);
-	}
 }
 @media (min-width: 640px) {
 	.button {

@@ -27,7 +27,7 @@ export function MemberHome() {
 	return (
 		<Inner>
 			<Crumbs items={[{ text: 'マイページ', href: paths.member }]} />
-			<Stack size={3} variant="section">
+			<Stack size={2} variant="section">
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					マイページ
 				</Typography>

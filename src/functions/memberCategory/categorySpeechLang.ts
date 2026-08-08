@@ -1,11 +1,9 @@
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { defaultSpeechLang, resolveSpeechLang, type SpeechLang } from '@/constants/speechLangs';
-import type { createSupabaseServerClient } from '@/functions/supabaseServer';
 import { isMissingSpeechLangColumn } from '@/functions/memberCategory/isMissingSpeechLangColumn';
 
-type Supabase = NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>;
-
 export async function fetchMyCategoryForEdit(
-	supabase: Supabase,
+	supabase: SupabaseClient,
 	userId: string,
 	categoryId: string
 ): Promise<{
@@ -72,7 +70,7 @@ function mapCategoryListRows(rows: CategoryListRow[]) {
 }
 
 export async function fetchMyCategoryList(
-	supabase: Supabase,
+	supabase: SupabaseClient,
 	userId: string
 ): Promise<{ categories: ReturnType<typeof mapCategoryListRows> | null; error: Error | null }> {
 	const withLang = await supabase

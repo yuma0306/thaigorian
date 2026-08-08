@@ -52,7 +52,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 			];
 
 	return (
-		<Stack size={3} variant="div">
+		<Stack size={2} variant="div">
 			<Crumbs items={crumbItems} />
 			<Inner>
 				<Stack variant="div" size={3}>

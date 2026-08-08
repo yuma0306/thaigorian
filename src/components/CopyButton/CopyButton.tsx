@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import type { Phrase } from '@/types/database';
 import { CopyIcon } from '@/components/Icon/CopyIcon';
+import { useToast } from '@/hooks/useToast';
 import styles from './CopyButton.module.css';
 
 type Props = {
@@ -10,26 +10,25 @@ type Props = {
 };
 
 export function CopyButton({ text }: Props) {
-	const [copied, setCopied] = useState(false);
-
+	const { showToast } = useToast();
 	async function copyToClipboard(value: string) {
 		try {
 			await navigator.clipboard.writeText(value);
-			setCopied(true);
-			setTimeout(() => setCopied(false), 2000);
-		} catch (err) {
-			console.error('Failed to copy:', err);
+			showToast(`「${value}」をコピーしました`);
+		} catch {
+			showToast('コピーに失敗しました', 'error');
 		}
 	}
-
 	if (!text) return null;
-
 	return (
 		<button
 			type="button"
 			className={styles.button}
-			onClick={() => copyToClipboard(text)}
-			title={copied ? 'コピーしました！' : 'コピー'}
+			onClick={() => {
+				void copyToClipboard(text);
+			}}
+			aria-label="コピー"
+			title="コピー"
 		>
 			<CopyIcon />
 		</button>
