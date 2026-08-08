@@ -34,7 +34,7 @@ export function SituationDetail({ collection }: Props) {
 	return (
 		<Inner>
 			<Crumbs items={[{ text: collection.title, href: paths.phrase(collection.id) }]} />
-			<Stack size={3} variant="section">
+			<Stack size={2} variant="section">
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					{collection.title}
 				</Typography>

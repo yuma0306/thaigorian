@@ -58,7 +58,7 @@ export function AuthForm({
 		<div className={styles.authForm}>
 			<Card borderColor="gray" hasBorderLeft={false} variant="div">
 				<form onSubmit={handleSubmit}>
-					<Stack size={3} variant="div">
+					<Stack size={2} variant="div">
 						<Stack size={1} variant="div">
 							<Typography size={4} variant="h1" color="primary" weight="bold" align="center">
 								{title}

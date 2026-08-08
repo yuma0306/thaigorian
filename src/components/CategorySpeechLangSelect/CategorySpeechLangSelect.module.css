@@ -8,12 +8,7 @@
 	.select {
 		border: 1px solid var(--color-gray);
 		border-radius: calc(var(--border-radius) * 1px);
-		box-shadow: 0 0 8px var(--color-gray);
 		padding: calc(var(--spacing-1) * 1px);
-
-		&:focus {
-			box-shadow: 0 0 8px var(--color-input);
-		}
 	}
 }
 
@@ -22,9 +17,5 @@
 		border: calc(var(--calc-sp) * 1) solid var(--color-gray);
 		border-radius: calc(var(--border-radius) * var(--calc-sp));
 		padding: calc(var(--calc-sp) * var(--spacing-1));
-
-		&:focus {
-			box-shadow: 0 0 calc(var(--calc-sp) * 8) var(--color-input);
-		}
 	}
 }

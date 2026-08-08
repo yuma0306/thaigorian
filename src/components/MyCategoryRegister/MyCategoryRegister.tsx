@@ -6,6 +6,7 @@ import { CategorySpeechLangSelect } from '@/components/CategorySpeechLangSelect/
 import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
+import { PairPageLink } from '@/components/PairPageLink/PairPageLink';
 import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/PhraseRepeaterSection';
 import { Stack } from '@/components/Stack/Stack';
 import { defaultSpeechLang } from '@/constants/speechLangs';
@@ -51,47 +52,52 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 			];
 
 	return (
-		<Stack size={3} variant="div">
+		<Stack size={2} variant="div">
 			<Crumbs items={crumbItems} />
 			<Inner>
-				<form onSubmit={(event) => event.preventDefault()}>
-					<Stack variant="div" size={3}>
-						<CategoryTextField
-							id="category-title"
-							label="タイトル"
-							name="title"
-							control={control}
-							labelAction={
-								categoryId && onDelete ? (
-									<CategoryDeleteButton
-										isDeleting={registerForm.isDeleting}
-										isSaving={registerForm.isSaving}
-										onClick={registerForm.handleDeleteClick}
-									/>
-								) : undefined
-							}
-						/>
-						<CategorySpeechLangSelect control={control} />
-						<PhraseRepeaterSection
-							control={control}
-							phraseFields={registerForm.phraseFields}
-							openMenu={registerForm.openMenu}
-							onAddPhrase={registerForm.handleAddPhrase}
-							onToggleMenu={registerForm.handleToggleMenu}
-							onInsertPhrase={registerForm.handleInsertPhrase}
-							onMovePhrase={registerForm.handleMovePhrase}
-							onRemovePhrase={registerForm.handleRemovePhrase}
-							onCloseMenu={registerForm.handleCloseMenu}
-						/>
-						<CategoryRegisterActions
-							saveLabel={saveLabel}
-							isSaving={registerForm.isSaving}
-							onSaveClick={() => {
-								void registerForm.handleSave();
-							}}
-						/>
-					</Stack>
-				</form>
+				<Stack variant="div" size={3}>
+					{categoryId && (
+						<PairPageLink href={paths.myPhrase(categoryId)}>マイフレーズを見る</PairPageLink>
+					)}
+					<form onSubmit={(event) => event.preventDefault()}>
+						<Stack variant="div" size={3}>
+							<CategoryTextField
+								id="category-title"
+								label="タイトル"
+								name="title"
+								control={control}
+								labelAction={
+									categoryId && onDelete ? (
+										<CategoryDeleteButton
+											isDeleting={registerForm.isDeleting}
+											isSaving={registerForm.isSaving}
+											onClick={registerForm.handleDeleteClick}
+										/>
+									) : undefined
+								}
+							/>
+							<CategorySpeechLangSelect control={control} />
+							<PhraseRepeaterSection
+								control={control}
+								phraseFields={registerForm.phraseFields}
+								openMenu={registerForm.openMenu}
+								onAddPhrase={registerForm.handleAddPhrase}
+								onToggleMenu={registerForm.handleToggleMenu}
+								onInsertPhrase={registerForm.handleInsertPhrase}
+								onMovePhrase={registerForm.handleMovePhrase}
+								onRemovePhrase={registerForm.handleRemovePhrase}
+								onCloseMenu={registerForm.handleCloseMenu}
+							/>
+							<CategoryRegisterActions
+								saveLabel={saveLabel}
+								isSaving={registerForm.isSaving}
+								onSaveClick={() => {
+									void registerForm.handleSave();
+								}}
+							/>
+						</Stack>
+					</form>
+				</Stack>
 			</Inner>
 		</Stack>
 	);

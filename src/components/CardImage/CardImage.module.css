@@ -33,7 +33,6 @@
 @media (min-width: 640px) {
 	.card {
 		border-radius: calc(var(--border-radius) * 1px);
-		box-shadow: 0 0 calc(var(--spacing-1) * 1px) var(--color-gray);
 		padding: calc(var(--spacing-2) * 1px);
 	}
 	.title {
@@ -43,7 +42,6 @@
 @media (max-width: 639px) {
 	.card {
 		border-radius: calc(var(--calc-sp) * var(--border-radius));
-		box-shadow: 0 0 calc(var(--calc-sp) * var(--spacing-1)) var(--color-gray);
 		padding: calc(var(--calc-sp) * var(--spacing-2));
 	}
 	.title {

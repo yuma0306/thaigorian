@@ -1,0 +1,17 @@
+.link {
+	font-weight: 700;
+	text-decoration: underline;
+	transition: opacity var(--transition);
+}
+
+@media (min-width: 640px) {
+	.link {
+		font-size: calc(var(--font-size-2) * 1px);
+	}
+}
+
+@media (max-width: 639px) {
+	.link {
+		font-size: calc(var(--calc-sp) * var(--font-size-2));
+	}
+}

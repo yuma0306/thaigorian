@@ -11,8 +11,10 @@
 	--color-secondary-10: color-mix(in srgb, var(--color-secondary) 10%, var(--color-white));
 	--color-secondary-black: color-mix(in srgb, var(--color-secondary) 60%, var(--color-black));
 	--color-success: #28a745;
-	--color-success-10: color-mix(in srgb, var(--color-success) 10%, var(--color-white));
+	--color-success-5: color-mix(in srgb, var(--color-success) 5%, var(--color-white));
 	--color-success-black: color-mix(in srgb, var(--color-success) 60%, var(--color-black));
+	--color-error: #dc3545;
+	--color-error-5: color-mix(in srgb, var(--color-error) 5%, var(--color-white));
 	--color-input: #3b82f6;
 	--color-input-50: color-mix(in srgb, var(--color-input) 50%, var(--color-white));
 	--color-input-10: color-mix(in srgb, var(--color-input) 10%, var(--color-white));

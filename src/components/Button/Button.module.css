@@ -29,12 +29,6 @@
 		font-size: calc(var(--font-size-2) * 1px);
 		padding: calc(var(--spacing-2) * 1px);
 		width: min(100%, 400px);
-		&[data-color='secondary'] {
-			box-shadow: 0 4px 0 var(--color-secondary-black);
-		}
-		&[data-color='success'] {
-			box-shadow: 0 4px 0 var(--color-success-black);
-		}
 	}
 }
 @media (max-width: 639px) {
@@ -43,11 +37,5 @@
 		font-size: calc(var(--calc-sp) * var(--font-size-2));
 		padding: calc(var(--calc-sp) * var(--spacing-2));
 		width: 100%;
-		&[data-color='secondary'] {
-			box-shadow: 0 calc(var(--calc-sp) * 4) 0 var(--color-secondary-black);
-		}
-		&[data-color='success'] {
-			box-shadow: 0 calc(var(--calc-sp) * 4) 0 var(--color-success-black);
-		}
 	}
 }

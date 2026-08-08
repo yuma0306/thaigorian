@@ -12,7 +12,7 @@ export default async function MemberProfilePage() {
 
 	return (
 		<Inner>
-			<Stack size={3} variant="section">
+			<Stack size={2} variant="section">
 				<Crumbs
 					items={[
 						{ text: 'マイページ', href: paths.member },

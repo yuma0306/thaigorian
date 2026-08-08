@@ -1,8 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
-import { paths } from '@/constants/paths';
-import { getMyPhraseCategoryById } from '@/functions/myPhrases';
-import { createSupabaseServerClient } from '@/functions/supabaseServer';
-import { MyPhraseDetail } from './MyPhraseDetail';
+import { MyPhraseDetailPage } from './MyPhraseDetailPage';
 
 type Props = {
 	params: Promise<{ id: string }>;
@@ -10,21 +6,5 @@ type Props = {
 
 export default async function MyPhrasePage({ params }: Props) {
 	const { id } = await params;
-	const supabase = await createSupabaseServerClient();
-
-	const {
-		data: { user }
-	} = await supabase.auth.getUser();
-
-	if (!user) {
-		redirect(paths.login);
-	}
-
-	const category = await getMyPhraseCategoryById(id);
-
-	if (!category) {
-		notFound();
-	}
-
-	return <MyPhraseDetail category={category} />;
+	return <MyPhraseDetailPage categoryId={id} />;
 }
