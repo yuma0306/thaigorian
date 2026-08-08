@@ -25,10 +25,6 @@
 	color: var(--color-secondary);
 }
 
-.tab:hover {
-	background-color: var(--color-secondary-10);
-}
-
 @media (min-width: 640px) {
 	.tab {
 		font-size: calc(var(--font-size-2) * 1px);

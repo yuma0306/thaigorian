@@ -23,14 +23,7 @@ export function PhraseDetailToolbar({
 					{`ランダム${maxLessonItems}問`}
 				</Button>
 			</div>
-			<ToggleRevealButton
-				isFixed
-				expanded={!hideThai}
-				showLabel="👀"
-				hideLabel="🙈"
-				ariaLabel={hideThai ? 'タイ語を表示' : 'タイ語を隠す'}
-				onClick={onToggleHideThai}
-			/>
+			<ToggleRevealButton isFixed expanded={!hideThai} onClick={onToggleHideThai} />
 		</>
 	);
 }

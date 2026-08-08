@@ -36,9 +36,6 @@ export function QuestionCard({
 					<VoiceButton text={phrase} lang={speechLang} />
 					<ToggleRevealButton
 						expanded={showAnswer}
-						showLabel="👀 回答を見る"
-						hideLabel="🙈 回答を隠す"
-						ariaLabel="回答を見る"
 						onClick={() => onShowAnswerChange(!showAnswer)}
 					/>
 				</FlexColumn>

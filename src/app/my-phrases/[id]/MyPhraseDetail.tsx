@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Card } from '@/components/Card/Card';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
+import { PairPageLink } from '@/components/PairPageLink/PairPageLink';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
 import { Stack } from '@/components/Stack/Stack';
@@ -33,6 +34,7 @@ export function MyPhraseDetail({ category }: Props) {
 		<Inner>
 			<Crumbs items={[{ text: category.title, href: paths.myPhrase(category.id) }]} />
 			<Stack size={3} variant="section">
+				<PairPageLink href={paths.memberPhrasesDetail(category.id)}>編集する</PairPageLink>
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 					{category.title}
 				</Typography>
