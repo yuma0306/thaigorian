@@ -1,4 +1,4 @@
-import { FlexColumn } from '../FlexColumn/FlexColumn';
+import { Button } from '@/components/Button/Button';
 import styles from './CategoryRegisterActions.module.css';
 
 type Props = {
@@ -9,10 +9,10 @@ type Props = {
 
 export function CategoryRegisterActions({ saveLabel, isSaving, onSaveClick }: Props) {
 	return (
-		<FlexColumn variant="div" justifyContent="center" gap={1}>
-			<button className={styles.saveButton} type="button" disabled={isSaving} onClick={onSaveClick}>
+		<div className={styles.sticky}>
+			<Button variant="button" color="secondary" disabled={isSaving} onClick={onSaveClick}>
 				{isSaving ? '保存中...' : saveLabel}
-			</button>
-		</FlexColumn>
+			</Button>
+		</div>
 	);
 }

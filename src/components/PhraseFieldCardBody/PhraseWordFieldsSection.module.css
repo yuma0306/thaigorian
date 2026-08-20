@@ -1,0 +1,18 @@
+.section {
+	border-left: 1px solid var(--color-input-50);
+	display: grid;
+}
+
+@media (min-width: 640px) {
+	.section {
+		gap: calc(var(--spacing-2) * 1px);
+		padding-inline-start: calc(var(--spacing-2) * 1px);
+	}
+}
+
+@media (max-width: 639px) {
+	.section {
+		gap: calc(var(--calc-sp) * var(--spacing-2));
+		padding-inline-start: calc(var(--calc-sp) * var(--spacing-2));
+	}
+}
