@@ -25,8 +25,10 @@ export function MyPhraseLesson({ category }: Props) {
 					total={lesson.total}
 					phrase={currentPhrase}
 					showAnswer={lesson.showAnswer}
+					showDiff={lesson.showDiff}
 					speechLang={category.speechLang}
 					onShowAnswerChange={lesson.handleShowAnswerChange}
+					onShowDiffChange={lesson.handleShowDiffChange}
 					isCorrect={lesson.isCorrect}
 					userInput={lesson.userInput}
 					onUserInputChange={lesson.handleUserInputChange}

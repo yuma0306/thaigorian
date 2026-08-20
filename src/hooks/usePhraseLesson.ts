@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { LessonResult, Phrase } from '@/types/database';
-import { orderItemsByIndices, pickRandomItems, splitTrailingThaiParticles } from '@/functions/lesson';
+import {
+	orderItemsByIndices,
+	pickRandomItems,
+	splitTrailingThaiParticles
+} from '@/functions/lesson';
 import { loadLessonIndices, type LessonScope } from '@/functions/lessonSession';
 
 export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases: Phrase[]) {
@@ -10,6 +14,7 @@ export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases
 	const [results, setResults] = useState<LessonResult[]>([]);
 	const [isCorrect, setIsCorrect] = useState(false);
 	const [showAnswer, setShowAnswer] = useState(false);
+	const [showDiff, setShowDiff] = useState(false);
 	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
@@ -52,10 +57,7 @@ export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases
 		setUserInput('');
 		setIsCorrect(false);
 		setShowAnswer(false);
-	}
-
-	function handleShowAnswerChange(value: boolean) {
-		setShowAnswer(value);
+		setShowDiff(false);
 	}
 
 	return {
@@ -69,7 +71,9 @@ export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases
 		userInput,
 		isCorrect,
 		showAnswer,
-		handleShowAnswerChange,
+		showDiff,
+		handleShowAnswerChange: setShowAnswer,
+		handleShowDiffChange: setShowDiff,
 		results,
 		handleUserInputChange,
 		handleSkipPhrase,

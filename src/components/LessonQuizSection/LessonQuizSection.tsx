@@ -1,5 +1,6 @@
 import { Button } from '@/components/Button/Button';
 import { InputText } from '@/components/InputText/InputText';
+import { PhraseDiff } from '@/components/PhraseDiff/PhraseDiff';
 import { Progress } from '@/components/Progress/Progress';
 import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
 import { SkipButton } from '@/components/SkipButton/SkipButton';
@@ -14,8 +15,10 @@ type Props = {
 	total: number;
 	phrase: Phrase;
 	showAnswer: boolean;
+	showDiff: boolean;
 	speechLang: string;
 	onShowAnswerChange: (value: boolean) => void;
+	onShowDiffChange: (value: boolean) => void;
 	isCorrect: boolean;
 	userInput: string;
 	onUserInputChange: (value: string) => void;
@@ -28,15 +31,17 @@ export function LessonQuizSection({
 	total,
 	phrase,
 	showAnswer,
+	showDiff,
 	speechLang,
 	onShowAnswerChange,
+	onShowDiffChange,
 	isCorrect,
 	userInput,
 	onUserInputChange,
 	onAdvance,
 	onSkip
 }: Props) {
-	const { particle } = splitTrailingThaiParticles(phrase.phrase);
+	const { core, particle } = splitTrailingThaiParticles(phrase.phrase);
 
 	return (
 		<Stack size={2} variant="section">
@@ -50,8 +55,10 @@ export function LessonQuizSection({
 				meaning={phrase.meaning}
 				phrase={phrase.phrase}
 				showAnswer={showAnswer}
+				showDiff={showDiff}
 				speechLang={speechLang}
 				onShowAnswerChange={onShowAnswerChange}
+				onShowDiffChange={onShowDiffChange}
 			/>
 			<div className={styles.inputRow}>
 				<div className={styles.inputWrap}>
@@ -66,6 +73,7 @@ export function LessonQuizSection({
 				</div>
 				{particle && <span className={styles.particle}>{particle}</span>}
 			</div>
+			{showDiff && <PhraseDiff input={userInput} expected={core} particle={particle} />}
 			{isCorrect && (
 				<Button variant="button" color="success" onClick={onAdvance}>
 					次へ進む
