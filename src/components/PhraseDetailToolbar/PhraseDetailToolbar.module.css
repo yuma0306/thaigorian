@@ -1,7 +1,26 @@
 .toolbar {
-	align-items: center;
+	display: grid;
+	gap: calc(var(--spacing-2) * 1px);
+	width: 100%;
+}
+
+.buttonRow {
 	display: flex;
 	flex-wrap: wrap;
 	gap: calc(var(--spacing-2) * 1px);
 	justify-content: center;
+}
+
+.selectAllRow {
+	display: flex;
+	justify-content: start;
+}
+
+@media (max-width: 639px) {
+	.toolbar {
+		gap: calc(var(--calc-sp) * var(--spacing-2));
+	}
+	.buttonRow {
+		gap: calc(var(--calc-sp) * var(--spacing-2));
+	}
 }

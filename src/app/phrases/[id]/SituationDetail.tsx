@@ -12,7 +12,9 @@ import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { Card } from '@/components/Card/Card';
 import { Inner } from '@/components/Inner/Inner';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
+import { PhraseDetailCardSelect } from '@/components/PhraseDetailCardSelect/PhraseDetailCardSelect';
 import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
+import { usePhraseSelection } from '@/hooks/usePhraseSelection';
 import { useThaiVisibility } from '@/hooks/useThaiVisibility';
 
 type Props = {
@@ -22,18 +24,20 @@ type Props = {
 export function SituationDetail({ collection }: Props) {
 	const router = useRouter();
 	const { hideThai, toggleHideThai } = useThaiVisibility();
-	const canStart = collection.phrases.length > 0;
+	const { selectedIndices, allSelected, isSelected, togglePhrase, setAllPhrasesSelected } =
+		usePhraseSelection(collection.phrases.length);
+	const canStart = selectedIndices.length > 0;
 	const speechLang = resolveSpeechLang(collection.speechLang);
 
 	function startRandomLesson() {
-		if (collection.phrases.length === 0) return;
-		saveLessonIndices('phrase', collection.id, pickRandomIndices(collection.phrases.length));
+		if (selectedIndices.length === 0) return;
+		saveLessonIndices('phrase', collection.id, pickRandomIndices(selectedIndices));
 		router.push(paths.phraseLesson(collection.id));
 	}
 
 	function startAllLesson() {
-		if (collection.phrases.length === 0) return;
-		saveLessonIndices('phrase', collection.id, allLessonIndices(collection.phrases.length));
+		if (selectedIndices.length === 0) return;
+		saveLessonIndices('phrase', collection.id, allLessonIndices(selectedIndices));
 		router.push(paths.phraseLesson(collection.id));
 	}
 
@@ -45,8 +49,10 @@ export function SituationDetail({ collection }: Props) {
 					{collection.title}
 				</Typography>
 				<PhraseDetailToolbar
+					allSelected={allSelected}
 					canStart={canStart}
 					hideThai={hideThai}
+					onAllSelectedChange={setAllPhrasesSelected}
 					onStartRandomLesson={startRandomLesson}
 					onStartAllLesson={startAllLesson}
 					onToggleHideThai={toggleHideThai}
@@ -60,7 +66,12 @@ export function SituationDetail({ collection }: Props) {
 								borderColor="gray"
 								hasBorderLeft
 							>
-								<PhraseCard phrase={phrase} hideThai={hideThai} speechLang={speechLang} />
+								<PhraseDetailCardSelect
+									checked={isSelected(index)}
+									onCheckedChange={() => togglePhrase(index)}
+								>
+									<PhraseCard phrase={phrase} hideThai={hideThai} speechLang={speechLang} />
+								</PhraseDetailCardSelect>
 							</Card>
 						))}
 					</Stack>

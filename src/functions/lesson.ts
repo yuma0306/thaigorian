@@ -2,7 +2,7 @@ import { normalizeThaiText } from '@/functions/normalizeThaiText';
 
 export const maxLessonItems = 5;
 
-const trailingThaiParticles = ['ครับ', 'ค่ะ', 'นะ'] as const;
+const trailingThaiParticles = ['ครับ', 'ค่ะ', 'คะ', 'นะ'] as const;
 
 function matchTrailingParticle(text: string) {
 	const particle = trailingThaiParticles.find((item) => text.endsWith(item));
@@ -46,12 +46,14 @@ export const pickRandomItems = <T>(items: T[], max = maxLessonItems) => {
 	return shuffle(items).slice(0, Math.min(max, items.length));
 };
 
-export const pickRandomIndices = (length: number, max = maxLessonItems) => {
-	const indices = Array.from({ length }, (_, i) => i);
-	return shuffle(indices).slice(0, Math.min(max, length));
+export const pickRandomIndices = (indices: readonly number[], max = maxLessonItems) => {
+	if (indices.length === 0) {
+		return [];
+	}
+	return shuffle(indices).slice(0, Math.min(max, indices.length));
 };
 
-export const allLessonIndices = (length: number) => Array.from({ length }, (_, index) => index);
+export const allLessonIndices = (indices: readonly number[]) => [...indices];
 
 export const orderItemsByIndices = <T>(items: T[], indices: number[]) => {
 	return indices.reduce<T[]>((orderedItems, index) => {

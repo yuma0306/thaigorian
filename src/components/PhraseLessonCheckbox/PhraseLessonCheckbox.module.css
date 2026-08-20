@@ -1,0 +1,25 @@
+.label {
+	align-items: center;
+	cursor: pointer;
+	display: inline-flex;
+	gap: calc(var(--spacing-1) * 1px);
+	line-height: 1;
+}
+
+.checkbox {
+	accent-color: var(--color-secondary);
+	appearance: auto;
+	block-size: calc(var(--spacing-2) * 1px);
+	cursor: pointer;
+	inline-size: calc(var(--spacing-2) * 1px);
+}
+
+@media (max-width: 639px) {
+	.label {
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+	}
+	.checkbox {
+		block-size: calc(var(--calc-sp) * var(--spacing-2));
+		inline-size: calc(var(--calc-sp) * var(--spacing-2));
+	}
+}
