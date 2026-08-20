@@ -1,3 +1,5 @@
+import { normalizeThaiText } from '@/functions/normalizeThaiText';
+
 export const maxLessonItems = 5;
 
 const trailingThaiParticles = ['ครับ', 'ค่ะ', 'นะ'] as const;
@@ -32,7 +34,7 @@ export function splitTrailingThaiParticles(phrase: string | null | undefined): {
 		return { core: '', particle: '' };
 	}
 
-	const original = phrase.trimEnd();
+	const original = normalizeThaiText(phrase.trimEnd());
 	const result = stripTrailingParticles(original, []);
 	if (!result.core) {
 		return { core: original, particle: '' };

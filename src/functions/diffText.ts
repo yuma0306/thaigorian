@@ -1,8 +1,9 @@
 import { buildDiffParts, type DiffPart } from '@/functions/buildDiffParts';
+import { normalizeThaiText } from '@/functions/normalizeThaiText';
 
 export function diffText(input: string, expected: string): DiffPart[] {
-	const inputGraphemes = splitGraphemes(input);
-	const expectedGraphemes = splitGraphemes(expected);
+	const inputGraphemes = splitGraphemes(normalizeThaiText(input));
+	const expectedGraphemes = splitGraphemes(normalizeThaiText(expected));
 	return mergeDiffParts(buildDiffParts(inputGraphemes, expectedGraphemes));
 }
 

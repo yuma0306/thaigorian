@@ -6,6 +6,7 @@ import {
 	splitTrailingThaiParticles
 } from '@/functions/lesson';
 import { loadLessonIndices, type LessonScope } from '@/functions/lessonSession';
+import { normalizeThaiText } from '@/functions/normalizeThaiText';
 
 export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases: Phrase[]) {
 	const [phrases, setPhrases] = useState<Phrase[]>([]);
@@ -40,7 +41,7 @@ export function usePhraseLesson(scope: LessonScope, lessonId: string, allPhrases
 			return;
 		}
 		const { core } = splitTrailingThaiParticles(currentPhrase.phrase);
-		if (value === core) {
+		if (normalizeThaiText(value) === core) {
 			setResults((prev) => [...prev, { phrase: currentPhrase, correct: true }]);
 			setIsCorrect(true);
 		}
