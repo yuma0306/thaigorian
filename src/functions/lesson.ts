@@ -1,3 +1,5 @@
+import { normalizeThaiText } from '@/functions/normalizeThaiText';
+
 export const maxLessonItems = 5;
 
 const trailingThaiParticles = ['ครับ', 'ค่ะ', 'นะ'] as const;
@@ -32,7 +34,7 @@ export function splitTrailingThaiParticles(phrase: string | null | undefined): {
 		return { core: '', particle: '' };
 	}
 
-	const original = phrase.trimEnd();
+	const original = normalizeThaiText(phrase.trimEnd());
 	const result = stripTrailingParticles(original, []);
 	if (!result.core) {
 		return { core: original, particle: '' };
@@ -48,6 +50,8 @@ export const pickRandomIndices = (length: number, max = maxLessonItems) => {
 	const indices = Array.from({ length }, (_, i) => i);
 	return shuffle(indices).slice(0, Math.min(max, length));
 };
+
+export const allLessonIndices = (length: number) => Array.from({ length }, (_, index) => index);
 
 export const orderItemsByIndices = <T>(items: T[], indices: number[]) => {
 	return indices.reduce<T[]>((orderedItems, index) => {

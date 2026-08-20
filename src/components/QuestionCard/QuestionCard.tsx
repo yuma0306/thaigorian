@@ -6,6 +6,7 @@ import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { VoiceButton } from '@/components/VoiceButton/VoiceButton';
 import { CopyButton } from '@/components/CopyButton/CopyButton';
+import { ToggleDiffButton } from '@/components/ToggleDiffButton/ToggleDiffButton';
 import { ToggleRevealButton } from '@/components/ToggleRevealButton/ToggleRevealButton';
 import type { Phrase } from '@/types/database';
 
@@ -13,16 +14,20 @@ type Props = {
 	meaning: Phrase['meaning'];
 	phrase: Phrase['phrase'];
 	showAnswer: boolean;
+	showDiff: boolean;
 	speechLang: string;
 	onShowAnswerChange: (value: boolean) => void;
+	onShowDiffChange: (value: boolean) => void;
 };
 
 export function QuestionCard({
 	meaning,
 	phrase,
 	showAnswer,
+	showDiff,
 	speechLang,
-	onShowAnswerChange
+	onShowAnswerChange,
+	onShowDiffChange
 }: Props) {
 	return (
 		<Card variant="div" borderColor="gray" hasBorderLeft={false}>
@@ -38,6 +43,7 @@ export function QuestionCard({
 						expanded={showAnswer}
 						onClick={() => onShowAnswerChange(!showAnswer)}
 					/>
+					<ToggleDiffButton expanded={showDiff} onClick={() => onShowDiffChange(!showDiff)} />
 				</FlexColumn>
 				{showAnswer && (
 					<FlexColumn gap={1} variant="div" alignItems="center" justifyContent="center">

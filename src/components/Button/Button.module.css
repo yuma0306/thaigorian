@@ -22,6 +22,9 @@
 	&[data-color='success'] {
 		background-color: var(--color-success);
 	}
+	&[data-margin-inline='false'] {
+		margin-inline: unset;
+	}
 }
 @media (min-width: 640px) {
 	.button {
