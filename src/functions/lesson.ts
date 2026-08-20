@@ -2,7 +2,7 @@ import { normalizeThaiText } from '@/functions/normalizeThaiText';
 
 export const maxLessonItems = 5;
 
-const trailingThaiParticles = ['ครับ', 'ค่ะ', 'นะ'] as const;
+const trailingThaiParticles = ['ครับ', 'ค่ะ', 'คะ', 'นะ'] as const;
 
 function matchTrailingParticle(text: string) {
 	const particle = trailingThaiParticles.find((item) => text.endsWith(item));
