@@ -8,7 +8,7 @@ type Props = {
 	size: 1 | 2 | 3 | 4 | 5;
 	variant: Variant;
 	color: 'primary' | 'secondary' | 'dark' | 'white' | 'gray';
-	weight: 'normal' | 'bold';
+	weight: 'normal' | 'medium' | 'bold';
 	align: 'left' | 'center' | 'right';
 };
 

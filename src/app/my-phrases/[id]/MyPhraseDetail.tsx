@@ -6,6 +6,7 @@ import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { PairPageLink } from '@/components/PairPageLink/PairPageLink';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
+import { PhraseDetailCardSelect } from '@/components/PhraseDetailCardSelect/PhraseDetailCardSelect';
 import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
@@ -13,6 +14,7 @@ import { paths } from '@/constants/paths';
 import type { MyPhraseCategoryView } from '@/types/myPhrases';
 import { allLessonIndices, pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
+import { usePhraseSelection } from '@/hooks/usePhraseSelection';
 import { useThaiVisibility } from '@/hooks/useThaiVisibility';
 
 type Props = {
@@ -22,17 +24,19 @@ type Props = {
 export function MyPhraseDetail({ category }: Props) {
 	const router = useRouter();
 	const { hideThai, toggleHideThai } = useThaiVisibility();
-	const canStart = category.phrases.length > 0;
+	const { selectedIndices, allSelected, isSelected, togglePhrase, setAllPhrasesSelected } =
+		usePhraseSelection(category.phrases.length);
+	const canStart = selectedIndices.length > 0;
 
 	function startRandomLesson() {
-		if (category.phrases.length === 0) return;
-		saveLessonIndices('my-phrase', category.id, pickRandomIndices(category.phrases.length));
+		if (selectedIndices.length === 0) return;
+		saveLessonIndices('my-phrase', category.id, pickRandomIndices(selectedIndices));
 		router.push(paths.myPhraseLesson(category.id));
 	}
 
 	function startAllLesson() {
-		if (category.phrases.length === 0) return;
-		saveLessonIndices('my-phrase', category.id, allLessonIndices(category.phrases.length));
+		if (selectedIndices.length === 0) return;
+		saveLessonIndices('my-phrase', category.id, allLessonIndices(selectedIndices));
 		router.push(paths.myPhraseLesson(category.id));
 	}
 
@@ -46,8 +50,10 @@ export function MyPhraseDetail({ category }: Props) {
 						{category.title}
 					</Typography>
 					<PhraseDetailToolbar
+						allSelected={allSelected}
 						canStart={canStart}
 						hideThai={hideThai}
+						onAllSelectedChange={setAllPhrasesSelected}
 						onStartRandomLesson={startRandomLesson}
 						onStartAllLesson={startAllLesson}
 						onToggleHideThai={toggleHideThai}
@@ -61,11 +67,16 @@ export function MyPhraseDetail({ category }: Props) {
 									borderColor="gray"
 									hasBorderLeft
 								>
-									<PhraseCard
-										phrase={phrase}
-										hideThai={hideThai}
-										speechLang={category.speechLang}
-									/>
+									<PhraseDetailCardSelect
+										checked={isSelected(index)}
+										onCheckedChange={() => togglePhrase(index)}
+									>
+										<PhraseCard
+											phrase={phrase}
+											hideThai={hideThai}
+											speechLang={category.speechLang}
+										/>
+									</PhraseDetailCardSelect>
 								</Card>
 							))}
 						</Stack>
