@@ -11,7 +11,7 @@ import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
 import type { MyPhraseCategoryView } from '@/types/myPhrases';
-import { pickRandomIndices } from '@/functions/lesson';
+import { allLessonIndices, pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
 import { useThaiVisibility } from '@/hooks/useThaiVisibility';
 
@@ -24,9 +24,15 @@ export function MyPhraseDetail({ category }: Props) {
 	const { hideThai, toggleHideThai } = useThaiVisibility();
 	const canStart = category.phrases.length > 0;
 
-	function startLesson() {
+	function startRandomLesson() {
 		if (category.phrases.length === 0) return;
 		saveLessonIndices('my-phrase', category.id, pickRandomIndices(category.phrases.length));
+		router.push(paths.myPhraseLesson(category.id));
+	}
+
+	function startAllLesson() {
+		if (category.phrases.length === 0) return;
+		saveLessonIndices('my-phrase', category.id, allLessonIndices(category.phrases.length));
 		router.push(paths.myPhraseLesson(category.id));
 	}
 
@@ -42,7 +48,8 @@ export function MyPhraseDetail({ category }: Props) {
 					<PhraseDetailToolbar
 						canStart={canStart}
 						hideThai={hideThai}
-						onStartLesson={startLesson}
+						onStartRandomLesson={startRandomLesson}
+						onStartAllLesson={startAllLesson}
 						onToggleHideThai={toggleHideThai}
 					/>
 					{category.phrases.length > 0 && (

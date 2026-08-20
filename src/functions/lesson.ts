@@ -51,6 +51,8 @@ export const pickRandomIndices = (length: number, max = maxLessonItems) => {
 	return shuffle(indices).slice(0, Math.min(max, length));
 };
 
+export const allLessonIndices = (length: number) => Array.from({ length }, (_, index) => index);
+
 export const orderItemsByIndices = <T>(items: T[], indices: number[]) => {
 	return indices.reduce<T[]>((orderedItems, index) => {
 		const item = items[index];

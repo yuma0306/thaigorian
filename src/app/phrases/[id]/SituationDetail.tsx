@@ -6,7 +6,7 @@ import type { PhraseCollection } from '@/types/database';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
-import { pickRandomIndices } from '@/functions/lesson';
+import { allLessonIndices, pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { Card } from '@/components/Card/Card';
@@ -25,9 +25,15 @@ export function SituationDetail({ collection }: Props) {
 	const canStart = collection.phrases.length > 0;
 	const speechLang = resolveSpeechLang(collection.speechLang);
 
-	function startLesson() {
+	function startRandomLesson() {
 		if (collection.phrases.length === 0) return;
 		saveLessonIndices('phrase', collection.id, pickRandomIndices(collection.phrases.length));
+		router.push(paths.phraseLesson(collection.id));
+	}
+
+	function startAllLesson() {
+		if (collection.phrases.length === 0) return;
+		saveLessonIndices('phrase', collection.id, allLessonIndices(collection.phrases.length));
 		router.push(paths.phraseLesson(collection.id));
 	}
 
@@ -41,7 +47,8 @@ export function SituationDetail({ collection }: Props) {
 				<PhraseDetailToolbar
 					canStart={canStart}
 					hideThai={hideThai}
-					onStartLesson={startLesson}
+					onStartRandomLesson={startRandomLesson}
+					onStartAllLesson={startAllLesson}
 					onToggleHideThai={toggleHideThai}
 				/>
 				{collection.phrases.length > 0 && (
