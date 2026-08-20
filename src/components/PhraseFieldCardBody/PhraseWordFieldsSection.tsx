@@ -9,6 +9,7 @@ import type { MenuState } from '@/types/myCategoryRegister';
 import { FlexColumn } from '../FlexColumn/FlexColumn';
 import { Typography } from '../Typography/Typography';
 import { PhraseWordFieldList } from './PhraseWordFieldList';
+import styles from './PhraseWordFieldsSection.module.css';
 
 type Props = {
 	control: Control<CategoryRegisterFormValues>;
@@ -51,7 +52,7 @@ export function PhraseWordFieldsSection({
 	}
 
 	return (
-		<>
+		<div className={styles.section}>
 			<FlexColumn gap={1} variant="div" alignItems="center">
 				<Typography size={3} variant="span" color="primary" weight="bold" align="left">
 					用語集
@@ -82,6 +83,6 @@ export function PhraseWordFieldsSection({
 					</PhraseAddButtonWrapper>
 				</>
 			)}
-		</>
+		</div>
 	);
 }
