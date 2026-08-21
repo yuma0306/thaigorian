@@ -33,6 +33,11 @@
 		padding: calc(var(--spacing-2) * 1px);
 		width: min(100%, 400px);
 	}
+	.button[data-is-floating='true'] {
+		flex: 1;
+		min-width: 0;
+		width: auto;
+	}
 }
 @media (max-width: 639px) {
 	.button {
@@ -40,5 +45,10 @@
 		font-size: calc(var(--calc-sp) * var(--font-size-2));
 		padding: calc(var(--calc-sp) * var(--spacing-2));
 		width: 100%;
+	}
+	.button[data-is-floating='true'] {
+		flex: 1;
+		min-width: 0;
+		width: auto;
 	}
 }

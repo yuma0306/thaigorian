@@ -8,12 +8,6 @@
 	justify-content: center;
 	transition: opacity var(--transition);
 }
-.toggleDiff[data-expanded='true'] {
-	background: var(--color-input-10);
-	border-color: var(--color-input);
-	color: var(--color-input);
-}
-
 @media (min-width: 640px) {
 	.toggleDiff {
 		border-radius: calc(var(--border-radius) * 1px);

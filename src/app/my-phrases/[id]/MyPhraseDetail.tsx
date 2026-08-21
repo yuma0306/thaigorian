@@ -7,6 +7,7 @@ import { Inner } from '@/components/Inner/Inner';
 import { PairPageLink } from '@/components/PairPageLink/PairPageLink';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { PhraseDetailCardSelect } from '@/components/PhraseDetailCardSelect/PhraseDetailCardSelect';
+import { PhraseDetailStickyBar } from '@/components/PhraseDetailStickyBar/PhraseDetailStickyBar';
 import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
@@ -51,12 +52,7 @@ export function MyPhraseDetail({ category }: Props) {
 					</Typography>
 					<PhraseDetailToolbar
 						allSelected={allSelected}
-						canStart={canStart}
-						hideThai={hideThai}
 						onAllSelectedChange={setAllPhrasesSelected}
-						onStartRandomLesson={startRandomLesson}
-						onStartAllLesson={startAllLesson}
-						onToggleHideThai={toggleHideThai}
 					/>
 					{category.phrases.length > 0 && (
 						<Stack size={2} variant="ul">
@@ -82,6 +78,13 @@ export function MyPhraseDetail({ category }: Props) {
 							))}
 						</Stack>
 					)}
+					<PhraseDetailStickyBar
+						canStart={canStart}
+						hideThai={hideThai}
+						onStartRandomLesson={startRandomLesson}
+						onStartAllLesson={startAllLesson}
+						onToggleHideThai={toggleHideThai}
+					/>
 				</Stack>
 			</Inner>
 		</Stack>

@@ -5,6 +5,7 @@ import styles from './Button.module.css';
 type CommonProps = {
 	color: 'secondary' | 'success';
 	children: ReactNode;
+	isFloating?: boolean;
 	marginInline?: boolean;
 };
 
@@ -17,13 +18,14 @@ type LinkProps = CommonProps & { variant: 'a' } & Omit<
 type Props = ButtonProps | LinkProps;
 
 export function Button(props: Props) {
-	const { children, variant, color, marginInline = true, ...rest } = props;
+	const { children, variant, color, isFloating, marginInline = true, ...rest } = props;
 
 	if (variant === 'a') {
 		return (
 			<Link
 				className={styles.button}
 				data-color={color}
+				data-is-floating={isFloating}
 				data-margin-inline={marginInline}
 				{...(rest as Omit<ComponentProps<typeof Link>, 'children' | 'className'>)}
 			>
@@ -37,6 +39,7 @@ export function Button(props: Props) {
 		<button
 			className={styles.button}
 			data-color={color}
+			data-is-floating={isFloating}
 			data-margin-inline={marginInline}
 			type={type}
 			{...buttonRest}
