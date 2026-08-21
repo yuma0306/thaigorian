@@ -1,0 +1,24 @@
+.stickyBar {
+	align-items: center;
+	display: flex;
+	gap: calc(var(--spacing-1) * 1px);
+	position: sticky;
+	z-index: var(--z-sticky);
+}
+
+.stickyBar > :last-child {
+	flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+	.stickyBar {
+		bottom: calc(var(--spacing-2) * 1px);
+	}
+}
+
+@media (max-width: 639px) {
+	.stickyBar {
+		bottom: calc(var(--calc-sp) * var(--spacing-2));
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+	}
+}

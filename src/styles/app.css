@@ -53,6 +53,14 @@
 
 	/* 計算用 */
 	--calc-sp: 100vw / 390;
+
+	/* z-index レイヤー */
+	--z-local: 1;
+	--z-local-raised: 2;
+	--z-sticky: 100;
+	--z-dropdown: 200;
+	--z-modal: 300;
+	--z-toast: 400;
 }
 
 * {

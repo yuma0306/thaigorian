@@ -1,6 +1,6 @@
 .icon {
 	display: block;
-	fill: currentColor;
+	fill: var(--color-primary);
 }
 @media (min-width: 640px) {
 	.icon {

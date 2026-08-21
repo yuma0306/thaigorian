@@ -22,6 +22,22 @@ const phrasePayloadSchema = z.object({
 	words: z.array(wordPayloadSchema)
 });
 
+type PhraseContent = {
+	phrase?: string | null;
+	meaning?: string | null;
+	words?: { word?: string | null; meaning?: string | null }[];
+};
+
+export function isFilledPhrase({ phrase, meaning, words }: PhraseContent): boolean {
+	if (phrase?.trim()) {
+		return true;
+	}
+	if (meaning?.trim()) {
+		return true;
+	}
+	return (words ?? []).some((word) => Boolean(word.word?.trim() || word.meaning?.trim()));
+}
+
 const saveMyCategorySchema = z.object({
 	contentId: trimmedString.min(1).regex(contentIdPattern),
 	title: trimmedString.min(1),
@@ -60,7 +76,7 @@ export function toSaveMyCategoryPayload(values: CategoryRegisterFormValues): Sav
 		contentId: values.contentId,
 		title: values.title,
 		speechLang: values.speechLang,
-		phrases: values.phrases.map((phrase) => ({
+		phrases: values.phrases.filter(isFilledPhrase).map((phrase) => ({
 			fieldId: phrase.id,
 			phrase: phrase.phrase,
 			meaning: phrase.meaning,
@@ -88,6 +104,6 @@ export function parseSaveMyCategoryInput(
 		normalizedContentId: result.data.contentId,
 		normalizedTitle: result.data.title,
 		normalizedSpeechLang: result.data.speechLang,
-		normalizedPhrases: result.data.phrases
+		normalizedPhrases: result.data.phrases.filter(isFilledPhrase)
 	};
 }

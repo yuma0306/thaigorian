@@ -8,7 +8,7 @@
 	place-content: center;
 	position: relative;
 	width: 24px;
-	z-index: 1;
+	z-index: var(--z-local);
 	&[data-position='center'] {
 		margin-inline: auto;
 	}
@@ -29,7 +29,7 @@
 	font-size: calc(var(--font-size-2) * 1px);
 	justify-self: center;
 	position: relative;
-	z-index: 2;
+	z-index: var(--z-local-raised);
 	&[data-layer='secound'] {
 		color: var(--color-input);
 	}

@@ -3,23 +3,80 @@
 	cursor: pointer;
 	display: inline-flex;
 	gap: calc(var(--spacing-1) * 1px);
-	line-height: 1;
+	position: relative;
 }
 
-.checkbox {
-	accent-color: var(--color-secondary);
-	appearance: auto;
-	block-size: calc(var(--spacing-2) * 1px);
-	cursor: pointer;
-	inline-size: calc(var(--spacing-2) * 1px);
+.label::before {
+	background: var(--color-white);
+	block-size: calc(var(--spacing-3) * 1px);
+	border: 1px solid var(--color-gray);
+	content: '';
+	flex-shrink: 0;
+	inline-size: calc(var(--spacing-3) * 1px);
+}
+
+.label[data-is-absolute='true'] {
+	block-size: calc(var(--spacing-3) * 1px);
+	display: block;
+	inline-size: calc(var(--spacing-3) * 1px);
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+.label[data-is-absolute='true']::before {
+	border-left: none;
+	border-top: none;
+	inset: 0;
+	position: absolute;
+}
+
+.input {
+	appearance: none;
+	inset: 0;
+	opacity: 0;
+	position: absolute;
+	z-index: var(--z-local);
+}
+
+.label:has(.input:checked)::before {
+	background: var(--color-secondary);
+	border-color: var(--color-secondary);
+}
+
+.label:has(.input:checked)::after {
+	block-size: calc(var(--spacing-1) * 2 * 1px);
+	border: solid var(--color-white);
+	border-width: 0 3px 3px 0;
+	content: '';
+	inline-size: calc(var(--spacing-1) * 1 * 1px);
+	left: calc(var(--spacing-3) * 1px / 2);
+	position: absolute;
+	rotate: 45deg;
+	top: 50%;
+	translate: -50% -65%;
+}
+
+.label[data-is-absolute='true']:has(.input:checked)::after {
+	left: 50%;
 }
 
 @media (max-width: 639px) {
 	.label {
 		gap: calc(var(--calc-sp) * var(--spacing-1));
 	}
-	.checkbox {
-		block-size: calc(var(--calc-sp) * var(--spacing-2));
-		inline-size: calc(var(--calc-sp) * var(--spacing-2));
+	.label::before,
+	.label[data-is-absolute='true'] {
+		block-size: calc(var(--calc-sp) * var(--spacing-3));
+		inline-size: calc(var(--calc-sp) * var(--spacing-3));
+	}
+	.label:has(.input:checked)::after {
+		block-size: calc(var(--calc-sp) * var(--spacing-1) * 2);
+		border-width: 0 calc(var(--calc-sp) * 3) calc(var(--calc-sp) * 3) 0;
+		inline-size: calc(var(--calc-sp) * var(--spacing-1) * 1);
+		left: calc(var(--calc-sp) * var(--spacing-3) / 2);
+	}
+	.label[data-is-absolute='true']:has(.input:checked)::after {
+		left: 50%;
 	}
 }

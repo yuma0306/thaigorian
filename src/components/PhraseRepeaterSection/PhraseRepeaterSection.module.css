@@ -16,7 +16,7 @@
 	margin-left: 8px;
 	position: relative;
 	width: 32px;
-	z-index: 1;
+	z-index: var(--z-local);
 }
 .timelineAddButton:hover {
 	background-color: var(--color-input);

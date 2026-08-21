@@ -13,6 +13,7 @@ import { Card } from '@/components/Card/Card';
 import { Inner } from '@/components/Inner/Inner';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { PhraseDetailCardSelect } from '@/components/PhraseDetailCardSelect/PhraseDetailCardSelect';
+import { PhraseDetailStickyBar } from '@/components/PhraseDetailStickyBar/PhraseDetailStickyBar';
 import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
 import { usePhraseSelection } from '@/hooks/usePhraseSelection';
 import { useThaiVisibility } from '@/hooks/useThaiVisibility';
@@ -50,12 +51,7 @@ export function SituationDetail({ collection }: Props) {
 				</Typography>
 				<PhraseDetailToolbar
 					allSelected={allSelected}
-					canStart={canStart}
-					hideThai={hideThai}
 					onAllSelectedChange={setAllPhrasesSelected}
-					onStartRandomLesson={startRandomLesson}
-					onStartAllLesson={startAllLesson}
-					onToggleHideThai={toggleHideThai}
 				/>
 				{collection.phrases.length > 0 && (
 					<Stack size={2} variant="ul">
@@ -65,6 +61,7 @@ export function SituationDetail({ collection }: Props) {
 								variant="li"
 								borderColor="gray"
 								hasBorderLeft
+								hasRelative
 							>
 								<PhraseDetailCardSelect
 									checked={isSelected(index)}
@@ -76,6 +73,13 @@ export function SituationDetail({ collection }: Props) {
 						))}
 					</Stack>
 				)}
+				<PhraseDetailStickyBar
+					canStart={canStart}
+					hideThai={hideThai}
+					onStartRandomLesson={startRandomLesson}
+					onStartAllLesson={startAllLesson}
+					onToggleHideThai={toggleHideThai}
+				/>
 			</Stack>
 		</Inner>
 	);

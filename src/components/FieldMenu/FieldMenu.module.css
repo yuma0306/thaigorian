@@ -1,6 +1,7 @@
 .fieldMenu {
 	background-color: var(--color-white);
 	border-radius: calc(var(--border-radius) * 1px);
+	box-shadow: 0 0 0 1px var(--color-gray);
 	cursor: default;
 	display: grid;
 	left: 0;
@@ -8,7 +9,7 @@
 	padding: calc(var(--spacing-1) * 1px) 0;
 	position: absolute;
 	top: calc(100% + var(--spacing-1) * 1px);
-	z-index: 10;
+	z-index: var(--z-dropdown);
 }
 .fieldMenu[data-align='end'] {
 	left: auto;
