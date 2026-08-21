@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from 'react';
+import { CheckIcon } from '@/components/Icon/CheckIcon';
 import styles from './PhraseLessonCheckbox.module.css';
 
 type Props = {
@@ -24,6 +25,7 @@ export function PhraseLessonCheckbox({
 				onChange={onChange}
 				aria-label={ariaLabel}
 			/>
+			{checked && <CheckIcon />}
 			{children}
 		</label>
 	);
