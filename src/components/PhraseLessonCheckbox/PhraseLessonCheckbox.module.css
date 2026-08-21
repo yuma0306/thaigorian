@@ -44,23 +44,6 @@
 	border-color: var(--color-secondary);
 }
 
-.label:has(.input:checked)::after {
-	block-size: calc(var(--spacing-1) * 2 * 1px);
-	border: solid var(--color-white);
-	border-width: 0 3px 3px 0;
-	content: '';
-	inline-size: calc(var(--spacing-1) * 1 * 1px);
-	left: calc(var(--spacing-3) * 1px / 2);
-	position: absolute;
-	rotate: 45deg;
-	top: 50%;
-	translate: -50% -65%;
-}
-
-.label[data-is-absolute='true']:has(.input:checked)::after {
-	left: 50%;
-}
-
 @media (max-width: 639px) {
 	.label {
 		gap: calc(var(--calc-sp) * var(--spacing-1));
@@ -69,14 +52,5 @@
 	.label[data-is-absolute='true'] {
 		block-size: calc(var(--calc-sp) * var(--spacing-3));
 		inline-size: calc(var(--calc-sp) * var(--spacing-3));
-	}
-	.label:has(.input:checked)::after {
-		block-size: calc(var(--calc-sp) * var(--spacing-1) * 2);
-		border-width: 0 calc(var(--calc-sp) * 3) calc(var(--calc-sp) * 3) 0;
-		inline-size: calc(var(--calc-sp) * var(--spacing-1) * 1);
-		left: calc(var(--calc-sp) * var(--spacing-3) / 2);
-	}
-	.label[data-is-absolute='true']:has(.input:checked)::after {
-		left: 50%;
 	}
 }
