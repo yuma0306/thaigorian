@@ -5,14 +5,21 @@ type Props = {
 	checked: boolean;
 	onChange: InputHTMLAttributes<HTMLInputElement>['onChange'];
 	children?: ReactNode;
+	isAbsolute?: boolean;
 } & Pick<InputHTMLAttributes<HTMLInputElement>, 'aria-label'>;
 
-export function PhraseLessonCheckbox({ checked, onChange, children, 'aria-label': ariaLabel }: Props) {
+export function PhraseLessonCheckbox({
+	checked,
+	onChange,
+	children,
+	isAbsolute,
+	'aria-label': ariaLabel
+}: Props) {
 	return (
-		<label className={styles.label}>
+		<label className={styles.label} data-is-absolute={isAbsolute}>
 			<input
 				type="checkbox"
-				className={styles.checkbox}
+				className={styles.input}
 				checked={checked}
 				onChange={onChange}
 				aria-label={ariaLabel}

@@ -8,15 +8,25 @@ type Props = HTMLAttributes<HTMLElement> & {
 	hasBorderLeft: boolean;
 	variant: Variant;
 	children: ReactNode;
-};
+} & Partial<{
+		hasRelative: boolean;
+	}>;
 
-export function Card({ borderColor, hasBorderLeft, variant, children, ...rest }: Props) {
+export function Card({
+	borderColor,
+	hasBorderLeft,
+	variant,
+	children,
+	hasRelative,
+	...rest
+}: Props) {
 	const Tag = variant;
 	return (
 		<Tag
 			className={styles.card}
 			data-has-border-left={hasBorderLeft}
 			data-border-color={borderColor}
+			data-has-relative={hasRelative}
 			{...rest}
 		>
 			{children}

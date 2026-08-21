@@ -65,6 +65,7 @@ export function SituationDetail({ collection }: Props) {
 								variant="li"
 								borderColor="gray"
 								hasBorderLeft
+								hasRelative
 							>
 								<PhraseDetailCardSelect
 									checked={isSelected(index)}

@@ -65,7 +65,8 @@ export function MyPhraseDetail({ category }: Props) {
 									key={`${phrase.fieldId}-${index}`}
 									variant="li"
 									borderColor="gray"
-									hasBorderLeft
+									hasBorderLeft={false}
+									hasRelative
 								>
 									<PhraseDetailCardSelect
 										checked={isSelected(index)}
