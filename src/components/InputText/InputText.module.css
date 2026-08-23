@@ -12,6 +12,9 @@
 		border: 1px solid var(--color-gray);
 		border-radius: calc(var(--border-radius) * 1px);
 		padding: calc(var(--spacing-1) * 1px);
+		&[data-correct-input='true'] {
+			box-shadow: 0 0 8px var(--color-success);
+		}
 	}
 }
 
@@ -20,5 +23,8 @@
 		border: calc(var(--calc-sp) * 1) solid var(--color-gray);
 		border-radius: calc(var(--border-radius) * var(--calc-sp));
 		padding: calc(var(--calc-sp) * var(--spacing-1));
+		&[data-correct-input='true'] {
+			box-shadow: 0 0 calc(var(--calc-sp) * 8) var(--color-success);
+		}
 	}
 }

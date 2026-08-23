@@ -13,7 +13,7 @@ import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
 import type { MyPhraseCategoryView } from '@/types/myPhrases';
-import { allLessonIndices, pickRandomIndices } from '@/functions/lesson';
+import { allLessonIndices, allPhraseIndices, pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
 import { usePhraseSelection } from '@/hooks/usePhraseSelection';
 import { useThaiVisibility } from '@/hooks/useThaiVisibility';
@@ -27,16 +27,21 @@ export function MyPhraseDetail({ category }: Props) {
 	const { hideThai, toggleHideThai } = useThaiVisibility();
 	const { selectedIndices, allSelected, isSelected, togglePhrase, setAllPhrasesSelected } =
 		usePhraseSelection(category.phrases.length);
-	const canStart = selectedIndices.length > 0;
+	const canStartSelected = selectedIndices.length > 0;
+	const hasPhrases = category.phrases.length > 0;
 
 	function startRandomLesson() {
-		if (selectedIndices.length === 0) return;
-		saveLessonIndices('my-phrase', category.id, pickRandomIndices(selectedIndices));
+		if (!hasPhrases) return;
+		saveLessonIndices(
+			'my-phrase',
+			category.id,
+			pickRandomIndices(allPhraseIndices(category.phrases.length))
+		);
 		router.push(paths.myPhraseLesson(category.id));
 	}
 
 	function startAllLesson() {
-		if (selectedIndices.length === 0) return;
+		if (!canStartSelected) return;
 		saveLessonIndices('my-phrase', category.id, allLessonIndices(selectedIndices));
 		router.push(paths.myPhraseLesson(category.id));
 	}
@@ -79,7 +84,8 @@ export function MyPhraseDetail({ category }: Props) {
 						</Stack>
 					)}
 					<PhraseDetailStickyBar
-						canStart={canStart}
+						canStartSelected={canStartSelected}
+						hasPhrases={hasPhrases}
 						hideThai={hideThai}
 						onStartRandomLesson={startRandomLesson}
 						onStartAllLesson={startAllLesson}

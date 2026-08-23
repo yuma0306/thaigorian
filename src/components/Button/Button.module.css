@@ -22,6 +22,18 @@
 	&[data-color='success'] {
 		background-color: var(--color-success);
 	}
+	&[data-color='secondary']:disabled,
+	&[data-color='success']:disabled {
+		background-color: var(--color-gray);
+		color: var(--color-white);
+		cursor: not-allowed;
+		opacity: 1;
+		@media (hover: hover) {
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
 	&[data-margin-inline='false'] {
 		margin-inline: unset;
 	}

@@ -4,7 +4,8 @@ import { maxLessonItems } from '@/functions/lesson';
 import styles from './PhraseDetailStickyBar.module.css';
 
 type Props = {
-	canStart: boolean;
+	canStartSelected: boolean;
+	hasPhrases: boolean;
 	hideThai: boolean;
 	onStartRandomLesson: () => void;
 	onStartAllLesson: () => void;
@@ -12,7 +13,8 @@ type Props = {
 };
 
 export function PhraseDetailStickyBar({
-	canStart,
+	canStartSelected,
+	hasPhrases,
 	hideThai,
 	onStartRandomLesson,
 	onStartAllLesson,
@@ -26,7 +28,7 @@ export function PhraseDetailStickyBar({
 				isFloating
 				marginInline={false}
 				onClick={onStartRandomLesson}
-				disabled={!canStart}
+				disabled={!hasPhrases}
 			>
 				{`ランダム${maxLessonItems}問`}
 			</Button>
@@ -36,7 +38,7 @@ export function PhraseDetailStickyBar({
 				isFloating
 				marginInline={false}
 				onClick={onStartAllLesson}
-				disabled={!canStart}
+				disabled={!canStartSelected}
 			>
 				選択した問題
 			</Button>

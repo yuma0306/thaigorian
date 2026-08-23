@@ -16,12 +16,20 @@
 	white-space: nowrap;
 }
 
+.actions {
+	display: flex;
+	width: 100%;
+}
+
 @media (min-width: 640px) {
 	.inputRow {
 		gap: calc(var(--spacing-1) * 1px);
 	}
 	.particle {
 		font-size: calc(var(--font-size-3) * 1px);
+	}
+	.actions {
+		gap: calc(var(--spacing-1) * 1px);
 	}
 }
 
@@ -31,5 +39,8 @@
 	}
 	.particle {
 		font-size: calc(var(--calc-sp) * var(--font-size-3));
+	}
+	.actions {
+		gap: calc(var(--calc-sp) * var(--spacing-1));
 	}
 }

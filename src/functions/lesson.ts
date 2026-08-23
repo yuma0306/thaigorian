@@ -55,6 +55,9 @@ export const pickRandomIndices = (indices: readonly number[], max = maxLessonIte
 
 export const allLessonIndices = (indices: readonly number[]) => [...indices];
 
+export const allPhraseIndices = (phraseCount: number) =>
+	Array.from({ length: phraseCount }, (_, index) => index);
+
 export const orderItemsByIndices = <T>(items: T[], indices: number[]) => {
 	return indices.reduce<T[]>((orderedItems, index) => {
 		const item = items[index];
