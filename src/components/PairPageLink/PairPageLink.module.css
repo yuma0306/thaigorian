@@ -1,7 +1,8 @@
 .link {
-	font-weight: 700;
+	display: block;
 	text-decoration: underline;
 	transition: opacity var(--transition);
+	width: fit-content;
 }
 
 @media (min-width: 640px) {
