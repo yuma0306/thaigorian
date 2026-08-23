@@ -6,7 +6,7 @@ import { ListItem } from '@/components/ListItem/ListItem';
 import { MaskedThaiText } from '@/components/MaskedThaiText/MaskedThaiText';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
-import { VoiceButton } from '@/components/VoiceButton/VoiceButton';
+import { ActiveVoiceButton } from '@/components/VoiceButton/ActiveVoiceButton';
 import { CopyButton } from '@/components/CopyButton/CopyButton';
 import styles from './PhraseCard.module.css';
 
@@ -29,7 +29,7 @@ export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
 							{phrase.phrase}
 						</Typography>
 					</MaskedThaiText>
-					<VoiceButton text={phrase.phrase} lang={voiceLang} />
+					<ActiveVoiceButton text={phrase.phrase} lang={voiceLang} />
 					<CopyButton text={phrase.phrase} />
 				</FlexColumn>
 				{phrase.meaning && (
@@ -61,7 +61,7 @@ export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
 									>
 										{word.word && (
 											<>
-												<VoiceButton text={word.word} lang={voiceLang} />
+												<ActiveVoiceButton text={word.word} lang={voiceLang} />
 												<CopyButton text={word.word} />
 											</>
 										)}
