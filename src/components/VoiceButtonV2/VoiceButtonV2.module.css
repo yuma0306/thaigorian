@@ -1,0 +1,32 @@
+.button {
+	background-color: var(--color-primary-10);
+	border: 1px solid var(--color-primary);
+	display: grid;
+	line-height: 1;
+	place-content: center;
+	@media (hover: hover) {
+		&:hover {
+			opacity: var(--opacity);
+		}
+	}
+	&:active {
+		opacity: var(--opacity);
+	}
+	&:disabled {
+		cursor: not-allowed;
+		opacity: var(--opacity);
+	}
+}
+@media (min-width: 640px) {
+	.button {
+		border-radius: calc(var(--border-radius) * 1px);
+		cursor: pointer;
+		padding: calc(var(--spacing-1) * 1px);
+	}
+}
+@media (max-width: 639px) {
+	.button {
+		border-radius: calc(var(--calc-sp) * var(--border-radius));
+		padding: calc(var(--calc-sp) * var(--spacing-1));
+	}
+}

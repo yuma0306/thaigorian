@@ -4,7 +4,7 @@ import { Card } from '@/components/Card/Card';
 import { FlexColumn } from '@/components/FlexColumn/FlexColumn';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
-import { VoiceButton } from '@/components/VoiceButton/VoiceButton';
+import { ActiveVoiceButton } from '@/components/VoiceButton/ActiveVoiceButton';
 import { CopyButton } from '@/components/CopyButton/CopyButton';
 import { ToggleDiffButton } from '@/components/ToggleDiffButton/ToggleDiffButton';
 import { ToggleRevealButton } from '@/components/ToggleRevealButton/ToggleRevealButton';
@@ -38,7 +38,7 @@ export function QuestionCard({
 					</Typography>
 				</Stack>
 				<FlexColumn gap={1} variant="div" alignItems="stretch" justifyContent="center">
-					<VoiceButton text={phrase} lang={speechLang} />
+					<ActiveVoiceButton text={phrase} lang={speechLang} />
 					<ToggleRevealButton
 						expanded={showAnswer}
 						onClick={() => onShowAnswerChange(!showAnswer)}
