@@ -45,6 +45,7 @@ export function SituationLesson({ collection }: Props) {
 					userInput={lesson.userInput}
 					onUserInputChange={lesson.handleUserInputChange}
 					onAdvance={lesson.handleAdvance}
+					onBack={lesson.handleGoBack}
 					onSkip={lesson.handleSkipPhrase}
 				/>
 			)}

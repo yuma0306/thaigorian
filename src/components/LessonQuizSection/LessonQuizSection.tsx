@@ -3,7 +3,6 @@ import { InputText } from '@/components/InputText/InputText';
 import { PhraseDiff } from '@/components/PhraseDiff/PhraseDiff';
 import { Progress } from '@/components/Progress/Progress';
 import { QuestionCard } from '@/components/QuestionCard/QuestionCard';
-import { SkipButton } from '@/components/SkipButton/SkipButton';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { splitTrailingThaiParticles } from '@/functions/lesson';
@@ -23,6 +22,7 @@ type Props = {
 	userInput: string;
 	onUserInputChange: (value: string) => void;
 	onAdvance: () => void;
+	onBack: () => void;
 	onSkip: () => void;
 };
 
@@ -39,6 +39,7 @@ export function LessonQuizSection({
 	userInput,
 	onUserInputChange,
 	onAdvance,
+	onBack,
 	onSkip
 }: Props) {
 	const { core, particle } = splitTrailingThaiParticles(phrase.phrase);
@@ -79,7 +80,23 @@ export function LessonQuizSection({
 					次へ進む
 				</Button>
 			)}
-			{!isCorrect && <SkipButton onClick={onSkip} />}
+			{!isCorrect && (
+				<div className={styles.actions}>
+					<Button
+						variant="button"
+						color="secondary"
+						isFloating
+						marginInline={false}
+						onClick={onBack}
+						disabled={currentIndex === 0}
+					>
+						戻る
+					</Button>
+					<Button variant="button" color="secondary" isFloating marginInline={false} onClick={onSkip}>
+						スキップ
+					</Button>
+				</div>
+			)}
 		</Stack>
 	);
 }

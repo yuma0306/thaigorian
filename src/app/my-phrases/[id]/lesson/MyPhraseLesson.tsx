@@ -33,6 +33,7 @@ export function MyPhraseLesson({ category }: Props) {
 					userInput={lesson.userInput}
 					onUserInputChange={lesson.handleUserInputChange}
 					onAdvance={lesson.handleAdvance}
+					onBack={lesson.handleGoBack}
 					onSkip={lesson.handleSkipPhrase}
 				/>
 			)}

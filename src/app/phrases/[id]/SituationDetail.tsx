@@ -6,7 +6,7 @@ import type { PhraseCollection } from '@/types/database';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { paths } from '@/constants/paths';
-import { allLessonIndices, pickRandomIndices } from '@/functions/lesson';
+import { allLessonIndices, allPhraseIndices, pickRandomIndices } from '@/functions/lesson';
 import { saveLessonIndices } from '@/functions/lessonSession';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
 import { Card } from '@/components/Card/Card';
@@ -27,17 +27,22 @@ export function SituationDetail({ collection }: Props) {
 	const { hideThai, toggleHideThai } = useThaiVisibility();
 	const { selectedIndices, allSelected, isSelected, togglePhrase, setAllPhrasesSelected } =
 		usePhraseSelection(collection.phrases.length);
-	const canStart = selectedIndices.length > 0;
+	const canStartSelected = selectedIndices.length > 0;
+	const hasPhrases = collection.phrases.length > 0;
 	const speechLang = resolveSpeechLang(collection.speechLang);
 
 	function startRandomLesson() {
-		if (selectedIndices.length === 0) return;
-		saveLessonIndices('phrase', collection.id, pickRandomIndices(selectedIndices));
+		if (!hasPhrases) return;
+		saveLessonIndices(
+			'phrase',
+			collection.id,
+			pickRandomIndices(allPhraseIndices(collection.phrases.length))
+		);
 		router.push(paths.phraseLesson(collection.id));
 	}
 
 	function startAllLesson() {
-		if (selectedIndices.length === 0) return;
+		if (!canStartSelected) return;
 		saveLessonIndices('phrase', collection.id, allLessonIndices(selectedIndices));
 		router.push(paths.phraseLesson(collection.id));
 	}
@@ -74,7 +79,8 @@ export function SituationDetail({ collection }: Props) {
 					</Stack>
 				)}
 				<PhraseDetailStickyBar
-					canStart={canStart}
+					canStartSelected={canStartSelected}
+					hasPhrases={hasPhrases}
 					hideThai={hideThai}
 					onStartRandomLesson={startRandomLesson}
 					onStartAllLesson={startAllLesson}
