@@ -1,6 +1,6 @@
 .repeaterList {
 	display: grid;
-	gap: calc(var(--spacing-3) * 1px);
+	gap: calc(var(--spacing-2) * 1px);
 }
 .timelineAddButton {
 	align-items: center;
