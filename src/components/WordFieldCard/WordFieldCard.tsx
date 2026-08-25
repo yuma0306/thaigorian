@@ -34,7 +34,7 @@ export function WordFieldCard({
 }: Props) {
 	return (
 		<article className={styles.wordCard}>
-			<Stack variant="div" size={2}>
+			<Stack variant="div" size={1}>
 				<CategoryTextField
 					id={`word-${wordId}`}
 					label="用語"

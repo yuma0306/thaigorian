@@ -33,7 +33,7 @@ export function PhraseFieldCardBody({
 	onCloseMenu
 }: Props) {
 	return (
-		<Stack variant="div" size={2}>
+		<Stack variant="div" size={1}>
 			<CategoryTextField
 				id={`phrase-${phraseId}`}
 				label="フレーズ"
