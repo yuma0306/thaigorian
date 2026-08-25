@@ -23,7 +23,7 @@ export function CategoryTextField({ id, label, name, control, labelAction }: Pro
 				<Stack variant="div" size={1} justifyItems="start">
 					<div className={styles.labelRow}>
 						<label htmlFor={id}>
-							<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+							<Typography size={2} variant="span" color="primary" weight="bold" align="left">
 								{label}
 							</Typography>
 						</label>

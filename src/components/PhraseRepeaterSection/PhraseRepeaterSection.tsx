@@ -33,8 +33,8 @@ export function PhraseRepeaterSection({
 	onCloseMenu
 }: Props) {
 	return (
-		<Stack variant="div" size={2}>
-			<Typography size={3} variant="span" color="primary" weight="bold" align="left">
+		<Stack variant="div" size={1}>
+			<Typography size={2} variant="span" color="primary" weight="bold" align="left">
 				フレーズ集
 			</Typography>
 			{phraseFields.length === 0 ? (

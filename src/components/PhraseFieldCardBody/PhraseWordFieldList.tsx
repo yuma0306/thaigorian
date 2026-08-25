@@ -27,7 +27,7 @@ export function PhraseWordFieldList({
 	onRemoveWord
 }: Props) {
 	return (
-		<Stack variant="ul" size={2}>
+		<Stack variant="ul" size={1}>
 			{wordFields.map((word, wordIndex) => (
 				<WordFieldCard
 					key={word.fieldKey}
