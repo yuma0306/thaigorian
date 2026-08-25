@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import { Fragment, type MouseEvent } from 'react';
 import type { Control, FieldArrayWithId } from 'react-hook-form';
 import styles from './PhraseRepeaterSection.module.css';
 import { PhraseFieldCard } from '@/components/PhraseFieldCard/PhraseFieldCard';
@@ -49,23 +49,29 @@ export function PhraseRepeaterSection({
 			) : (
 				<div className={styles.repeaterList}>
 					{phraseFields.map((phrase, phraseIndex) => (
-						<PhraseFieldCard
-							key={phrase.fieldKey}
-							control={control}
-							phraseIndex={phraseIndex}
-							phraseId={phrase.id}
-							phraseCount={phraseFields.length}
-							openMenu={openMenu}
-							onToggleMenu={onToggleMenu}
-							onInsertPhrase={onInsertPhrase}
-							onMovePhrase={onMovePhrase}
-							onRemovePhrase={onRemovePhrase}
-							onCloseMenu={onCloseMenu}
-						/>
+						<Fragment key={phrase.fieldKey}>
+							<PhraseFieldCard
+								control={control}
+								phraseIndex={phraseIndex}
+								phraseId={phrase.id}
+								phraseCount={phraseFields.length}
+								openMenu={openMenu}
+								onToggleMenu={onToggleMenu}
+								onInsertPhrase={onInsertPhrase}
+								onMovePhrase={onMovePhrase}
+								onRemovePhrase={onRemovePhrase}
+								onCloseMenu={onCloseMenu}
+							/>
+							<PhraseAddButtonWrapper layer="first">
+								<PhraseAddButton
+									onClick={() => onInsertPhrase(phraseIndex + 1)}
+									position="center"
+									layer="first"
+									isAbsolute
+								/>
+							</PhraseAddButtonWrapper>
+						</Fragment>
 					))}
-					<PhraseAddButtonWrapper layer="first">
-						<PhraseAddButton onClick={onAddPhrase} position="center" layer="first" isAbsolute />
-					</PhraseAddButtonWrapper>
 				</div>
 			)}
 		</Stack>

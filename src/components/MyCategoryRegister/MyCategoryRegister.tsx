@@ -60,7 +60,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 						<PairPageLink href={paths.myPhrase(categoryId)}>マイフレーズを見る</PairPageLink>
 					)}
 					<form onSubmit={(event) => event.preventDefault()}>
-						<Stack variant="div" size={3}>
+						<Stack variant="div" size={2}>
 							<CategoryTextField
 								id="category-title"
 								label="タイトル"
