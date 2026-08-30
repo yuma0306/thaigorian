@@ -54,16 +54,18 @@ export function PhraseWordFieldsSection({
 	return (
 		<div className={styles.section}>
 			<FlexColumn gap={1} variant="div" alignItems="center">
-				<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-					用語集
-				</Typography>
 				{wordFieldArray.fields.length < 1 && (
-					<PhraseAddButton
-						onClick={handleAddWord}
-						layer="secound"
-						position="left"
-						isAbsolute={false}
-					/>
+					<>
+						<Typography size={2} variant="span" color="primary" weight="bold" align="left">
+							用語集
+						</Typography>
+						<PhraseAddButton
+							onClick={handleAddWord}
+							layer="secound"
+							position="left"
+							isAbsolute={false}
+						/>
+					</>
 				)}
 			</FlexColumn>
 			{wordFieldArray.fields.length > 0 && (
