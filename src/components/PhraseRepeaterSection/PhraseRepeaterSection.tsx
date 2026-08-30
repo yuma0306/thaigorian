@@ -34,18 +34,20 @@ export function PhraseRepeaterSection({
 }: Props) {
 	return (
 		<Stack variant="div" size={1}>
-			<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-				フレーズ集
-			</Typography>
 			{phraseFields.length === 0 ? (
-				<button
-					className={styles.timelineAddButton}
-					type="button"
-					onClick={onAddPhrase}
-					aria-label="フィールドを追加"
-				>
-					<span aria-hidden="true">＋</span>
-				</button>
+				<>
+					<Typography size={2} variant="span" color="primary" weight="bold" align="left">
+						フレーズ集
+					</Typography>
+					<button
+						className={styles.timelineAddButton}
+						type="button"
+						onClick={onAddPhrase}
+						aria-label="フィールドを追加"
+					>
+						<span aria-hidden="true">＋</span>
+					</button>
+				</>
 			) : (
 				<div className={styles.repeaterList}>
 					{phraseFields.map((phrase, phraseIndex) => (
