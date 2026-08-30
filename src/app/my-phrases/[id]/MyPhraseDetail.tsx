@@ -24,7 +24,7 @@ type Props = {
 
 export function MyPhraseDetail({ category }: Props) {
 	const router = useRouter();
-	const { hideThai, toggleHideThai } = useThaiVisibility();
+	const { hideThai, hideMeaning, toggleHideThai, toggleHideMeaning } = useThaiVisibility();
 	const { selectedIndices, allSelected, isSelected, togglePhrase, setAllPhrasesSelected } =
 		usePhraseSelection(category.phrases.length);
 	const canStartSelected = selectedIndices.length > 0;
@@ -76,6 +76,7 @@ export function MyPhraseDetail({ category }: Props) {
 										<PhraseCard
 											phrase={phrase}
 											hideThai={hideThai}
+											hideMeaning={hideMeaning}
 											speechLang={category.speechLang}
 										/>
 									</PhraseDetailCardSelect>
@@ -87,9 +88,11 @@ export function MyPhraseDetail({ category }: Props) {
 						canStartSelected={canStartSelected}
 						hasPhrases={hasPhrases}
 						hideThai={hideThai}
+						hideMeaning={hideMeaning}
 						onStartRandomLesson={startRandomLesson}
 						onStartAllLesson={startAllLesson}
 						onToggleHideThai={toggleHideThai}
+						onToggleHideMeaning={toggleHideMeaning}
 					/>
 				</Stack>
 			</Inner>

@@ -13,10 +13,11 @@ import styles from './PhraseCard.module.css';
 type Props = {
 	phrase: Phrase;
 	hideThai?: boolean;
+	hideMeaning?: boolean;
 	speechLang?: SpeechLang | string;
 };
 
-export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
+export function PhraseCard({ phrase, hideThai = false, hideMeaning = false, speechLang }: Props) {
 	const voiceLang = resolveSpeechLang(speechLang);
 	const hasWords = Boolean(phrase.words && phrase.words.length > 0);
 
@@ -34,9 +35,11 @@ export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
 				</FlexColumn>
 				{phrase.meaning && (
 					<FlexColumn gap={1} variant="dd" alignItems="center" justifyContent="start">
-						<Typography size={2} variant="span" color="dark" weight="normal" align="left">
-							{phrase.meaning}
-						</Typography>
+						<MaskedThaiText hidden={hideMeaning}>
+							<Typography size={2} variant="span" color="dark" weight="normal" align="left">
+								{phrase.meaning}
+							</Typography>
+						</MaskedThaiText>
 						<ActiveVoiceButton text={phrase.meaning} lang="en-US" />
 						<CopyButton text={phrase.meaning} />
 					</FlexColumn>
@@ -53,9 +56,11 @@ export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
 											{word.word}
 										</Typography>
 									</MaskedThaiText>
-									<Typography size={2} variant="span" color="dark" weight="normal" align="left">
-										{word.meaning}
-									</Typography>
+									<MaskedThaiText hidden={hideMeaning}>
+										<Typography size={2} variant="span" color="dark" weight="normal" align="left">
+											{word.meaning}
+										</Typography>
+									</MaskedThaiText>
 									<FlexColumn
 										gap={1}
 										variant="div"
