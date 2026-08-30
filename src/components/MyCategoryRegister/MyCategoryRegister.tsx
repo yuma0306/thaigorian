@@ -87,7 +87,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 							<CategoryRegisterActions
 								saveLabel={saveLabel}
 								isSaving={registerForm.isSaving}
-								viewHref={categoryId ? paths.myPhrase(categoryId) : undefined}
+								{...(categoryId ? { viewHref: paths.myPhrase(categoryId) } : {})}
 								onSaveClick={() => {
 									void registerForm.handleSave();
 								}}
