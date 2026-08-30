@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './FlexColumn.module.css';
 
-type Variant = 'dt' | 'div' | 'span';
+type Variant = 'dt' | 'dd' | 'div' | 'span';
 
 type Props = HTMLAttributes<HTMLElement> & {
 	gap: 1 | 2 | 3 | 4 | 5;

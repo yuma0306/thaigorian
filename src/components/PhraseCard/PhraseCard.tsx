@@ -33,9 +33,13 @@ export function PhraseCard({ phrase, hideThai = false, speechLang }: Props) {
 					<CopyButton text={phrase.phrase} />
 				</FlexColumn>
 				{phrase.meaning && (
-					<Typography size={2} variant="dd" color="dark" weight="normal" align="left">
-						{phrase.meaning}
-					</Typography>
+					<FlexColumn gap={1} variant="dd" alignItems="center" justifyContent="start">
+						<Typography size={2} variant="span" color="dark" weight="normal" align="left">
+							{phrase.meaning}
+						</Typography>
+						<ActiveVoiceButton text={phrase.meaning} lang="en-US" />
+						<CopyButton text={phrase.meaning} />
+					</FlexColumn>
 				)}
 			</Stack>
 			{hasWords && (
