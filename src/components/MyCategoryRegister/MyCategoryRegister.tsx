@@ -6,7 +6,6 @@ import { CategorySpeechLangSelect } from '@/components/CategorySpeechLangSelect/
 import { CategoryTextField } from '@/components/CategoryTextField/CategoryTextField';
 import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
-import { PairPageLink } from '@/components/PairPageLink/PairPageLink';
 import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/PhraseRepeaterSection';
 import { Stack } from '@/components/Stack/Stack';
 import { defaultSpeechLang } from '@/constants/speechLangs';
@@ -56,9 +55,6 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 			<Crumbs items={crumbItems} />
 			<Inner>
 				<Stack variant="div" size={3}>
-					{categoryId && (
-						<PairPageLink href={paths.myPhrase(categoryId)}>マイフレーズを見る</PairPageLink>
-					)}
 					<form onSubmit={(event) => event.preventDefault()}>
 						<Stack variant="div" size={2}>
 							<CategoryTextField
@@ -91,6 +87,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 							<CategoryRegisterActions
 								saveLabel={saveLabel}
 								isSaving={registerForm.isSaving}
+								{...(categoryId ? { viewHref: paths.myPhrase(categoryId) } : {})}
 								onSaveClick={() => {
 									void registerForm.handleSave();
 								}}

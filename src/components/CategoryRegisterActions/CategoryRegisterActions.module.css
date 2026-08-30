@@ -3,14 +3,25 @@
 	z-index: var(--z-sticky);
 }
 
+.sticky[data-has-view='true'] {
+	align-items: center;
+	display: flex;
+}
+
 @media (min-width: 640px) {
 	.sticky {
 		bottom: calc(var(--spacing-2) * 1px);
+	}
+	.sticky[data-has-view='true'] {
+		gap: calc(var(--spacing-1) * 1px);
 	}
 }
 
 @media (max-width: 639px) {
 	.sticky {
 		bottom: calc(var(--calc-sp) * var(--spacing-2));
+	}
+	.sticky[data-has-view='true'] {
+		gap: calc(var(--calc-sp) * var(--spacing-1));
 	}
 }
