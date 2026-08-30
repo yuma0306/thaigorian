@@ -1,24 +1,37 @@
 .stickyBar {
-	align-items: center;
 	display: flex;
-	gap: calc(var(--spacing-1) * 1px);
+	flex-direction: column;
 	position: sticky;
 	z-index: var(--z-sticky);
 }
 
-.stickyBar > :last-child {
-	flex-shrink: 0;
+.toggles {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.actions {
+	display: flex;
 }
 
 @media (min-width: 640px) {
 	.stickyBar {
 		bottom: calc(var(--spacing-2) * 1px);
+		gap: calc(var(--spacing-1) * 1px);
+	}
+	.toggles,
+	.actions {
+		gap: calc(var(--spacing-1) * 1px);
 	}
 }
 
 @media (max-width: 639px) {
 	.stickyBar {
 		bottom: calc(var(--calc-sp) * var(--spacing-2));
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+	}
+	.toggles,
+	.actions {
 		gap: calc(var(--calc-sp) * var(--spacing-1));
 	}
 }

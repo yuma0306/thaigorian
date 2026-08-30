@@ -5,8 +5,14 @@
 	color: var(--color-primary);
 	cursor: pointer;
 	display: inline-flex;
+	font-weight: 700;
+	gap: calc(var(--spacing-1) * 1px);
 	justify-content: center;
 	transition: opacity var(--transition);
+}
+
+.caption {
+	line-height: 1;
 }
 .toggleReveal[data-is-fixed='true'] {
 	position: fixed;
@@ -26,6 +32,7 @@
 @media (max-width: 639px) {
 	.toggleReveal {
 		border-radius: calc(var(--calc-sp) * var(--border-radius));
+		gap: calc(var(--calc-sp) * var(--spacing-1));
 		padding: calc(var(--calc-sp) * var(--spacing-1));
 	}
 	.toggleReveal[data-is-fixed='true'] {
