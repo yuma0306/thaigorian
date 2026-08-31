@@ -37,7 +37,7 @@ export function WordFieldCard({
 			<Stack variant="div" size={1}>
 				<CategoryTextField
 					id={`word-${wordId}`}
-					label="用語"
+					label="Term"
 					name={`phrases.${phraseIndex}.words.${wordIndex}.word`}
 					control={control}
 					labelAction={
@@ -55,7 +55,7 @@ export function WordFieldCard({
 				/>
 				<CategoryTextField
 					id={`word-meaning-${wordId}`}
-					label="意味"
+					label="Meaning"
 					name={`phrases.${phraseIndex}.words.${wordIndex}.meaning`}
 					control={control}
 				/>

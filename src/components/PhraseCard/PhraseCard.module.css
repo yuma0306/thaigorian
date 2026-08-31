@@ -30,10 +30,30 @@
 		}
 	}
 }
+.wordList {
+	display: grid;
+}
+
+.wordList > * + * {
+	border-top: 1px dashed var(--color-gray);
+}
+
 .footer {
 	position: relative;
 }
+
+@media (min-width: 640px) {
+	.wordList > * + * {
+		margin-top: calc(var(--spacing-2) * 1px);
+		padding-top: calc(var(--spacing-2) * 1px);
+	}
+}
+
 @media (max-width: 639px) {
+	.wordList > * + * {
+		margin-top: calc(var(--calc-sp) * var(--spacing-2));
+		padding-top: calc(var(--calc-sp) * var(--spacing-2));
+	}
 	.footer {
 		&::before {
 			background-color: var(--color-gray);

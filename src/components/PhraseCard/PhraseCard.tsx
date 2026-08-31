@@ -2,12 +2,12 @@ import type { Phrase } from '@/types/database';
 import type { SpeechLang } from '@/constants/speechLangs';
 import { resolveSpeechLang } from '@/constants/speechLangs';
 import { FlexColumn } from '@/components/FlexColumn/FlexColumn';
-import { ListItem } from '@/components/ListItem/ListItem';
 import { MaskedThaiText } from '@/components/MaskedThaiText/MaskedThaiText';
 import { Stack } from '@/components/Stack/Stack';
 import { Typography } from '@/components/Typography/Typography';
 import { ActiveVoiceButton } from '@/components/VoiceButton/ActiveVoiceButton';
 import { CopyButton } from '@/components/CopyButton/CopyButton';
+import { PhraseWordItem } from './PhraseWordItem';
 import styles from './PhraseCard.module.css';
 
 type Props = {
@@ -47,38 +47,17 @@ export function PhraseCard({ phrase, hideThai = false, hideMeaning = false, spee
 			</Stack>
 			{hasWords && (
 				<div className={styles.footer}>
-					<Stack size={2} variant="ul">
+					<ul className={styles.wordList}>
 						{phrase.words!.map((word, index) => (
-							<ListItem key={index} symbol="none">
-								<FlexColumn gap={1} variant="div" alignItems="center" justifyContent="start" isWrap>
-									<MaskedThaiText hidden={hideThai}>
-										<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-											{word.word}
-										</Typography>
-									</MaskedThaiText>
-									<MaskedThaiText hidden={hideMeaning}>
-										<Typography size={2} variant="span" color="dark" weight="normal" align="left">
-											{word.meaning}
-										</Typography>
-									</MaskedThaiText>
-									<FlexColumn
-										gap={1}
-										variant="div"
-										alignItems="center"
-										justifyContent="start"
-										isWrap
-									>
-										{word.word && (
-											<>
-												<ActiveVoiceButton text={word.word} lang={voiceLang} />
-												<CopyButton text={word.word} />
-											</>
-										)}
-									</FlexColumn>
-								</FlexColumn>
-							</ListItem>
+							<PhraseWordItem
+								key={index}
+								word={word}
+								hideThai={hideThai}
+								hideMeaning={hideMeaning}
+								voiceLang={voiceLang}
+							/>
 						))}
-					</Stack>
+					</ul>
 				</div>
 			)}
 		</div>
