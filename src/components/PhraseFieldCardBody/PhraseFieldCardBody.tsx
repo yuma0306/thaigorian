@@ -36,7 +36,7 @@ export function PhraseFieldCardBody({
 		<Stack variant="div" size={1}>
 			<CategoryTextField
 				id={`phrase-${phraseId}`}
-				label="フレーズ"
+				label="Phrase"
 				name={`phrases.${phraseIndex}.phrase`}
 				control={control}
 				labelAction={
@@ -54,7 +54,7 @@ export function PhraseFieldCardBody({
 			/>
 			<CategoryTextField
 				id={`meaning-${phraseId}`}
-				label="意味"
+				label="Meaning"
 				name={`phrases.${phraseIndex}.meaning`}
 				control={control}
 			/>
