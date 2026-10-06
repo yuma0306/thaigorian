@@ -54,7 +54,7 @@ export function PhraseDetailStickyBar({
 					onClick={onStartRandomLesson}
 					disabled={!hasPhrases}
 				>
-					{`ランダム${maxLessonItems}問`}
+					{`Random ${maxLessonItems}`}
 				</Button>
 				<Button
 					color="secondary"
@@ -64,7 +64,7 @@ export function PhraseDetailStickyBar({
 					onClick={onStartAllLesson}
 					disabled={!canStartSelected}
 				>
-					選択した問題
+					Selected
 				</Button>
 			</div>
 		</div>

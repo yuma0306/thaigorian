@@ -31,7 +31,7 @@ export async function saveMyCategory({
 	});
 
 	if (categoryError || !category) {
-		return { ok: false, message: '保存に失敗しました。' };
+		return { ok: false, message: 'Could not save.' };
 	}
 
 	const result = await insertCategoryContent(
@@ -44,7 +44,7 @@ export async function saveMyCategory({
 	if (!result.ok) {
 		await supabase.from('my_phrases').delete().eq('category_id', category.id);
 		await supabase.from('my_categories').delete().eq('id', category.id);
-		return { ok: false, message: '保存に失敗しました。' };
+		return { ok: false, message: 'Could not save.' };
 	}
 
 	return { ok: true, contentId: parsed.normalizedContentId };

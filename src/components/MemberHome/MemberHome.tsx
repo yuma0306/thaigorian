@@ -11,8 +11,8 @@ import { paths } from '@/constants/paths';
 import { createSupabaseBrowserClient } from '@/functions/supabase';
 
 const menuItems = [
-	{ id: 'member-phrases', title: 'フレーズ一覧', href: paths.memberPhrases },
-	{ id: 'member-profile', title: '会員情報', href: paths.memberProfile }
+	{ id: 'member-phrases', title: 'Phrases', href: paths.memberPhrases },
+	{ id: 'member-profile', title: 'Profile', href: paths.memberProfile }
 ] as const;
 
 export function MemberHome() {
@@ -26,10 +26,10 @@ export function MemberHome() {
 
 	return (
 		<Inner>
-			<Crumbs items={[{ text: 'マイページ', href: paths.member }]} />
+			<Crumbs items={[{ text: 'My Page', href: paths.member }]} />
 			<Stack size={2} variant="section">
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
-					マイページ
+					My Page
 				</Typography>
 				<CardImageList>
 					{menuItems.map((item) => (
@@ -38,7 +38,7 @@ export function MemberHome() {
 					<CardImage
 						id="member-sign-out"
 						variant="button"
-						title="サインアウト"
+						title="Sign out"
 						onClick={handleSignOut}
 					/>
 				</CardImageList>

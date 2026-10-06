@@ -14,7 +14,7 @@ export function CategoryDeleteButton({ isSaving, isDeleting, onClick }: Props) {
 			disabled={isDeleting || isSaving}
 			onClick={onClick}
 		>
-			{isDeleting ? '削除中...' : '削除する'}
+			{isDeleting ? 'Deleting...' : 'Delete'}
 		</button>
 	);
 }

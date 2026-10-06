@@ -10,18 +10,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SingleLevel: Story = {
-	name: '1階層',
+	name: '1 level',
 	args: {
-		items: [{ text: '1階層', href: '#' }]
+		items: [{ text: '1 level', href: '#' }]
 	}
 };
 
 export const TwoLevels: Story = {
-	name: '2階層',
+	name: '2 levels',
 	args: {
 		items: [
-			{ text: '1階層', href: '#' },
-			{ text: '2階層', href: '#' }
+			{ text: '1 level', href: '#' },
+			{ text: '2 levels', href: '#' }
 		]
 	}
 };

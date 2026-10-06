@@ -28,7 +28,7 @@ export function SituationLesson({ collection }: Props) {
 			<Crumbs
 				items={[
 					{ text: collection.title, href: paths.phrase(collection.id) },
-					{ text: 'レッスン', href: paths.phraseLesson(collection.id) }
+					{ text: 'Lesson', href: paths.phraseLesson(collection.id) }
 				]}
 			/>
 			{showQuiz && currentPhrase && (

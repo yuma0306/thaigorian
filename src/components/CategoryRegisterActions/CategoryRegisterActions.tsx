@@ -1,4 +1,5 @@
 import { Button } from '@/components/Button/Button';
+import { ScrollToEdgeButton } from '@/components/ScrollToEdgeButton/ScrollToEdgeButton';
 import styles from './CategoryRegisterActions.module.css';
 
 type Props = {
@@ -12,22 +13,28 @@ export function CategoryRegisterActions({ saveLabel, isSaving, onSaveClick, view
 	const hasViewLink = Boolean(viewHref);
 
 	return (
-		<div className={styles.sticky} data-has-view={hasViewLink}>
-			{viewHref && (
-				<Button variant="a" color="secondary" href={viewHref} isFloating marginInline={false}>
-					マイフレーズを見る
+		<div className={styles.sticky}>
+			<div className={styles.scrolls}>
+				<ScrollToEdgeButton direction="top" />
+				<ScrollToEdgeButton direction="bottom" />
+			</div>
+			<div className={styles.actions} data-has-view={hasViewLink}>
+				{viewHref && (
+					<Button variant="a" color="secondary" href={viewHref} isFloating marginInline={false}>
+						My Phrases
+					</Button>
+				)}
+				<Button
+					variant="button"
+					color="secondary"
+					isFloating={hasViewLink}
+					marginInline={!hasViewLink}
+					disabled={isSaving}
+					onClick={onSaveClick}
+				>
+					{isSaving ? 'Saving...' : saveLabel}
 				</Button>
-			)}
-			<Button
-				variant="button"
-				color="secondary"
-				isFloating={hasViewLink}
-				marginInline={!hasViewLink}
-				disabled={isSaving}
-				onClick={onSaveClick}
-			>
-				{isSaving ? '保存中...' : saveLabel}
-			</Button>
+			</div>
 		</div>
 	);
 }

@@ -31,7 +31,7 @@ export function SpeechLangCardImageList({ items }: Props) {
 
 	return (
 		<Stack size={2} variant="div">
-			<div className={styles.tabList} role="tablist" aria-label="読み上げ言語">
+			<div className={styles.tabList} role="tablist" aria-label="Speech language">
 				{groups.map((group) => {
 					const selected = group.value === activeGroup.value;
 					return (
@@ -64,7 +64,7 @@ export function SpeechLangCardImageList({ items }: Props) {
 					</CardImageList>
 				) : (
 					<Typography size={2} variant="p" color="dark" weight="normal" align="center">
-						まだありません。
+						None yet.
 					</Typography>
 				)}
 			</div>

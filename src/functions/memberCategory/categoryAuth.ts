@@ -9,7 +9,7 @@ export async function getCurrentUser() {
 	} = await supabase.auth.getUser();
 
 	if (error || !user) {
-		return { supabase, userId: '', message: 'ログインしてください。' };
+		return { supabase, userId: '', message: 'Please log in.' };
 	}
 
 	return { supabase, userId: user.id, message: '' };

@@ -51,7 +51,7 @@ export function MyPhraseDetail({ category }: Props) {
 			<Crumbs items={[{ text: category.title, href: paths.myPhrase(category.id) }]} />
 			<Inner>
 				<Stack size={2} variant="section">
-					<PairPageLink href={paths.memberPhrasesDetail(category.id)}>編集する</PairPageLink>
+					<PairPageLink href={paths.memberPhrasesDetail(category.id)}>Edit</PairPageLink>
 					<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
 						{category.title}
 					</Typography>

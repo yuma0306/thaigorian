@@ -31,7 +31,7 @@ export async function fetchMyPhraseCategoryView(
 
 	return {
 		id: category.id,
-		title: category.title ?? '無題',
+		title: category.title ?? 'Untitled',
 		speechLang: category.speechLang,
 		phrases: (phraseRows ?? [])
 			.map((phrase) => mapMyPhraseRow(phrase, wordsByPhraseId.get(phrase.id) ?? []))

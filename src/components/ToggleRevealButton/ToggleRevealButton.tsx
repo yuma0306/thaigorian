@@ -15,8 +15,8 @@ type Props = {
 export function ToggleRevealButton({
 	expanded = false,
 	isFixed = false,
-	hideLabel = 'フレーズを隠す',
-	showLabel = 'フレーズを表示',
+	hideLabel = 'Hide phrase',
+	showLabel = 'Show phrase',
 	caption,
 	onClick
 }: Props) {

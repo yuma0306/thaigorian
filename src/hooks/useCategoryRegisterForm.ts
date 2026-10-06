@@ -67,12 +67,12 @@ export function useCategoryRegisterForm({
 				return;
 			}
 
-			showToast('保存しました。');
+			showToast('Saved.');
 			if (!categoryId) {
 				router.push(paths.memberPhrases);
 			}
 		} catch {
-			showToast('保存に失敗しました。', 'error');
+			showToast('Could not save.', 'error');
 		}
 	}
 

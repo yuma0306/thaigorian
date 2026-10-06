@@ -13,7 +13,7 @@ export function PhraseDetailCardSelect({ checked, onCheckedChange, children }: P
 			<PhraseLessonCheckbox
 				checked={checked}
 				onChange={onCheckedChange}
-				aria-label="レッスンに含める"
+				aria-label="Include in lesson"
 				isAbsolute
 			/>
 			{children}

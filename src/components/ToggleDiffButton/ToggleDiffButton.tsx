@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function ToggleDiffButton({ expanded = false, onClick }: Props) {
-	const label = expanded ? '比較を隠す' : '入力と正解を比較';
+	const label = expanded ? 'Hide comparison' : 'Compare with answer';
 	return (
 		<button
 			type="button"

@@ -97,7 +97,7 @@ export function parseSaveMyCategoryInput(
 ) {
 	const result = saveMyCategorySchema.safeParse({ contentId, title, speechLang, phrases });
 	if (!result.success) {
-		return { ok: false as const, message: '入力内容を確認してください。' };
+		return { ok: false as const, message: 'Please check your input.' };
 	}
 	return {
 		ok: true as const,

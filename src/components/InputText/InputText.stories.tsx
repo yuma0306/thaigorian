@@ -13,22 +13,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	name: 'デフォルト',
+	name: 'Default',
 	args: {
 		isCorrect: false,
-		placeholder: 'テキストを入力',
+		placeholder: 'Enter text',
 		value: '',
 		disabled: false
 	}
 };
 
 export const Correct: Story = {
-	name: '正解',
+	name: 'Correct',
 	args: {
 		isCorrect: true,
 		value: 'สวัสดี',
 		disabled: true,
-		placeholder: 'タイ文字を入力！',
+		placeholder: 'Type Thai here',
 		lang: 'th'
 	}
 };

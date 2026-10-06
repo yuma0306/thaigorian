@@ -16,14 +16,14 @@ function MemberCategoryStatus({ error, isEmpty }: { error: Error | null; isEmpty
 	if (error) {
 		return (
 			<Typography size={2} variant="p" color="secondary" weight="bold" align="center">
-				データを取得できませんでした。
+				Could not load data.
 			</Typography>
 		);
 	}
 	if (isEmpty) {
 		return (
 			<Typography size={2} variant="p" color="dark" weight="normal" align="center">
-				登録はまだありません。
+				Nothing here yet.
 			</Typography>
 		);
 	}
@@ -37,16 +37,16 @@ export function MemberCategoryPageContent({ categories, error }: Props) {
 		<Stack size={3} variant="section">
 			<Crumbs
 				items={[
-					{ text: 'マイページ', href: paths.member },
-					{ text: 'フレーズ一覧', href: paths.memberPhrases }
+					{ text: 'My Page', href: paths.member },
+					{ text: 'Phrases', href: paths.memberPhrases }
 				]}
 			/>
 			<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
-				フレーズ一覧
+				Phrases
 			</Typography>
 			<div className={styles.actions}>
 				<Button variant="a" color="secondary" href={paths.memberPhrasesRegister}>
-					フレーズを登録
+					Add phrases
 				</Button>
 			</div>
 			<MemberCategoryStatus error={error} isEmpty={isEmpty} />

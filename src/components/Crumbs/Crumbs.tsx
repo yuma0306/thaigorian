@@ -11,7 +11,7 @@ type Props = {
 	items: CrumbItem[];
 };
 
-const homeCrumb: CrumbItem = { text: 'ホーム', href: paths.home };
+const homeCrumb: CrumbItem = { text: 'Home', href: paths.home };
 
 export function Crumbs({ items }: Props) {
 	const allItems = [homeCrumb, ...items];

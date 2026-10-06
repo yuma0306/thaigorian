@@ -14,13 +14,13 @@ const siteUrl = `https://${siteData.domain}`;
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
 	title: siteData.siteName,
-	description: 'マイペンサッパロットは、タイ語とタイ文字タイピングを学習するためのサイトです。',
+	description: 'ThaiGorian is a site for learning Thai and Thai typing.',
 	robots: { index: false, follow: false },
 	alternates: { canonical: siteUrl },
 	openGraph: {
 		title: siteData.siteName,
-		description: 'マイペンサッパロットは、タイ語とタイ文字タイピングを学習するためのサイトです。',
-		locale: 'ja_JP',
+		description: 'ThaiGorian is a site for learning Thai and Thai typing.',
+		locale: 'en_US',
 		type: 'website',
 		url: siteUrl,
 		siteName: siteData.siteName,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="ja">
+		<html lang="en">
 			<body>
 				<ModalProvider>
 					<ToastProvider>

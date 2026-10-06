@@ -49,7 +49,7 @@ export function AuthForm({
 		});
 
 		if (error) {
-			setErrorMessage('Googleログインを開始できませんでした。');
+			setErrorMessage('Could not start Google sign-in.');
 			setIsSubmitting(false);
 		}
 	}

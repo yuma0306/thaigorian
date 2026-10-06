@@ -18,7 +18,7 @@ export function LessonResultSection({ correctCount, total, results, speechLang, 
 	return (
 		<Stack size={2} variant="section">
 			<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
-				結果
+				Results
 			</Typography>
 			<ScoreCard score={correctCount} total={total} />
 			<Stack size={2} variant="ul">
@@ -34,7 +34,7 @@ export function LessonResultSection({ correctCount, total, results, speechLang, 
 				))}
 			</Stack>
 			<Button variant="a" color="secondary" href={backHref}>
-				戻る
+				Back
 			</Button>
 		</Stack>
 	);

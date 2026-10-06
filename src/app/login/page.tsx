@@ -13,12 +13,12 @@ export default async function LoginPage({ searchParams }: Props) {
 	return (
 		<Inner>
 			<AuthForm
-				title="ログイン"
-				description="Googleアカウントでログインしてください。"
+				title="Log in"
+				description="Log in with your Google account."
 				googleButtonMode="signin"
 				alternateHref={paths.signup}
-				alternateLabel="アカウント登録はこちら"
-				initialErrorMessage={error ? `ログインに失敗しました。${error}` : ''}
+				alternateLabel="Create an account"
+				initialErrorMessage={error ? `Could not log in. ${error}` : ''}
 			/>
 		</Inner>
 	);

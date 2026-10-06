@@ -56,7 +56,7 @@ export default async function MemberCategoryDetailPage({ params }: Props) {
 			initialSpeechLang={category.speechLang}
 			onDelete={deleteMyCategory}
 			onSave={updateMyCategory.bind(null, category.id)}
-			saveLabel="更新する"
+			saveLabel="Update"
 		/>
 	);
 }

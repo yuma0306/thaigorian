@@ -43,7 +43,7 @@ export function useCategoryDelete({ categoryId, onDelete }: Params) {
 
 			router.push(paths.memberPhrases);
 		} catch {
-			showToast('削除に失敗しました。', 'error');
+			showToast('Could not delete.', 'error');
 			setIsDeleting(false);
 		}
 	}

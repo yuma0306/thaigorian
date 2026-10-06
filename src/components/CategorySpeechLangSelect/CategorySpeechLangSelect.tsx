@@ -18,7 +18,7 @@ export function CategorySpeechLangSelect({ control }: Props) {
 				<Stack variant="div" size={1} justifyItems="start">
 					<label htmlFor="category-speech-lang">
 						<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-							読み上げ言語
+							Speech language
 						</Typography>
 					</label>
 					<select

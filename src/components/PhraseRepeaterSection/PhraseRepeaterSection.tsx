@@ -37,13 +37,13 @@ export function PhraseRepeaterSection({
 			{phraseFields.length === 0 ? (
 				<>
 					<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-						フレーズ集
+						Phrases
 					</Typography>
 					<button
 						className={styles.timelineAddButton}
 						type="button"
 						onClick={onAddPhrase}
-						aria-label="フィールドを追加"
+						aria-label="Add field"
 					>
 						<span aria-hidden="true">＋</span>
 					</button>

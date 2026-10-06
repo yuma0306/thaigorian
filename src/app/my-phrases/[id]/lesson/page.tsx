@@ -29,7 +29,7 @@ export default async function MyPhraseLessonPage({ params }: Props) {
 			<Crumbs
 				items={[
 					{ text: category.title, href: paths.myPhrase(category.id) },
-					{ text: 'レッスン', href: paths.myPhraseLesson(category.id) }
+					{ text: 'Lesson', href: paths.myPhraseLesson(category.id) }
 				]}
 			/>
 			<MyPhraseLesson category={category} />

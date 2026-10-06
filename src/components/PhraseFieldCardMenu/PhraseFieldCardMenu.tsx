@@ -33,18 +33,18 @@ export function PhraseFieldCardMenu({
 				className={styles.menuButton}
 				type="button"
 				onClick={(event) => onToggleMenu(event, { type: 'phrase', id: phraseId })}
-				aria-label={`フレーズ${phraseIndex + 1}の操作を開く`}
+				aria-label={`Open actions for phrase ${phraseIndex + 1}`}
 			>
 				⋮
 			</button>
 			{openMenu?.type === 'phrase' && openMenu.id === phraseId && (
 				<FieldMenu
 					align="end"
-					addAboveLabel="上にフィールドを追加"
-					addBelowLabel="下にフィールドを追加"
-					moveUpLabel="1つ上に移動"
-					moveDownLabel="1つ下に移動"
-					deleteLabel="フィールドを削除"
+					addAboveLabel="Add field above"
+					addBelowLabel="Add field below"
+					moveUpLabel="Move up"
+					moveDownLabel="Move down"
+					deleteLabel="Delete field"
 					isMoveUpDisabled={phraseIndex === 0}
 					isMoveDownDisabled={phraseIndex === phraseCount - 1}
 					onAddAbove={() => onInsertPhrase(phraseIndex)}

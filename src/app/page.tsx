@@ -18,7 +18,7 @@ export default async function HomePage() {
 				{myPhraseCategories !== null && (
 					<Stack size={2} variant="section">
 						<Typography size={4} variant="h2" color="secondary" weight="bold" align="center">
-							マイフレーズ
+							My Phrases
 						</Typography>
 						{myPhraseCategories.length > 0 && (
 							<SpeechLangCardImageList
@@ -32,7 +32,7 @@ export default async function HomePage() {
 				)}
 				<Stack size={2} variant="section">
 					<Typography size={4} variant="h2" color="secondary" weight="bold" align="center">
-						フレーズ
+						Phrases
 					</Typography>
 					{phraseCollections.length > 0 && (
 						<SpeechLangCardImageList
