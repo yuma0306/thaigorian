@@ -1,0 +1,16 @@
+.icon {
+	display: block;
+	fill: var(--color-primary);
+}
+@media (min-width: 640px) {
+	.icon {
+		height: calc(var(--spacing-2) * 1px);
+		width: calc(var(--spacing-2) * 1px);
+	}
+}
+@media (max-width: 639px) {
+	.icon {
+		height: calc(var(--calc-sp) * var(--spacing-2));
+		width: calc(var(--calc-sp) * var(--spacing-2));
+	}
+}

@@ -1,0 +1,30 @@
+.scrollToEdge {
+	align-items: center;
+	background: var(--color-primary-10);
+	border: 1px solid var(--color-primary);
+	color: var(--color-primary);
+	cursor: pointer;
+	display: inline-flex;
+	font-weight: 700;
+	gap: calc(var(--spacing-1) * 1px);
+	justify-content: center;
+	transition: opacity var(--transition);
+}
+
+.caption {
+	line-height: 1;
+}
+
+@media (min-width: 640px) {
+	.scrollToEdge {
+		border-radius: calc(var(--border-radius) * 1px);
+		padding: calc(var(--spacing-1) * 1px);
+	}
+}
+@media (max-width: 639px) {
+	.scrollToEdge {
+		border-radius: calc(var(--calc-sp) * var(--border-radius));
+		gap: calc(var(--calc-sp) * var(--spacing-1));
+		padding: calc(var(--calc-sp) * var(--spacing-1));
+	}
+}
