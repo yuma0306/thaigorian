@@ -24,7 +24,7 @@ export async function updateMyCategory(
 
 	const cleared = await deleteCategoryPhrasesAndWords(supabase, userId, categoryId);
 	if (!cleared.ok) {
-		return { ok: false, message: '保存に失敗しました。' };
+		return { ok: false, message: 'Could not save.' };
 	}
 
 	const { error: categoryError } = await updateMyCategoryRow(supabase, categoryId, userId, {
@@ -35,7 +35,7 @@ export async function updateMyCategory(
 	});
 
 	if (categoryError) {
-		return { ok: false, message: '保存に失敗しました。' };
+		return { ok: false, message: 'Could not save.' };
 	}
 
 	const result = await insertCategoryContent(
@@ -46,7 +46,7 @@ export async function updateMyCategory(
 	);
 
 	if (!result.ok) {
-		return { ok: false, message: '保存に失敗しました。' };
+		return { ok: false, message: 'Could not save.' };
 	}
 
 	return { ok: true, contentId: parsed.normalizedContentId };

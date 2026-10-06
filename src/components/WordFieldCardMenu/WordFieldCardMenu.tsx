@@ -30,18 +30,18 @@ export function WordFieldCardMenu({
 				className={styles.menuButton}
 				type="button"
 				onClick={(event) => onToggleMenu(event, { type: 'word', id: wordId })}
-				aria-label={`用語${wordIndex + 1}の操作を開く`}
+				aria-label={`Open actions for term ${wordIndex + 1}`}
 			>
 				⋮
 			</button>
 			{openMenu?.type === 'word' && openMenu.id === wordId && (
 				<FieldMenu
 					align="end"
-					addAboveLabel="上に用語を追加"
-					addBelowLabel="下に用語を追加"
-					moveUpLabel="1つ上に移動"
-					moveDownLabel="1つ下に移動"
-					deleteLabel="用語を削除"
+					addAboveLabel="Add term above"
+					addBelowLabel="Add term below"
+					moveUpLabel="Move up"
+					moveDownLabel="Move down"
+					deleteLabel="Delete term"
 					isMoveUpDisabled={wordIndex === 0}
 					isMoveDownDisabled={wordIndex === wordCount - 1}
 					onAddAbove={() => onInsertWord(wordIndex)}

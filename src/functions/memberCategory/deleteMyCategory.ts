@@ -13,7 +13,7 @@ export async function deleteMyCategory(categoryId: string): Promise<SaveMyCatego
 
 	const cleared = await deleteCategoryPhrasesAndWords(supabase, userId, categoryId);
 	if (!cleared.ok) {
-		return { ok: false, message: '削除に失敗しました。' };
+		return { ok: false, message: 'Could not delete.' };
 	}
 
 	const { error: categoryDeleteError } = await supabase
@@ -23,7 +23,7 @@ export async function deleteMyCategory(categoryId: string): Promise<SaveMyCatego
 		.eq('user_id', userId);
 
 	if (categoryDeleteError) {
-		return { ok: false, message: '削除に失敗しました。' };
+		return { ok: false, message: 'Could not delete.' };
 	}
 
 	return { ok: true, contentId: categoryId };

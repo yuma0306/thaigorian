@@ -35,19 +35,19 @@ function createRegisterFormOptions({
 }
 
 export function MyCategoryRegister(props: MyCategoryRegisterProps) {
-	const { categoryId, initialTitle = '', onDelete, saveLabel = '保存する' } = props;
+	const { categoryId, initialTitle = '', onDelete, saveLabel = 'Save' } = props;
 	const registerForm = useCategoryRegisterForm(createRegisterFormOptions(props));
 	const { control } = registerForm.form;
 	const crumbItems = categoryId
 		? [
-				{ text: 'マイページ', href: paths.member },
-				{ text: 'フレーズ一覧', href: paths.memberPhrases },
+				{ text: 'My Page', href: paths.member },
+				{ text: 'My Phrases', href: paths.memberPhrases },
 				{ text: initialTitle, href: paths.memberPhrasesDetail(categoryId) }
 			]
 		: [
-				{ text: 'マイページ', href: paths.member },
-				{ text: 'フレーズ一覧', href: paths.memberPhrases },
-				{ text: 'フレーズ登録', href: paths.memberPhrasesRegister }
+				{ text: 'My Page', href: paths.member },
+				{ text: 'My Phrases', href: paths.memberPhrases },
+				{ text: 'Register My Phrases', href: paths.memberPhrasesRegister }
 			];
 
 	return (
@@ -59,7 +59,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 						<Stack variant="div" size={2}>
 							<CategoryTextField
 								id="category-title"
-								label="タイトル"
+								label="Title"
 								name="title"
 								control={control}
 								labelAction={

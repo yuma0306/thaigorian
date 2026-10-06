@@ -1,4 +1,5 @@
 import { Button } from '@/components/Button/Button';
+import { ScrollToEdgeButton } from '@/components/ScrollToEdgeButton/ScrollToEdgeButton';
 import { ToggleRevealButton } from '@/components/ToggleRevealButton/ToggleRevealButton';
 import { maxLessonItems } from '@/functions/lesson';
 import styles from './PhraseDetailStickyBar.module.css';
@@ -27,17 +28,19 @@ export function PhraseDetailStickyBar({
 	return (
 		<div className={styles.stickyBar}>
 			<div className={styles.toggles}>
+				<ScrollToEdgeButton direction="top" />
+				<ScrollToEdgeButton direction="bottom" />
 				<ToggleRevealButton
 					expanded={!hideThai}
-					{...(onToggleHideMeaning ? { caption: 'フレーズ' } : {})}
+					{...(onToggleHideMeaning ? { caption: 'Phrase' } : {})}
 					onClick={onToggleHideThai}
 				/>
 				{onToggleHideMeaning && (
 					<ToggleRevealButton
 						expanded={!hideMeaning}
-						caption="意味"
-						hideLabel="意味を隠す"
-						showLabel="意味を表示"
+						caption="Meaning"
+						hideLabel="Hide meaning"
+						showLabel="Show meaning"
 						onClick={onToggleHideMeaning}
 					/>
 				)}
@@ -51,7 +54,7 @@ export function PhraseDetailStickyBar({
 					onClick={onStartRandomLesson}
 					disabled={!hasPhrases}
 				>
-					{`ランダム${maxLessonItems}問`}
+					{`Random ${maxLessonItems}`}
 				</Button>
 				<Button
 					color="secondary"
@@ -61,7 +64,7 @@ export function PhraseDetailStickyBar({
 					onClick={onStartAllLesson}
 					disabled={!canStartSelected}
 				>
-					選択した問題
+					Selected
 				</Button>
 			</div>
 		</div>

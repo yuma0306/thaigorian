@@ -11,7 +11,7 @@ export function MemberCategoryList({ categories }: Props) {
 		<SpeechLangCardImageList
 			items={categories.map((category) => ({
 				id: category.id,
-				title: category.title ?? '無題',
+				title: category.title ?? 'Untitled',
 				href: paths.memberPhrasesDetail(category.id),
 				speechLang: category.speechLang
 			}))}

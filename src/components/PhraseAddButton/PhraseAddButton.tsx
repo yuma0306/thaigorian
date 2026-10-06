@@ -19,7 +19,7 @@ export function PhraseAddButton({
 			data-layer={layer}
 			type="button"
 			onClick={onClick}
-			aria-label="フィールドを追加"
+			aria-label="Add field"
 		>
 			<span className={styles.icon} data-layer={layer} aria-hidden="true">
 				＋

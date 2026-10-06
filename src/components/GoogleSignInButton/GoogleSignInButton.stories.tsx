@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const SignIn: Story = {
-	name: 'ログイン',
+	name: 'Log in',
 	args: {
 		mode: 'signin',
 		disabled: false
@@ -25,7 +25,7 @@ export const SignIn: Story = {
 };
 
 export const SignUp: Story = {
-	name: '会員登録',
+	name: 'Sign up',
 	args: {
 		mode: 'signup',
 		disabled: false
@@ -33,7 +33,7 @@ export const SignUp: Story = {
 };
 
 export const Disabled: Story = {
-	name: '無効化',
+	name: 'Disabled',
 	args: {
 		mode: 'signin',
 		disabled: true

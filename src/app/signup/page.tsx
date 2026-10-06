@@ -6,11 +6,11 @@ export default function SignupPage() {
 	return (
 		<Inner>
 			<AuthForm
-				title="サインアップ"
-				description="Googleアカウントで会員登録してください。"
+				title="Sign up"
+				description="Sign up with your Google account."
 				googleButtonMode="signup"
 				alternateHref={paths.login}
-				alternateLabel="ログインはこちら"
+				alternateLabel="Log in"
 			/>
 		</Inner>
 	);

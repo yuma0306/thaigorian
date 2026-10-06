@@ -14,7 +14,7 @@ export function PhraseDiff({ input, expected, particle }: Props) {
 	return (
 		<div className={styles.root}>
 			<Typography size={1} variant="p" color="dark" weight="bold" align="left">
-				比較
+				Comparison
 			</Typography>
 			<p className={styles.diff} lang="th">
 				{parts.map((part, index) => (
@@ -25,10 +25,8 @@ export function PhraseDiff({ input, expected, particle }: Props) {
 				{particle && <span>{particle}</span>}
 			</p>
 			<Typography size={1} variant="p" color="dark" weight="normal" align="left">
-				<span className={styles.legendDelete}>赤</span>
-				は余分、
-				<span className={styles.legendInsert}>緑</span>
-				は不足
+				<span className={styles.legendDelete}>Red</span> is extra,{' '}
+				<span className={styles.legendInsert}>green</span> is missing
 			</Typography>
 		</div>
 	);

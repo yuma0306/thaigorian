@@ -20,13 +20,13 @@ export default function Error({ error, unstable_retry }: Props) {
 		<Inner>
 			<Stack size={2} variant="section">
 				<Typography size={4} variant="h1" color="secondary" weight="bold" align="center">
-					サイトを表示できません
+					This page could not be loaded
 				</Typography>
 				<Typography size={2} variant="p" color="dark" weight="normal" align="center">
-					一時的なエラーが発生しています。しばらくしてから再度お試しください。
+					A temporary error occurred. Please try again later.
 				</Typography>
 				<Button variant="button" color="secondary" onClick={() => unstable_retry()}>
-					もう一度試す
+					Try again
 				</Button>
 			</Stack>
 		</Inner>

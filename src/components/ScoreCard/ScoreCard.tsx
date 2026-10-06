@@ -11,7 +11,7 @@ export function ScoreCard({ score, total }: Props) {
 	return (
 		<Card variant="div" borderColor="gray" hasBorderLeft={false}>
 			<Typography size={2} variant="p" color="dark" weight="bold" align="center">
-				スコア
+				Score
 			</Typography>
 			<FlexColumn gap={1} variant="div" alignItems="center" justifyContent="center">
 				<Typography size={5} variant="p" color="secondary" weight="bold" align="center">

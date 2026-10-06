@@ -14,13 +14,13 @@ export function MemberProfileCard({ displayName, email, errorMessage }: Props) {
 			<Stack size={2} variant="div">
 				<Stack size={1} variant="dl">
 					<Typography size={2} variant="dt" color="primary" weight="bold" align="left">
-						名前
+						Name
 					</Typography>
 					<Typography size={2} variant="dd" color="dark" weight="normal" align="left">
 						{displayName}
 					</Typography>
 					<Typography size={2} variant="dt" color="primary" weight="bold" align="left">
-						メールアドレス
+						Email
 					</Typography>
 					<Typography size={2} variant="dd" color="dark" weight="normal" align="left">
 						{email}

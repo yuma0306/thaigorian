@@ -24,7 +24,7 @@ export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySu
 
 	return categories.map((category) => ({
 		id: category.id,
-		title: category.title ?? '無題',
+		title: category.title ?? 'Untitled',
 		speechLang: category.speechLang
 	}));
 }

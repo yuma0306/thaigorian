@@ -57,7 +57,7 @@ export function PhraseWordFieldsSection({
 				{wordFieldArray.fields.length < 1 && (
 					<>
 						<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-							用語集
+							Terms
 						</Typography>
 						<PhraseAddButton
 							onClick={handleAddWord}

@@ -15,17 +15,17 @@ export default async function MemberProfilePage() {
 			<Stack size={2} variant="section">
 				<Crumbs
 					items={[
-						{ text: 'マイページ', href: paths.member },
-						{ text: '会員情報', href: paths.memberProfile }
+						{ text: 'My Page', href: paths.member },
+						{ text: 'Profile', href: paths.memberProfile }
 					]}
 				/>
 				<Typography size={5} variant="h1" color="secondary" weight="bold" align="center">
-					会員情報
+					Profile
 				</Typography>
 				<MemberProfileCard
 					displayName={getMemberDisplayName(profile, user)}
 					email={getMemberEmail(profile, user)}
-					errorMessage={profileError ? '会員情報を取得できませんでした。' : ''}
+					errorMessage={profileError ? 'Could not load profile.' : ''}
 				/>
 			</Stack>
 		</Inner>

@@ -12,7 +12,7 @@ export function Header() {
 	const supabase = createSupabaseBrowserClient();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const linkHref = isLoggedIn ? paths.member : paths.login;
-	const linkText = isLoggedIn ? 'マイページ' : 'ログイン';
+	const linkText = isLoggedIn ? 'My Page' : 'Log in';
 
 	useEffect(() => {
 		void supabase.auth

@@ -15,7 +15,7 @@ export function PhraseDetailToolbar({ allSelected, onAllSelectedChange }: Toolba
 				onChange={(event) => onAllSelectedChange(event.target.checked)}
 			>
 				<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-					全問チェック
+					Select all
 				</Typography>
 			</PhraseLessonCheckbox>
 		</div>

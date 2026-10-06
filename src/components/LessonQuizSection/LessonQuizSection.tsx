@@ -67,7 +67,7 @@ export function LessonQuizSection({
 						isCorrect={isCorrect}
 						value={userInput}
 						onChange={(e) => onUserInputChange(e.target.value)}
-						placeholder="タイ文字を入力！"
+						placeholder="Type Thai here"
 						lang="th"
 						disabled={isCorrect}
 					/>
@@ -77,7 +77,7 @@ export function LessonQuizSection({
 			{showDiff && <PhraseDiff input={userInput} expected={core} particle={particle} />}
 			{isCorrect && (
 				<Button variant="button" color="success" onClick={onAdvance}>
-					次へ進む
+					Next
 				</Button>
 			)}
 			{!isCorrect && (
@@ -90,10 +90,10 @@ export function LessonQuizSection({
 						onClick={onBack}
 						disabled={currentIndex === 0}
 					>
-						戻る
+						Back
 					</Button>
 					<Button variant="button" color="secondary" isFloating marginInline={false} onClick={onSkip}>
-						スキップ
+						Skip
 					</Button>
 				</div>
 			)}

@@ -1,9 +1,16 @@
 .sticky {
+	display: flex;
+	flex-direction: column;
 	position: sticky;
 	z-index: var(--z-sticky);
 }
 
-.sticky[data-has-view='true'] {
+.scrolls {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.actions[data-has-view='true'] {
 	align-items: center;
 	display: flex;
 }
@@ -11,8 +18,10 @@
 @media (min-width: 640px) {
 	.sticky {
 		bottom: calc(var(--spacing-2) * 1px);
+		gap: calc(var(--spacing-1) * 1px);
 	}
-	.sticky[data-has-view='true'] {
+	.scrolls,
+	.actions[data-has-view='true'] {
 		gap: calc(var(--spacing-1) * 1px);
 	}
 }
@@ -20,8 +29,10 @@
 @media (max-width: 639px) {
 	.sticky {
 		bottom: calc(var(--calc-sp) * var(--spacing-2));
+		gap: calc(var(--calc-sp) * var(--spacing-1));
 	}
-	.sticky[data-has-view='true'] {
+	.scrolls,
+	.actions[data-has-view='true'] {
 		gap: calc(var(--calc-sp) * var(--spacing-1));
 	}
 }

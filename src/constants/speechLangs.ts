@@ -1,8 +1,8 @@
 export const defaultSpeechLang = 'th-TH';
 
 export const speechLangOptions = [
-	{ value: 'th-TH', label: 'タイ語' },
-	{ value: 'en-US', label: '英語' }
+	{ value: 'th-TH', label: 'Thai' },
+	{ value: 'en-US', label: 'English' }
 ] as const;
 
 export type SpeechLang = (typeof speechLangOptions)[number]['value'];

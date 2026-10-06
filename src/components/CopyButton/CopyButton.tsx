@@ -14,9 +14,9 @@ export function CopyButton({ text }: Props) {
 	async function copyToClipboard(value: string) {
 		try {
 			await navigator.clipboard.writeText(value);
-			showToast(`「${value}」をコピーしました`);
+			showToast(`Copied "${value}"`);
 		} catch {
-			showToast('コピーに失敗しました', 'error');
+			showToast('Could not copy', 'error');
 		}
 	}
 	if (!text) return null;
@@ -27,8 +27,8 @@ export function CopyButton({ text }: Props) {
 			onClick={() => {
 				void copyToClipboard(text);
 			}}
-			aria-label="コピー"
-			title="コピー"
+			aria-label="Copy"
+			title="Copy"
 		>
 			<CopyIcon />
 		</button>

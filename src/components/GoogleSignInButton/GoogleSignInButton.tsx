@@ -21,10 +21,10 @@ export function GoogleSignInButton({
 const buttonAssets: Record<GoogleSignInButtonMode, { src: string; alt: string }> = {
 	signin: {
 		src: '/sign-in-with-google.png',
-		alt: 'Googleでログイン'
+		alt: 'Sign in with Google'
 	},
 	signup: {
 		src: '/sign-up-with-google.png',
-		alt: 'Googleで会員登録'
+		alt: 'Sign up with Google'
 	}
 } as const;
