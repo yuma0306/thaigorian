@@ -60,6 +60,7 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 							<CategoryTextField
 								id="category-title"
 								label="Title"
+								inputLabel="Title"
 								name="title"
 								control={control}
 								labelAction={

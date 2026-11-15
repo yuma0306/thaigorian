@@ -6,7 +6,6 @@ import { maxWordsPerPhrase } from '@/constants/myCategoryLimits';
 import { useWordFieldArray } from '@/hooks/useWordFieldArray';
 import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 import type { MenuState } from '@/types/myCategoryRegister';
-import { FlexColumn } from '../FlexColumn/FlexColumn';
 import { Typography } from '../Typography/Typography';
 import { PhraseWordFieldList } from './PhraseWordFieldList';
 import styles from './PhraseWordFieldsSection.module.css';
@@ -31,19 +30,12 @@ export function PhraseWordFieldsSection({
 	return (
 		<div className={styles.section}>
 			{wordActions.wordFields.length < 1 && (
-				<FlexColumn gap={1} variant="div" alignItems="center">
-					<>
-						<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-							Terms
-						</Typography>
-						<PhraseAddButton
-							onClick={wordActions.handleAddWord}
-							layer="secound"
-							position="left"
-							isAbsolute={false}
-						/>
-					</>
-				</FlexColumn>
+				<PhraseAddButton
+					onClick={wordActions.handleAddWord}
+					layer="secound"
+					position="left"
+					isAbsolute={false}
+				/>
 			)}
 			{wordActions.wordFields.length > 0 && (
 				<>

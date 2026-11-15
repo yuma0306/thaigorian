@@ -8,28 +8,57 @@ import styles from './CategoryTextField.module.css';
 
 type Props = {
 	id: string;
-	label: string;
 	name: FieldPath<CategoryRegisterFormValues>;
 	control: Control<CategoryRegisterFormValues>;
+	inputLabel: string;
+	placeholder?: string;
+	label?: ReactNode;
 	labelAction?: ReactNode;
 };
 
-export function CategoryTextField({ id, label, name, control, labelAction }: Props) {
+export function CategoryTextField({
+	id,
+	name,
+	control,
+	inputLabel,
+	placeholder,
+	label,
+	labelAction
+}: Props) {
 	return (
 		<Controller
 			control={control}
 			name={name}
 			render={({ field }) => (
 				<Stack variant="div" size={1} justifyItems="start">
-					<div className={styles.labelRow}>
-						<label htmlFor={id}>
-							<Typography size={2} variant="span" color="primary" weight="bold" align="left">
-								{label}
-							</Typography>
-						</label>
-						{labelAction}
-					</div>
-					<InputText id={id} isCorrect={false} {...field} value={field.value as string} />
+					{label !== undefined || labelAction !== undefined ? (
+						<div className={styles.labelRow}>
+							<label htmlFor={id} aria-label={inputLabel}>
+								{typeof label === 'string' ? (
+									<Typography
+										size={2}
+										variant="span"
+										color="primary"
+										weight="bold"
+										align="left"
+									>
+										{label}
+									</Typography>
+								) : (
+									label
+								)}
+							</label>
+							{labelAction}
+						</div>
+					) : null}
+					<InputText
+						id={id}
+						isCorrect={false}
+						{...field}
+						value={field.value as string}
+						aria-label={inputLabel}
+						{...(placeholder !== undefined ? { placeholder } : {})}
+					/>
 				</Stack>
 			)}
 		/>
