@@ -6,10 +6,12 @@ export function useThaiVisibility() {
 
 	function toggleHideThai() {
 		setHideThai((current) => !current);
+		setHideMeaning(false);
 	}
 
 	function toggleHideMeaning() {
 		setHideMeaning((current) => !current);
+		setHideThai(false);
 	}
 
 	return {

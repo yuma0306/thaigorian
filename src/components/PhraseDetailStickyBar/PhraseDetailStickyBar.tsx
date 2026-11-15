@@ -30,17 +30,11 @@ export function PhraseDetailStickyBar({
 			<div className={styles.toggles}>
 				<ScrollToEdgeButton direction="top" />
 				<ScrollToEdgeButton direction="bottom" />
-				<ToggleRevealButton
-					expanded={!hideThai}
-					{...(onToggleHideMeaning ? { caption: 'Phrase' } : {})}
-					onClick={onToggleHideThai}
-				/>
+				<ToggleRevealButton label="Phrase" expanded={!hideThai} onClick={onToggleHideThai} />
 				{onToggleHideMeaning && (
 					<ToggleRevealButton
 						expanded={!hideMeaning}
-						caption="Meaning"
-						hideLabel="Hide meaning"
-						showLabel="Show meaning"
+						label="Meaning"
 						onClick={onToggleHideMeaning}
 					/>
 				)}

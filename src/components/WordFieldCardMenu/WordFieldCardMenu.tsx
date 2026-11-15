@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react';
 import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
+import { maxWordsPerPhrase } from '@/constants/myCategoryLimits';
 import type { MenuState } from '@/types/myCategoryRegister';
 import styles from './WordFieldCardMenu.module.css';
 
@@ -44,6 +45,7 @@ export function WordFieldCardMenu({
 					deleteLabel="Delete term"
 					isMoveUpDisabled={wordIndex === 0}
 					isMoveDownDisabled={wordIndex === wordCount - 1}
+					isAddDisabled={wordCount >= maxWordsPerPhrase}
 					onAddAbove={() => onInsertWord(wordIndex)}
 					onAddBelow={() => onInsertWord(wordIndex + 1)}
 					onMoveUp={() => onMoveWord(wordIndex, wordIndex - 1)}

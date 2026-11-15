@@ -1,3 +1,5 @@
+import { notFound, redirect } from 'next/navigation';
+import { paths } from '@/constants/paths';
 import { fetchMyCategoryList } from '@/functions/memberCategory/categorySpeechLang';
 import { fetchMyPhraseCategoryView } from '@/functions/fetchMyPhraseCategoryView';
 import { createSupabaseServerClient } from '@/functions/supabaseServer';
@@ -29,10 +31,9 @@ export async function getMyPhraseCategorySummaries(): Promise<MyPhraseCategorySu
 	}));
 }
 
-/** レッスンなどサーバー側での取得用 */
-export async function getMyPhraseCategoryById(
+export async function requireMyPhraseCategory(
 	categoryId: string
-): Promise<MyPhraseCategoryView | null> {
+): Promise<MyPhraseCategoryView> {
 	const supabase = await createSupabaseServerClient();
 
 	const {
@@ -40,8 +41,14 @@ export async function getMyPhraseCategoryById(
 	} = await supabase.auth.getUser();
 
 	if (!user) {
-		return null;
+		redirect(paths.login);
 	}
 
-	return fetchMyPhraseCategoryView(supabase, user.id, categoryId);
+	const category = await fetchMyPhraseCategoryView(supabase, user.id, categoryId);
+
+	if (!category) {
+		notFound();
+	}
+
+	return category;
 }

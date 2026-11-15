@@ -10,13 +10,8 @@
 	justify-content: center;
 	transition: opacity var(--transition);
 }
-
-.caption {
+.label {
 	line-height: 1;
-}
-.toggleReveal[data-is-fixed='true'] {
-	position: fixed;
-	z-index: var(--z-sticky);
 }
 
 @media (min-width: 640px) {
@@ -24,19 +19,11 @@
 		border-radius: calc(var(--border-radius) * 1px);
 		padding: calc(var(--spacing-1) * 1px);
 	}
-	.toggleReveal[data-is-fixed='true'] {
-		bottom: calc(var(--spacing-2) * 1px);
-		right: calc(var(--spacing-2) * 1px);
-	}
 }
 @media (max-width: 639px) {
 	.toggleReveal {
 		border-radius: calc(var(--calc-sp) * var(--border-radius));
 		gap: calc(var(--calc-sp) * var(--spacing-1));
 		padding: calc(var(--calc-sp) * var(--spacing-1));
-	}
-	.toggleReveal[data-is-fixed='true'] {
-		bottom: calc(var(--calc-sp) * var(--spacing-2));
-		right: calc(var(--calc-sp) * var(--spacing-2));
 	}
 }

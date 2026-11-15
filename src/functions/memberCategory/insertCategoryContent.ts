@@ -26,7 +26,7 @@ export async function insertCategoryContent(
 		.from('my_phrases')
 		.insert(phraseRows)
 		.select('id,sort_order')
-		.returns<MyPhraseSavedRow[]>();
+		.overrideTypes<MyPhraseSavedRow[], { merge: false }>();
 
 	if (phrasesError || !savedPhrases) {
 		return { ok: false as const };

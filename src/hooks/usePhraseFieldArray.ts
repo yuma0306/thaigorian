@@ -1,5 +1,6 @@
 import { useFieldArray, type Control } from 'react-hook-form';
 import { createPhrase } from '@/components/MyCategoryRegister/fieldFactory';
+import { maxPhrasesPerCategory } from '@/constants/myCategoryLimits';
 import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 
 type Params = {
@@ -15,10 +16,19 @@ export function usePhraseFieldArray({ control, onCloseMenu }: Params) {
 	});
 
 	function handleAddPhrase() {
+		if (phraseFieldArray.fields.length >= maxPhrasesPerCategory) {
+			return;
+		}
+
 		phraseFieldArray.append(createPhrase());
 	}
 
 	function handleInsertPhrase(index: number) {
+		if (phraseFieldArray.fields.length >= maxPhrasesPerCategory) {
+			onCloseMenu();
+			return;
+		}
+
 		phraseFieldArray.insert(index, createPhrase());
 		onCloseMenu();
 	}

@@ -1,8 +1,9 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { MyPhraseEditRow, MyWordRow } from '@/types/database';
+import { fetchMyCategoryForEdit } from '@/functions/memberCategory/categorySpeechLang';
+import type { MyPhraseEditRow, MyPhraseRow, MyWordRow } from '@/types/database';
 import type { PhraseField } from '@/types/myCategoryRegister';
 
-export async function fetchWordsByPhraseIds(
+async function fetchWordsByPhraseIds(
 	supabase: SupabaseClient,
 	userId: string,
 	phraseIds: string[]
@@ -17,17 +18,46 @@ export async function fetchWordsByPhraseIds(
 		.eq('user_id', userId)
 		.in('phrase_id', phraseIds)
 		.order('sort_order', { ascending: true })
-		.returns<MyWordRow[]>();
+		.overrideTypes<MyWordRow[], { merge: false }>();
 
 	return data ?? [];
 }
 
+export async function fetchOwnedCategoryPhrases(
+	supabase: SupabaseClient,
+	userId: string,
+	categoryId: string
+) {
+	const [category, phraseResponse] = await Promise.all([
+		fetchMyCategoryForEdit(supabase, userId, categoryId),
+		supabase
+			.from('my_phrases')
+			.select('id,category_id,phrase,meaning,sort_order')
+			.eq('category_id', categoryId)
+			.eq('user_id', userId)
+			.order('sort_order', { ascending: true })
+			.overrideTypes<MyPhraseRow[], { merge: false }>()
+	]);
+
+	if (!category) {
+		return null;
+	}
+
+	const phraseRows = phraseResponse.data ?? [];
+	const wordRows = await fetchWordsByPhraseIds(
+		supabase,
+		userId,
+		phraseRows.map((phrase) => phrase.id)
+	);
+
+	return { category, phraseRows, wordRows };
+}
+
 export function groupWordsByPhraseId(wordRows: MyWordRow[]) {
-	const wordsByPhraseId = new Map<string, MyWordRow[]>();
-	wordRows.forEach((word) => {
+	return wordRows.reduce((wordsByPhraseId, word) => {
 		wordsByPhraseId.set(word.phrase_id, [...(wordsByPhraseId.get(word.phrase_id) ?? []), word]);
-	});
-	return wordsByPhraseId;
+		return wordsByPhraseId;
+	}, new Map<string, MyWordRow[]>());
 }
 
 export function mapPhraseRowsToFields(

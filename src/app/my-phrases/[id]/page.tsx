@@ -1,4 +1,5 @@
-import { MyPhraseDetailPage } from './MyPhraseDetailPage';
+import { MyPhraseDetail } from './MyPhraseDetail';
+import { requireMyPhraseCategory } from '@/functions/myPhrases';
 
 type Props = {
 	params: Promise<{ id: string }>;
@@ -6,5 +7,6 @@ type Props = {
 
 export default async function MyPhrasePage({ params }: Props) {
 	const { id } = await params;
-	return <MyPhraseDetailPage categoryId={id} />;
+	const category = await requireMyPhraseCategory(id);
+	return <MyPhraseDetail category={category} />;
 }

@@ -40,6 +40,7 @@ export function QuestionCard({
 				<FlexColumn gap={1} variant="div" alignItems="stretch" justifyContent="center">
 					<ActiveVoiceButton text={phrase} lang={speechLang} />
 					<ToggleRevealButton
+						label="Phrase"
 						expanded={showAnswer}
 						onClick={() => onShowAnswerChange(!showAnswer)}
 					/>
