@@ -30,8 +30,8 @@ export function PhraseWordFieldsSection({
 
 	return (
 		<div className={styles.section}>
-			<FlexColumn gap={1} variant="div" alignItems="center">
-				{wordActions.wordFields.length < 1 && (
+			{wordActions.wordFields.length < 1 && (
+				<FlexColumn gap={1} variant="div" alignItems="center">
 					<>
 						<Typography size={2} variant="span" color="primary" weight="bold" align="left">
 							Terms
@@ -43,8 +43,8 @@ export function PhraseWordFieldsSection({
 							isAbsolute={false}
 						/>
 					</>
-				)}
-			</FlexColumn>
+				</FlexColumn>
+			)}
 			{wordActions.wordFields.length > 0 && (
 				<>
 					<PhraseWordFieldList
