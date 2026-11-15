@@ -1,9 +1,10 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { fetchMyCategoryForEdit } from '@/functions/memberCategory/categorySpeechLang';
-import { fetchWordsByPhraseIds, groupWordsByPhraseId } from '@/functions/memberCategoryPhrases';
+import {
+	fetchOwnedCategoryPhrases,
+	groupWordsByPhraseId
+} from '@/functions/memberCategoryPhrases';
 import { mapMyPhraseRow } from '@/functions/mapMyPhraseRow';
 import { isFilledPhrase } from '@/schemas/myCategory';
-import type { MyPhraseRow } from '@/types/database';
 import type { MyPhraseCategoryView } from '@/types/myPhrases';
 
 export async function fetchMyPhraseCategoryView(
@@ -11,29 +12,19 @@ export async function fetchMyPhraseCategoryView(
 	userId: string,
 	categoryId: string
 ): Promise<MyPhraseCategoryView | null> {
-	const category = await fetchMyCategoryForEdit(supabase, userId, categoryId);
+	const owned = await fetchOwnedCategoryPhrases(supabase, userId, categoryId);
 
-	if (!category) {
+	if (!owned) {
 		return null;
 	}
 
-	const { data: phraseRows } = await supabase
-		.from('my_phrases')
-		.select('id,category_id,phrase,meaning,sort_order')
-		.eq('category_id', category.id)
-		.eq('user_id', userId)
-		.order('sort_order', { ascending: true })
-		.returns<MyPhraseRow[]>();
-
-	const phraseIds = (phraseRows ?? []).map((phrase) => phrase.id);
-	const wordRows = await fetchWordsByPhraseIds(supabase, userId, phraseIds);
-	const wordsByPhraseId = groupWordsByPhraseId(wordRows);
+	const wordsByPhraseId = groupWordsByPhraseId(owned.wordRows);
 
 	return {
-		id: category.id,
-		title: category.title ?? 'Untitled',
-		speechLang: category.speechLang,
-		phrases: (phraseRows ?? [])
+		id: owned.category.id,
+		title: owned.category.title ?? 'Untitled',
+		speechLang: owned.category.speechLang,
+		phrases: owned.phraseRows
 			.map((phrase) => mapMyPhraseRow(phrase, wordsByPhraseId.get(phrase.id) ?? []))
 			.filter(isFilledPhrase)
 	};

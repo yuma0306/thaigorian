@@ -24,10 +24,6 @@ export function PhraseDiff({ input, expected, particle }: Props) {
 				))}
 				{particle && <span>{particle}</span>}
 			</p>
-			<Typography size={1} variant="p" color="dark" weight="normal" align="left">
-				<span className={styles.legendDelete}>Red</span> is extra,{' '}
-				<span className={styles.legendInsert}>green</span> is missing
-			</Typography>
 		</div>
 	);
 }

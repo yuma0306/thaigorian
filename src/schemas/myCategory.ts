@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { maxPhrasesPerCategory, maxWordsPerPhrase } from '@/constants/myCategoryLimits';
 import { speechLangOptions, type SpeechLang } from '@/constants/speechLangs';
 
 const contentIdPattern = /^[a-zA-Z0-9_-]+$/;
@@ -19,7 +20,7 @@ const phrasePayloadSchema = z.object({
 	fieldId: trimmedString.min(1),
 	phrase: trimmedString,
 	meaning: trimmedString,
-	words: z.array(wordPayloadSchema)
+	words: z.array(wordPayloadSchema).max(maxWordsPerPhrase)
 });
 
 type PhraseContent = {
@@ -42,7 +43,7 @@ const saveMyCategorySchema = z.object({
 	contentId: trimmedString.min(1).regex(contentIdPattern),
 	title: trimmedString.min(1),
 	speechLang: speechLangSchema,
-	phrases: z.array(phrasePayloadSchema)
+	phrases: z.array(phrasePayloadSchema).max(maxPhrasesPerCategory)
 });
 
 const wordFormFieldSchema = z.object({
@@ -55,14 +56,14 @@ const phraseFormFieldSchema = z.object({
 	id: trimmedString.min(1),
 	phrase: trimmedString,
 	meaning: trimmedString,
-	words: z.array(wordFormFieldSchema)
+	words: z.array(wordFormFieldSchema).max(maxWordsPerPhrase)
 });
 
 export const categoryRegisterFormSchema = z.object({
 	contentId: trimmedString.min(1).regex(contentIdPattern),
 	title: trimmedString.min(1),
 	speechLang: speechLangSchema,
-	phrases: z.array(phraseFormFieldSchema)
+	phrases: z.array(phraseFormFieldSchema).max(maxPhrasesPerCategory)
 });
 
 export type SaveMyCategoryInput = z.infer<typeof saveMyCategorySchema>;

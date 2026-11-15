@@ -2,6 +2,7 @@ import { Fragment, type MouseEvent } from 'react';
 import type { Control, FieldArrayWithId } from 'react-hook-form';
 import styles from './PhraseRepeaterSection.module.css';
 import { PhraseFieldCard } from '@/components/PhraseFieldCard/PhraseFieldCard';
+import { maxPhrasesPerCategory } from '@/constants/myCategoryLimits';
 import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 import type { MenuState } from '@/types/myCategoryRegister';
 import { Typography } from '@/components/Typography/Typography';
@@ -32,6 +33,8 @@ export function PhraseRepeaterSection({
 	onRemovePhrase,
 	onCloseMenu
 }: Props) {
+	const canAddPhrase = phraseFields.length < maxPhrasesPerCategory;
+
 	return (
 		<Stack variant="div" size={1}>
 			{phraseFields.length === 0 ? (
@@ -64,17 +67,24 @@ export function PhraseRepeaterSection({
 								onRemovePhrase={onRemovePhrase}
 								onCloseMenu={onCloseMenu}
 							/>
-							<PhraseAddButtonWrapper layer="first">
-								<PhraseAddButton
-									onClick={() => onInsertPhrase(phraseIndex + 1)}
-									position="center"
-									layer="first"
-									isAbsolute
-								/>
-							</PhraseAddButtonWrapper>
+							{canAddPhrase ? (
+								<PhraseAddButtonWrapper layer="first">
+									<PhraseAddButton
+										onClick={() => onInsertPhrase(phraseIndex + 1)}
+										position="center"
+										layer="first"
+										isAbsolute
+									/>
+								</PhraseAddButtonWrapper>
+							) : null}
 						</Fragment>
 					))}
 				</div>
+			)}
+			{canAddPhrase ? null : (
+				<Typography size={2} variant="p" color="gray" weight="normal" align="left">
+					Maximum {maxPhrasesPerCategory} phrases
+				</Typography>
 			)}
 		</Stack>
 	);

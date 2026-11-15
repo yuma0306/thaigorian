@@ -21,14 +21,6 @@
 	color: var(--color-success-black);
 }
 
-.legendDelete {
-	color: var(--color-error);
-}
-
-.legendInsert {
-	color: var(--color-success-black);
-}
-
 @media (min-width: 640px) {
 	.root {
 		border-radius: calc(var(--border-radius) * 1px);

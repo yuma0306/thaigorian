@@ -70,7 +70,9 @@ export function useCategoryRegisterForm({
 			showToast('Saved.');
 			if (!categoryId) {
 				router.push(paths.memberPhrases);
+				return;
 			}
+			router.refresh();
 		} catch {
 			showToast('Could not save.', 'error');
 		}

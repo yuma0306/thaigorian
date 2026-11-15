@@ -23,9 +23,7 @@ export function ScrollToEdgeButton({ direction }: Props) {
 			className={styles.scrollToEdge}
 			onClick={handleClick}
 			aria-label={label}
-			title={label}
 		>
-			<span className={styles.caption}>{label}</span>
 			{isTop ? <ChevronUpIcon /> : <ChevronDownIcon />}
 		</button>
 	);

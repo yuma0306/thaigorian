@@ -1,9 +1,9 @@
 import type { MouseEvent } from 'react';
 import type { Control } from 'react-hook-form';
-import { useFieldArray } from 'react-hook-form';
-import { createWord } from '@/components/MyCategoryRegister/fieldFactory';
 import { PhraseAddButton } from '@/components/PhraseAddButton/PhraseAddButton';
 import { PhraseAddButtonWrapper } from '@/components/PhraseAddButtonWrapper/PhraseAddButtonWrapper';
+import { maxWordsPerPhrase } from '@/constants/myCategoryLimits';
+import { useWordFieldArray } from '@/hooks/useWordFieldArray';
 import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 import type { MenuState } from '@/types/myCategoryRegister';
 import { FlexColumn } from '../FlexColumn/FlexColumn';
@@ -26,41 +26,18 @@ export function PhraseWordFieldsSection({
 	onToggleMenu,
 	onCloseMenu
 }: Props) {
-	const wordFieldArray = useFieldArray({
-		control,
-		name: `phrases.${phraseIndex}.words`,
-		keyName: 'fieldKey'
-	});
-
-	function handleAddWord() {
-		wordFieldArray.append(createWord());
-	}
-
-	function handleInsertWord(index: number) {
-		wordFieldArray.insert(index, createWord());
-		onCloseMenu();
-	}
-
-	function handleRemoveWord(index: number) {
-		wordFieldArray.remove(index);
-		onCloseMenu();
-	}
-
-	function handleMoveWord(fromIndex: number, toIndex: number) {
-		wordFieldArray.move(fromIndex, toIndex);
-		onCloseMenu();
-	}
+	const wordActions = useWordFieldArray({ control, phraseIndex, onCloseMenu });
 
 	return (
 		<div className={styles.section}>
 			<FlexColumn gap={1} variant="div" alignItems="center">
-				{wordFieldArray.fields.length < 1 && (
+				{wordActions.wordFields.length < 1 && (
 					<>
 						<Typography size={2} variant="span" color="primary" weight="bold" align="left">
 							Terms
 						</Typography>
 						<PhraseAddButton
-							onClick={handleAddWord}
+							onClick={wordActions.handleAddWord}
 							layer="secound"
 							position="left"
 							isAbsolute={false}
@@ -68,21 +45,32 @@ export function PhraseWordFieldsSection({
 					</>
 				)}
 			</FlexColumn>
-			{wordFieldArray.fields.length > 0 && (
+			{wordActions.wordFields.length > 0 && (
 				<>
 					<PhraseWordFieldList
 						control={control}
 						phraseIndex={phraseIndex}
-						wordFields={wordFieldArray.fields}
+						wordFields={wordActions.wordFields}
 						openMenu={openMenu}
 						onToggleMenu={onToggleMenu}
-						onInsertWord={handleInsertWord}
-						onMoveWord={handleMoveWord}
-						onRemoveWord={handleRemoveWord}
+						onInsertWord={wordActions.handleInsertWord}
+						onMoveWord={wordActions.handleMoveWord}
+						onRemoveWord={wordActions.handleRemoveWord}
 					/>
-					<PhraseAddButtonWrapper layer="secound">
-						<PhraseAddButton onClick={handleAddWord} layer="secound" position="center" isAbsolute />
-					</PhraseAddButtonWrapper>
+					{wordActions.canAddWord ? (
+						<PhraseAddButtonWrapper layer="secound">
+							<PhraseAddButton
+								onClick={wordActions.handleAddWord}
+								layer="secound"
+								position="center"
+								isAbsolute
+							/>
+						</PhraseAddButtonWrapper>
+					) : (
+						<Typography size={2} variant="p" color="gray" weight="normal" align="left">
+							Maximum {maxWordsPerPhrase} terms
+						</Typography>
+					)}
 				</>
 			)}
 		</div>

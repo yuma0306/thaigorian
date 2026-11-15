@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react';
 import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
+import { maxPhrasesPerCategory } from '@/constants/myCategoryLimits';
 import type { MenuState } from '@/types/myCategoryRegister';
 import styles from './PhraseFieldCardMenu.module.css';
 
@@ -47,6 +48,7 @@ export function PhraseFieldCardMenu({
 					deleteLabel="Delete field"
 					isMoveUpDisabled={phraseIndex === 0}
 					isMoveDownDisabled={phraseIndex === phraseCount - 1}
+					isAddDisabled={phraseCount >= maxPhrasesPerCategory}
 					onAddAbove={() => onInsertPhrase(phraseIndex)}
 					onAddBelow={() => onInsertPhrase(phraseIndex + 1)}
 					onMoveUp={() => onMovePhrase(phraseIndex, phraseIndex - 1)}
