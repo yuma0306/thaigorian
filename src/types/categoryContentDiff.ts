@@ -2,6 +2,7 @@ export type PhraseWrite = {
 	fieldId: string;
 	phrase: string;
 	meaning: string;
+	note: string;
 	sortOrder: number;
 };
 

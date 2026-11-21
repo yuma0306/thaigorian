@@ -1,10 +1,14 @@
 import type { MouseEvent } from 'react';
+import type { Control } from 'react-hook-form';
 import { FieldMenu } from '@/components/FieldMenu/FieldMenu';
+import { PhraseNoteButton } from '@/components/PhraseNoteButton/PhraseNoteButton';
 import { maxPhrasesPerCategory } from '@/constants/myCategoryLimits';
+import type { CategoryRegisterFormValues } from '@/schemas/myCategory';
 import type { MenuState } from '@/types/myCategoryRegister';
 import styles from './PhraseFieldCardMenu.module.css';
 
 type Props = {
+	control: Control<CategoryRegisterFormValues>;
 	phraseId: string;
 	phraseIndex: number;
 	phraseCount: number;
@@ -19,6 +23,7 @@ type Props = {
 };
 
 export function PhraseFieldCardMenu({
+	control,
 	phraseId,
 	phraseIndex,
 	phraseCount,
@@ -30,6 +35,7 @@ export function PhraseFieldCardMenu({
 }: Props) {
 	return (
 		<div className={styles.menuWrapper}>
+			<PhraseNoteButton control={control} phraseIndex={phraseIndex} />
 			<button
 				className={styles.menuButton}
 				type="button"

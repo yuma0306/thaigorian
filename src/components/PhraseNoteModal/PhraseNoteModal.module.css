@@ -1,0 +1,61 @@
+.overlay {
+	align-items: center;
+	background-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	padding: calc(var(--spacing-3) * 1px);
+	position: fixed;
+	z-index: var(--z-modal);
+}
+.dialog {
+	background-color: var(--color-white);
+	border-radius: calc(var(--border-radius) * 1px);
+	display: grid;
+	gap: calc(var(--spacing-2) * 1px);
+	max-width: 480px;
+	padding: calc(var(--spacing-3) * 1px);
+	width: 100%;
+}
+.title {
+	color: var(--color-primary);
+	font-size: calc(var(--font-size-4) * 1px);
+	font-weight: 700;
+	line-height: var(--line-height);
+}
+.textarea {
+	border: 1px solid var(--color-gray);
+	border-radius: calc(var(--border-radius) * 1px);
+	color: var(--color-dark);
+	font-family: var(--font-family);
+	font-size: 16px;
+	line-height: var(--line-height);
+	min-height: 160px;
+	padding: calc(var(--spacing-1) * 1px);
+	resize: vertical;
+	width: 100%;
+}
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: calc(var(--spacing-2) * 1px);
+	justify-content: flex-end;
+}
+.cancelButton,
+.saveButton {
+	border-radius: calc(var(--border-radius) * 1px);
+	cursor: pointer;
+	font-size: calc(var(--font-size-2) * 1px);
+	font-weight: 700;
+	padding: calc(var(--spacing-1) * 1px) calc(var(--spacing-2) * 1px);
+}
+.saveButton {
+	background-color: var(--color-secondary);
+	border: 1px solid var(--color-secondary);
+	color: var(--color-white);
+}
+.cancelButton {
+	background-color: var(--color-white);
+	border: 1px solid var(--color-gray);
+	color: var(--color-primary);
+}

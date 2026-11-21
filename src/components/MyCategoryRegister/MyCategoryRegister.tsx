@@ -10,6 +10,7 @@ import { PhraseRepeaterSection } from '@/components/PhraseRepeaterSection/Phrase
 import { Stack } from '@/components/Stack/Stack';
 import { defaultSpeechLang } from '@/constants/speechLangs';
 import { paths } from '@/constants/paths';
+import { FormProvider } from 'react-hook-form';
 import { useCategoryRegisterForm } from '@/hooks/useCategoryRegisterForm';
 import { createId } from './fieldFactory';
 import type { MyCategoryRegisterProps } from './types';
@@ -55,8 +56,9 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 			<Crumbs items={crumbItems} />
 			<Inner>
 				<Stack variant="div" size={3}>
-					<form onSubmit={(event) => event.preventDefault()}>
-						<Stack variant="div" size={2}>
+					<FormProvider {...registerForm.form}>
+						<form onSubmit={(event) => event.preventDefault()}>
+							<Stack variant="div" size={2}>
 							<CategoryTextField
 								id="category-title"
 								label="Title"
@@ -93,8 +95,9 @@ export function MyCategoryRegister(props: MyCategoryRegisterProps) {
 									void registerForm.handleSave();
 								}}
 							/>
-						</Stack>
-					</form>
+							</Stack>
+						</form>
+					</FormProvider>
 				</Stack>
 			</Inner>
 		</Stack>

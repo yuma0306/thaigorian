@@ -8,6 +8,7 @@ function isSamePhrase(row: MyPhraseRow, phrase: NormalizedPhrase, sortOrder: num
 	return (
 		(row.phrase ?? '') === phrase.phrase &&
 		(row.meaning ?? '') === phrase.meaning &&
+		(row.note ?? '') === phrase.note &&
 		(row.sort_order ?? 0) === sortOrder
 	);
 }
@@ -34,6 +35,7 @@ function diffOnePhrase(
 		fieldId: phrase.fieldId,
 		phrase: phrase.phrase,
 		meaning: phrase.meaning,
+		note: phrase.note,
 		sortOrder
 	};
 

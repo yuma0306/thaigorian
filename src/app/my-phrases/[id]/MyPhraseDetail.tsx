@@ -6,6 +6,7 @@ import { Crumbs } from '@/components/Crumbs/Crumbs';
 import { Inner } from '@/components/Inner/Inner';
 import { PairPageLink } from '@/components/PairPageLink/PairPageLink';
 import { PhraseCard } from '@/components/PhraseCard/PhraseCard';
+import { PhraseDetailNoteButton } from '@/components/PhraseDetailNoteButton/PhraseDetailNoteButton';
 import { PhraseDetailCardSelect } from '@/components/PhraseDetailCardSelect/PhraseDetailCardSelect';
 import { PhraseDetailStickyBar } from '@/components/PhraseDetailStickyBar/PhraseDetailStickyBar';
 import { PhraseDetailToolbar } from '@/components/PhraseDetailToolbar/PhraseDetailToolbar';
@@ -69,6 +70,9 @@ export function MyPhraseDetail({ category }: Props) {
 									hasBorderLeft={false}
 									hasRelative
 								>
+									{phrase.note?.trim() ? (
+										<PhraseDetailNoteButton note={phrase.note.trim()} />
+									) : null}
 									<PhraseDetailCardSelect
 										checked={isSelected(index)}
 										onCheckedChange={() => togglePhrase(index)}

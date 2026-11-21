@@ -1,5 +1,8 @@
 .menuWrapper {
+	align-items: center;
+	display: flex;
 	flex-shrink: 0;
+	gap: calc(var(--spacing-1) * 1px);
 	position: relative;
 }
 

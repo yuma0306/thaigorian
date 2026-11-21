@@ -1,0 +1,46 @@
+.overlay {
+	align-items: center;
+	background-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	padding: calc(var(--spacing-3) * 1px);
+	position: fixed;
+	z-index: var(--z-modal);
+}
+.dialog {
+	background-color: var(--color-white);
+	border-radius: calc(var(--border-radius) * 1px);
+	display: grid;
+	gap: calc(var(--spacing-2) * 1px);
+	max-width: 480px;
+	padding: calc(var(--spacing-3) * 1px);
+	width: 100%;
+}
+.title {
+	color: var(--color-primary);
+	font-size: calc(var(--font-size-4) * 1px);
+	font-weight: 700;
+	line-height: var(--line-height);
+}
+.body {
+	color: var(--color-dark);
+	font-size: calc(var(--font-size-2) * 1px);
+	line-height: var(--line-height);
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+.actions {
+	display: flex;
+	justify-content: flex-end;
+}
+.closeButton {
+	background-color: var(--color-white);
+	border: 1px solid var(--color-gray);
+	border-radius: calc(var(--border-radius) * 1px);
+	color: var(--color-primary);
+	cursor: pointer;
+	font-size: calc(var(--font-size-2) * 1px);
+	font-weight: 700;
+	padding: calc(var(--spacing-1) * 1px) calc(var(--spacing-2) * 1px);
+}

@@ -13,6 +13,11 @@ export function mapMyPhraseRow(phrase: MyPhraseRow, words: MyWordRow[]): Phrase 
 		mapped.meaning = meaning;
 	}
 
+	const note = phrase.note?.trim();
+	if (note) {
+		mapped.note = note;
+	}
+
 	return {
 		...mapped,
 		words: words.map((word) => {

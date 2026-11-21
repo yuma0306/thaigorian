@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { maxPhrasesPerCategory, maxWordsPerPhrase } from '@/constants/myCategoryLimits';
+import {
+	maxPhraseNoteLength,
+	maxPhrasesPerCategory,
+	maxWordsPerPhrase
+} from '@/constants/myCategoryLimits';
 import { speechLangOptions, type SpeechLang } from '@/constants/speechLangs';
 
 const contentIdPattern = /^[a-zA-Z0-9_-]+$/;
@@ -20,6 +24,7 @@ const phrasePayloadSchema = z.object({
 	fieldId: trimmedString.min(1),
 	phrase: trimmedString,
 	meaning: trimmedString,
+	note: trimmedString.max(maxPhraseNoteLength),
 	words: z.array(wordPayloadSchema).max(maxWordsPerPhrase)
 });
 
@@ -56,6 +61,7 @@ const phraseFormFieldSchema = z.object({
 	id: trimmedString.min(1),
 	phrase: trimmedString,
 	meaning: trimmedString,
+	note: trimmedString.max(maxPhraseNoteLength),
 	words: z.array(wordFormFieldSchema).max(maxWordsPerPhrase)
 });
 
@@ -81,6 +87,7 @@ export function toSaveMyCategoryPayload(values: CategoryRegisterFormValues): Sav
 			fieldId: phrase.id,
 			phrase: phrase.phrase,
 			meaning: phrase.meaning,
+			note: phrase.note,
 			words: phrase.words.map((word) => ({
 				fieldId: word.id,
 				word: word.word,

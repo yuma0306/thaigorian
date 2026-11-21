@@ -15,6 +15,7 @@ export type MyPhraseRow = {
 	category_id: string;
 	phrase: string | null;
 	meaning: string | null;
+	note: string | null;
 	sort_order: number | null;
 };
 
@@ -53,7 +54,7 @@ type Word = {
 /** アプリ共通: フレーズ（MyPhraseRow の phrase / meaning に対応） */
 export type Phrase = {
 	fieldId: string;
-} & Partial<Pick<MyPhraseRow, 'phrase' | 'meaning'>> & {
+} & Partial<Pick<MyPhraseRow, 'phrase' | 'meaning' | 'note'>> & {
 		words?: Word[];
 	};
 

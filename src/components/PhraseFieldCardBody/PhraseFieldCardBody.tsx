@@ -42,6 +42,7 @@ export function PhraseFieldCardBody({
 				control={control}
 				labelAction={
 					<PhraseFieldCardMenu
+						control={control}
 						phraseId={phraseId}
 						phraseIndex={phraseIndex}
 						phraseCount={phraseCount}

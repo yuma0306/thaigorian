@@ -15,6 +15,7 @@ export async function insertCategoryContent(
 		category_id: categoryId,
 		phrase: phrase.phrase,
 		meaning: phrase.meaning,
+		note: phrase.note,
 		sort_order: index
 	}));
 
