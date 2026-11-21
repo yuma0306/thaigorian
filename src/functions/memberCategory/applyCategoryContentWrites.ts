@@ -23,6 +23,7 @@ export async function insertPhrases(
 				category_id: categoryId,
 				phrase: phrase.phrase,
 				meaning: phrase.meaning,
+				note: phrase.note,
 				sort_order: phrase.sortOrder
 			}))
 		)

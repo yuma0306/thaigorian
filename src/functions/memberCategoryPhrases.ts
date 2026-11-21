@@ -1,7 +1,44 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { fetchMyCategoryForEdit } from '@/functions/memberCategory/categorySpeechLang';
+import { isMissingPhraseNoteColumn } from '@/functions/memberCategory/isMissingPhraseNoteColumn';
 import type { MyPhraseEditRow, MyPhraseRow, MyWordRow } from '@/types/database';
 import type { PhraseField } from '@/types/myCategoryRegister';
+
+async function fetchPhraseRows(
+	supabase: SupabaseClient,
+	userId: string,
+	categoryId: string
+): Promise<MyPhraseRow[] | null> {
+	const withNote = await supabase
+		.from('my_phrases')
+		.select('id,category_id,phrase,meaning,note,sort_order')
+		.eq('category_id', categoryId)
+		.eq('user_id', userId)
+		.order('sort_order', { ascending: true })
+		.overrideTypes<MyPhraseRow[], { merge: false }>();
+
+	if (!withNote.error) {
+		return withNote.data ?? [];
+	}
+
+	if (!isMissingPhraseNoteColumn(withNote.error)) {
+		return null;
+	}
+
+	const withoutNote = await supabase
+		.from('my_phrases')
+		.select('id,category_id,phrase,meaning,sort_order')
+		.eq('category_id', categoryId)
+		.eq('user_id', userId)
+		.order('sort_order', { ascending: true })
+		.overrideTypes<Omit<MyPhraseRow, 'note'>[], { merge: false }>();
+
+	if (withoutNote.error) {
+		return null;
+	}
+
+	return (withoutNote.data ?? []).map((phrase) => ({ ...phrase, note: null }));
+}
 
 async function fetchWordsByPhraseIds(
 	supabase: SupabaseClient,
@@ -28,22 +65,14 @@ export async function fetchOwnedCategoryPhrases(
 	userId: string,
 	categoryId: string
 ) {
-	const [category, phraseResponse] = await Promise.all([
+	const [category, phraseRows] = await Promise.all([
 		fetchMyCategoryForEdit(supabase, userId, categoryId),
-		supabase
-			.from('my_phrases')
-			.select('id,category_id,phrase,meaning,sort_order')
-			.eq('category_id', categoryId)
-			.eq('user_id', userId)
-			.order('sort_order', { ascending: true })
-			.overrideTypes<MyPhraseRow[], { merge: false }>()
+		fetchPhraseRows(supabase, userId, categoryId)
 	]);
 
-	if (!category) {
+	if (!category || !phraseRows) {
 		return null;
 	}
-
-	const phraseRows = phraseResponse.data ?? [];
 	const wordRows = await fetchWordsByPhraseIds(
 		supabase,
 		userId,
@@ -68,6 +97,7 @@ export function mapPhraseRowsToFields(
 		id: phrase.id,
 		phrase: phrase.phrase ?? '',
 		meaning: phrase.meaning ?? '',
+		note: phrase.note ?? '',
 		words: (wordsByPhraseId.get(phrase.id) ?? []).map((word) => ({
 			id: word.id,
 			word: word.word ?? '',

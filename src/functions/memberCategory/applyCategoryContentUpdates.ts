@@ -17,6 +17,7 @@ export async function updatePhrases(
 				.update({
 					phrase: phrase.phrase,
 					meaning: phrase.meaning,
+					note: phrase.note,
 					sort_order: phrase.sortOrder
 				})
 				.eq('id', phrase.fieldId)

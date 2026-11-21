@@ -1,42 +1,31 @@
 'use client';
 
-import { createContext, useMemo, useState, type ReactNode } from 'react';
-import { Modal, type ModalProps } from '@/components/Modal/Modal';
+import { createContext, useCallback, useMemo, useState, type ReactNode } from 'react';
 
 export type ModalContextValue = {
-	openModal: (modalProps: ModalProps) => void;
+	openModal: (content: ReactNode) => void;
 	closeModal: () => void;
 };
 
 export const ModalContext = createContext<ModalContextValue | null>(null);
 
 export function ModalProvider({ children }: { children: ReactNode }) {
-	const [modalProps, setModalProps] = useState<ModalProps | null>(null);
+	const [modalContent, setModalContent] = useState<ReactNode>(null);
 
-	const value = useMemo(
-		() => ({
-			openModal: (nextModalProps: ModalProps) => setModalProps(nextModalProps),
-			closeModal: () => setModalProps(null)
-		}),
-		[]
-	);
+	const openModal = useCallback((content: ReactNode) => {
+		setModalContent(content);
+	}, []);
+
+	const closeModal = useCallback(() => {
+		setModalContent(null);
+	}, []);
+
+	const value = useMemo(() => ({ openModal, closeModal }), [openModal, closeModal]);
 
 	return (
-		<ModalContext.Provider value={value}>
+		<ModalContext value={value}>
 			{children}
-			{modalProps && (
-				<Modal
-					{...modalProps}
-					onAgree={() => {
-						modalProps.onAgree();
-						setModalProps(null);
-					}}
-					onDisagree={() => {
-						modalProps.onDisagree();
-						setModalProps(null);
-					}}
-				/>
-			)}
-		</ModalContext.Provider>
+			{modalContent}
+		</ModalContext>
 	);
 }

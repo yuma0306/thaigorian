@@ -1,6 +1,8 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { deleteCategoryConfirmModal } from '@/components/Modal/deleteCategoryConfirmModal';
+import { Modal } from '@/components/Modal/Modal';
 import { useModal } from '@/components/Modal/useModal';
 import { paths } from '@/constants/paths';
 import { useToast } from '@/hooks/useToast';
@@ -13,16 +15,24 @@ type Params = {
 
 export function useCategoryDelete({ categoryId, onDelete }: Params) {
 	const router = useRouter();
-	const { openModal } = useModal();
+	const { closeModal, openModal } = useModal();
 	const { showToast } = useToast();
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	function handleDeleteClick() {
 		if (!categoryId || !onDelete || isDeleting) return;
 		openModal(
-			deleteCategoryConfirmModal(() => {
-				void handleDelete();
-			})
+			<Modal
+				title="Delete collection?"
+				description="This phrase collection will be deleted. Continue?"
+				agreeLabel="Delete"
+				disagreeLabel="Cancel"
+				onAgree={() => {
+					closeModal();
+					void handleDelete();
+				}}
+				onDisagree={closeModal}
+			/>
 		);
 	}
 
